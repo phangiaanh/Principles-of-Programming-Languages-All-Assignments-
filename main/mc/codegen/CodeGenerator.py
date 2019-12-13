@@ -106,32 +106,61 @@ class CodeGenVisitor(BaseVisitor, Utils):
         self.emit = Emitter(self.path + "/" + self.className + ".j")
 
     #====================METHOD GENERATOR====================
-    def genMETHOD(self, consdecl, o, frame):
+    def genMETHOD(self, consdecl, sym, frame):
         #consdecl: FuncDecl
-        #o: Any
+        #sym: Any
         #frame: Frame
 
-        isInit = consdecl.returnType is None
-        isMain = consdecl.name.name == "main" and len(consdecl.param) == 0 and type(consdecl.returnType) is VoidType
-        returnType = VoidType() if isInit else consdecl.returnType
-        methodName = "<init>" if isInit else consdecl.name.name
-        intype = [ArrayPointerType(StringType())] if isMain else []
+        #1. Setup declarations
+        #Check if it is init, clinit, main or regular functions
+        isInit = (consdecl.name.name == "<init>")
+        isClInit = (consdecl.name.name == "<clinit>")
+        isMain = consdecl.name.name == "main" and len(consdecl.param) == 0 and isinstance(consdecl.returnType, VoidType)
+        
+        #Get return type
+        returnType = VoidType() if (isInit or isClInit) else consdecl.returnType
+        
+        #Get method name
+        methodName = consdecl.name.name
+        
+        #Get inType
+        intype = None
+        if isMain:
+            intype = [ArrayPointerType(StringType())]
+        elif isInit or isClInit:
+            intype = []
+        else:
+            intype = [x.varType for x in consdecl.param] 
+
+        #Get MType
         mtype = MType(intype, returnType)
 
+        #2. Create prototype
         self.emit.printout(self.emit.emitMETHOD(methodName, mtype, not isInit, frame))
 
+        #3. Enter Scope
         frame.enterScope(True)
 
-        glenv = o
-
-        # Generate code for parameter declarations
+        #4. Generate code for declarations
         if isInit:
             self.emit.printout(self.emit.emitVAR(frame.getNewIndex(), "this", ClassType(self.className), frame.getStartLabel(), frame.getEndLabel(), frame))
-        if isMain:
+        elif isMain:
             self.emit.printout(self.emit.emitVAR(frame.getNewIndex(), "args", ArrayPointerType(StringType()), frame.getStartLabel(), frame.getEndLabel(), frame))
 
+        e = SubBody(frame, sym)
+        if not isInit and not isClInit:
+            for x in consdecl.param:
+                e = self.visit(x, e)
+
+        glenv = e.sym
+        frame = e.frame
         body = consdecl.body
+
+        #Start of body: Create new label
         self.emit.printout(self.emit.emitLABEL(frame.getStartLabel(), frame))
+
+        
+
 
         # Generate code for statements
         if isInit:
@@ -173,10 +202,28 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
         #3.2.2. Visit FuncDecl second time
         frame = e.frame
+        for x in FuncList:
+            sym = e.sym
 
-        
-        # generate default constructor
-        self.genMETHOD(FuncDecl(Id("<init>"), [], None, Block([])), c, Frame("<init>", VoidType))
+            #Set frame properties as the current function
+            frame.name = x.name.name
+            frame.returnType = x.returnType
+            
+            #Generate code for every function
+            self.genMETHOD(x, sym, frame)
+
+        #4. Generate constructor for class
+        self.genMETHOD(FuncDecl(Id("<init>"), [], None, Block([])), e.sym, Frame("<init>", VoidType))
+
+        #5. Create clinit for array constructor
+        for x in e.sym:
+            #If x is a Symbol of a variable which type is ArrayType
+            if isinstance(x.mtype, ArrayType):
+                self.genMETHOD(FuncDecl(Id("<clinit>"), [], None, Block([])), e.sym, Frame("<clinit>", VoidType))
+                #ArrayType constructor only need to be called once
+                break
+
+        #6. Write to file .j
         self.emit.emitEPILOG()
         return c
 
@@ -197,8 +244,9 @@ class CodeGenVisitor(BaseVisitor, Utils):
             VarDeclJasmin = self.emit.emitATTRIBUTE(ast.variable.name, ast.varType, False, None)
             sym.append(Symbol(ast.variable.name, ast.varType, None))
         else:
-            #Call emitVAR for variable in scope
+            #New index for a new variable
             idx = frame.getNewIndex()
+            #Call emitVAR for variable in scope
             VarDeclJasmin = self.emit.emitVAR(idx, ast.variable.name, ast.varType, frame.getStartLabel(), frame.getEndLabel(), frame) 
             sym.append(Symbol(ast.variable.name, ast.varType, idx))
         self.emit.printout(VarDeclJasmin)
@@ -222,7 +270,8 @@ class CodeGenVisitor(BaseVisitor, Utils):
             frame.name = ast.name.name
             frame.returnType = ast.returnType
 
-        return SubBody(frame, sym + [Symbol(ast.name.name, MType(list(map(lambda x: x.varType, ast.param)), ast.returnType),)])
+        #Return new SubBody with a new Symbol
+        return SubBody(frame, sym + [Symbol(ast.name.name, MType(list(map(lambda x: x.varType, ast.param)), ast.returnType), CName(self.className))])
 
     def visitCallExpr(self, ast, o):
         #ast: CallExpr
