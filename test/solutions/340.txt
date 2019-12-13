@@ -1,0 +1,1 @@
+Program([VarDecl(AAA,IntType),VarDecl(BBB,IntType),FuncDecl(Id(BBB),[VarDecl(DDD,ArrayTypePointer(FloatType))],ArrayTypePointer(BoolType),Block([CallExpr(Id(DDD),[StringLiteral(AAA)]),Return()]))])

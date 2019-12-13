@@ -1,1 +1,10 @@
-Program([FuncDecl(Id(main),[],IntType,Block([CallExpr(Id(putIntLn),[CallExpr(Id(getInt),[IntLiteral(4)])])]))])
+
+                int something;
+                float anything;
+                void main(int same[]){
+                    main;
+                    int main;
+                    string main;
+                }
+                boolean notMain;
+                

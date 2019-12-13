@@ -1,0 +1,23 @@
+
+                void main(){
+                    if(true && false || !true)
+                        if(beHumble())
+                            if(beKind())
+                                if(bePositive())
+                                    putString("Yayyyyy");
+                    else
+                        putStringLn("Have a good day!");
+                }
+
+                boolean beHumble(){
+                    return true;
+                }
+
+                boolean beKind(){
+                    return true;
+                }
+
+                boolean bePositive(){
+                    return true;
+                }
+                

@@ -1,0 +1,9 @@
+
+				float[] amIEmpty(int a){
+                    if(smile) 
+                        difficult = difficult / 2;
+                    else
+                        difficult = difficult * 2;
+                    return Hollow;
+                }
+				

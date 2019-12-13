@@ -1,0 +1,19 @@
+
+                void main(int A, boolean B){
+                    funcall(A, A + 1);
+                    do
+                        do
+                            do
+                                A = 1;
+                                B = A > (A + 6.e-12);
+                                break;
+                            while(true);
+                        while(true);
+                    while(true);
+                    return;
+                }
+
+                int funcall(int a, int b){
+                    return a + b;
+                }
+                

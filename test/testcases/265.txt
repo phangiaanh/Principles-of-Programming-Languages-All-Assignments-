@@ -1,0 +1,10 @@
+
+                void main(){
+                    int fun(int a, int c){
+                        printf("Guess where's the error?")
+                        printf("Where is the semicolon?")
+                        printf("This is not a function")
+                    }
+                    int var, var, var[2000];
+                }
+                

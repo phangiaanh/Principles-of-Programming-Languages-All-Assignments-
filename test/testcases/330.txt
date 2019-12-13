@@ -1,0 +1,38 @@
+
+				string AAA(int AAA, int AAA[], float BBB, float BBB[], string CCC, string CCC[], boolean DDD, boolean DDD)
+				{
+					float AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+	 				string AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+	 				int AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+	 				boolean AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+	 				boolean AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+	 				int AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+	 				string AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+	 				float AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+				}
+				boolean[] AAA(int AAA, int AAA[], float BBB, float BBB[], string CCC, string CCC[], boolean DDD, boolean DDD)
+				{
+				}
+				float[] AAA(int AAA, int AAA[], float BBB, float BBB[], string CCC, string CCC[], boolean DDD, boolean DDD)
+				{
+					float AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+	 				string AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+	 				int AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+	 				boolean AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+	 				boolean AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+	 				int AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+	 				string AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+	 				float AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+				}
+				void AAA(int AAA, int AAA[], float BBB, float BBB[], string CCC, string CCC[], boolean DDD, boolean DDD)
+				{
+				}
+
+				int BBB()
+				{
+					int AAA,BBB,CCC;
+					float AAA[999],BBB[999],CCC,DDD,EEE;
+					string AAA[999],BBB[999],CCC[999],DDD[999],EEE[999];
+					boolean AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+				}
+				

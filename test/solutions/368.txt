@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(main),[],VoidType,Block([VarDecl(i,IntType),If(Id(willIBeBetter),Return(Id(nothing))),Break()]))])

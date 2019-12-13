@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(main),[],VoidType,Block([If(BinaryOp(||,BinaryOp(==,Id(life),Id(difficult)),BinaryOp(==,Id(feeling),Id(depression))),If(CallExpr(Id(beHumble),[]),If(CallExpr(Id(beKind),[]),If(CallExpr(Id(bePositive),[]),CallExpr(Id(believeInTheFuture),[Id(you)]),CallExpr(Id(printf),[StringLiteral(Have a good day!)])))))]))])

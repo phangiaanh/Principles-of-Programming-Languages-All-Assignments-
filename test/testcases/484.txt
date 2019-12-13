@@ -1,0 +1,21 @@
+
+                int test, statements;
+                boolean all;
+                void main(boolean thisTestcase){
+                    for(test; all; statements)
+                        if(thisTestcase == true)
+                            do
+                                "Yeah you nailed the statements";
+                                break;
+                            while(stillRunning());
+                    printf("Congrats!");
+                }
+
+                void printf(string s){
+                    printf(s);
+                }
+
+                boolean stillRunning(){
+                    return all || false;
+                }
+                

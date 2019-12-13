@@ -1,0 +1,18 @@
+
+                void getSome(){
+                    getSome();
+                }
+                
+                string main(int a, string b, boolean c){
+                    if(a == 3 && !c){
+                        do
+                            b = "Your name";
+                            getSome();
+                            getSome();
+                            getSome();
+                        while(true);
+                    }
+                    b = "Fine";
+                    return b;
+                }
+                

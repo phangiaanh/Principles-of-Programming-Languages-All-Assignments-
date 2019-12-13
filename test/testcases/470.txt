@@ -1,0 +1,12 @@
+
+                int main(int i){
+                    for(i; i < i; i){
+                        break;
+                        for(i; i < i; i){
+                            break;
+                        }
+                        continue;
+                    }
+                    return 1;
+                }
+                

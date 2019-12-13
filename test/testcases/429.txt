@@ -1,0 +1,23 @@
+
+                int left;
+                float right;
+                boolean[] main(){
+                    boolean TRUE[99];
+                    if(TRUE[0]){
+                        left = round(right);
+                    }else{
+                        right = left = 4 * 3 / 2;
+                    }
+                    for(left; TRUE[5]; round(right)){
+                        TRUE = (left * right) < 3 ;
+                    }
+
+                    return TRUE;
+                }
+
+                int round(float f){
+                    int temp;
+                    temp = round(f);
+                    return temp;
+                }
+                

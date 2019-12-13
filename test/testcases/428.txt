@@ -1,0 +1,19 @@
+
+                int left;
+                float right;
+                boolean[] main(){
+                    boolean TRUE[99];
+                    if(TRUE[0]){
+                        left = round(right);
+                    }else{
+                        left = -right / 4;
+                    }
+                    return TRUE;
+                }
+
+                int round(float f){
+                    int temp;
+                    temp = round(f);
+                    return temp;
+                }
+                

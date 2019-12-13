@@ -1,0 +1,6 @@
+
+                int someone;
+                float anyone;
+                boolean main;
+                void main(){}
+                

@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(main),[],VoidType,Block([If(IntLiteral(1),If(IntLiteral(2),If(IntLiteral(3),If(IntLiteral(4),If(IntLiteral(5),CallExpr(Id(stopSayingIf),[])))))),CallExpr(Id(action),[BooleanLiteral(true)])]))])

@@ -1,0 +1,10 @@
+
+                void main(){
+                    if((life == difficult) || (feeling == depression)){
+                        hug = 3000;
+                        You = Someone(hug);
+                    }
+                    else
+                        printf("Have a good day!");
+                }
+                

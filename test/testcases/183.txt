@@ -1,0 +1,2 @@
+-34.e12 IS a "float(%f)" number, you "DUMMY
+"

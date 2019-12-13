@@ -1,0 +1,1 @@
+Program([VarDecl(AAA,FloatType),VarDecl(BBB,ArrayType(FloatType,999)),VarDecl(CCC,FloatType),VarDecl(DDD,ArrayType(FloatType,999)),VarDecl(EEE,FloatType),VarDecl(FFF,ArrayType(FloatType,999))])

@@ -1,0 +1,6 @@
+
+                int someone;
+                string anyone;
+                boolean main;
+                float something;
+                

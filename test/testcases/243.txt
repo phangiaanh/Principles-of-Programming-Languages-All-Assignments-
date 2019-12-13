@@ -1,0 +1,9 @@
+
+                void main(){
+                    int i;
+                    for(;;)
+                        feelingEmpty = true;
+                    int endline;
+                    string line;
+                }
+                

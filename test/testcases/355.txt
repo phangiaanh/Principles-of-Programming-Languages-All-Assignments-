@@ -1,0 +1,14 @@
+
+				void main(){
+                    int bePatient;
+                    do
+                    bePatient = 0;
+                    bePatient = 1;
+                    bePatient = 2;
+                    if(bePatient > 3)
+                        dontBePatientAnymore(":)");
+                    while(mood < usualState);
+                    do number1 + number2;
+                    while(number1 > number2);
+                }
+				

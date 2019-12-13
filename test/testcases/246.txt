@@ -1,0 +1,12 @@
+
+                void main(){
+                    int i;
+                    for(i = 3; i < infinity; i = i + 1)
+                        continue;
+                        return (Continue + Break);
+                    break;
+                    for(something; something; something)
+                        do{}
+                        while(something)
+                }
+                

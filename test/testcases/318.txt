@@ -1,0 +1,21 @@
+
+				int[] AAA(int AAA, int AAA[], float BBB, float BBB[], string CCC, string CCC[], boolean DDD, boolean DDD[])
+				{
+				}
+
+				float[] BBB(int AAA, int AAA[], float BBB, float BBB[], string CCC, string CCC[], boolean DDD, boolean DDD[])
+				{
+				}
+				
+				string[] CCC(int AAA, int AAA[], float BBB, float BBB[], string CCC, string CCC[], boolean DDD, boolean DDD[])
+				{
+				}
+				
+				boolean[] DDD(int AAA, int AAA[], float BBB, float BBB[], string CCC, string CCC[], boolean DDD, boolean DDD[])
+				{
+				}
+				
+				void EEE(int AAA, int AAA[], float BBB, float BBB[], string CCC, string CCC[], boolean DDD, boolean DDD[])
+				{
+				}
+				

@@ -1,0 +1,18 @@
+
+                int timer[99];
+                int timer0, timer1;
+                int threshhold;
+                boolean[] main(int i){
+                    boolean TRUE[99];
+                    if(timer0 == threshhold)
+                        if(timer1 == threshhold)
+                            for(i = 0; timer0 == threshhold; i = i + 1)
+                                do
+                                    timer0 = timer1 + timer[timer[timer[0]]];
+                                while(timer0 != 0);
+                        else
+                            // Nothing
+                        timer1 = 0;
+                        return TRUE;
+                }
+                

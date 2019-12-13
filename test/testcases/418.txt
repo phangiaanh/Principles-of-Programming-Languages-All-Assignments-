@@ -1,0 +1,11 @@
+
+                string str;
+                boolean bool[99];
+                void main(int para){
+                    {
+                        {
+                            return para;
+                        }
+                    }
+                }
+                

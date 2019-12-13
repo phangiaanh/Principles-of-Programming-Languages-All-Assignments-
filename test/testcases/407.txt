@@ -1,0 +1,8 @@
+
+                int someone;
+                float anyone;
+                boolean same;
+                void main(){}
+
+                int main(string d[]){return someone;}
+                

@@ -1,0 +1,5 @@
+
+                int array[000001], var;
+                string[] createPointer(int a, boolean b[]){}
+                float beHumble(){};
+                

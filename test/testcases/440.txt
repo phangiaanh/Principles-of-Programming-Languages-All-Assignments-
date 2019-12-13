@@ -1,0 +1,14 @@
+
+                int func(int a, float b, boolean c, string d, int A[], float B[], boolean C[], string D[]){
+                    return 1;
+                }
+
+                void main(){
+                    int A[99];
+                    float B[99];
+                    boolean C[99];
+                    string D[99];
+                    func(0, 0, false, "FAILED", A, B, C, D);
+                    func(0, 0, false, "FAILED", A, A, C, D);
+                }
+                

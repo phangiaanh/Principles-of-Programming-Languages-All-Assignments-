@@ -1,0 +1,9 @@
+
+                boolean true_false;
+                boolean isTrue(int a){
+                    int right, left;
+                    right = true;
+                    left = false;
+                    {}
+                }
+                

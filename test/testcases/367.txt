@@ -1,0 +1,10 @@
+
+				void main(){
+                    for(life = sea; you = fish; living = swimming){
+                        if(fish(sea) != swimming)
+                            sea = false;
+                        else
+                            swimming = swimming + 1;
+                    }
+                }
+				

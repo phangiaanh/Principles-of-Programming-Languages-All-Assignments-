@@ -1,0 +1,29 @@
+
+                int main(int i){
+                    {
+                        {
+                            {
+                                {
+                                    do
+                                        return 1;
+                                    while(false);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                float MAIN(){
+                    {
+                        {
+                            {
+                                {
+                                    {
+                                        if(true) return 1;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                

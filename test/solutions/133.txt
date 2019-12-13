@@ -1,0 +1,1 @@
+There is a weird symbol(\n) in the string,<EOF>

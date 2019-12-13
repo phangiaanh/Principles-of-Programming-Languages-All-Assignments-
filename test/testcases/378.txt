@@ -1,0 +1,9 @@
+
+				void main(){
+                    funcall(a, a + 1);
+                    a = funcall(funcall(a[funcall(a[funcall()])]));
+                    !a = (ABC + AB[5])*3;
+                    return 0;
+                }
+                int main;	
+				

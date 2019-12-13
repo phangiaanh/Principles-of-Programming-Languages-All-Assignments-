@@ -1,0 +1,9 @@
+
+				void main(){
+                    if(a < b && b >= c && c > d)
+                        doThis();
+                    else
+                        doThat();
+                    exp = a < b == c ;
+                }
+				

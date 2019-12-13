@@ -1,0 +1,12 @@
+
+                int first;
+                float second;
+                void main(string str){
+                    if(true){
+                        if(false){
+                            second + str;
+                            second + first;
+                        }
+                    }
+                }
+                

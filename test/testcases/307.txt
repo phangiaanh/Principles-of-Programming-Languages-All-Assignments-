@@ -1,0 +1,9 @@
+
+				int AAA()
+				{
+		 			int AAA,BBB,CCC;
+		 			float AAA[999],BBB[999],CCC,DDD,EEE;
+		 			string AAA[999],BBB[999],CCC[999],DDD[999],EEE[999];
+	 				boolean AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+				}
+				

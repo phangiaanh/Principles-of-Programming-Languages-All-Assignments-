@@ -1,0 +1,14 @@
+
+				int a;
+                string b;
+                boolean c;
+
+                boolean[] create(){
+                    int main;
+                    float main;
+                    string main;
+                    for(smt1; smt2; smt3){
+                        smt1((((((((smt2))))))));
+                    }
+                }
+				

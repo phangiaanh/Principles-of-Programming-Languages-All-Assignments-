@@ -1,0 +1,1 @@
+Let us test some weird symbols &&!= "&&!="

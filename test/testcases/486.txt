@@ -1,0 +1,11 @@
+
+                void main(int a[]){
+                    funcall(a[9999]);
+                    a[99] = funcall(funcall(a[funcall(a[funcall(1)])]));
+                    return;
+                }
+
+                int funcall(int a){
+                    return a;
+                }
+                

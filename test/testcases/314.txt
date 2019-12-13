@@ -1,0 +1,13 @@
+
+				boolean[] BBB()
+				{
+					int AAA,BBB,CCC;
+		 			int AAA[999],BBB[999],CCC,DDD,EEE;
+		 			int AAA[999],BBB[999],CCC[999],DDD[999],EEE[999];
+	 				int AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+					int AAA,BBB,CCC;
+		 			int AAA[999],BBB[999],CCC,DDD,EEE;
+		 			int AAA[999],BBB[999],CCC[999],DDD[999],EEE[999];
+	 				int AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+				}
+				

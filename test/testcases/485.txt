@@ -1,0 +1,15 @@
+
+                int a, b;
+                float c, d;
+				boolean main(boolean exp){
+                    if(a < b && b >= c && c > d)
+                        doThis();
+                    else
+                        doThis();
+                    return exp = (a < b) == (c > d);
+                }
+
+                int doThis(){
+                    return 0;
+                }
+                

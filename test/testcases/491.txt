@@ -1,0 +1,16 @@
+
+                float number1, number2;
+                void main(){
+                    int bePatient;
+                    do
+                        bePatient = 0;
+                        bePatient = 1;
+                        bePatient = 2;
+                    if(bePatient > 3)
+                        bePatient = bePatient + 1;
+                    while(true);
+                    do 
+                        number1 = number1 + number2;
+                    while(number1 > number2);
+                }
+                

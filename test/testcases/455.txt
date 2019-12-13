@@ -1,0 +1,17 @@
+
+                int func(){
+                    return func1();
+                }
+
+                int func1(){
+                    return func();
+                }
+
+                void main(int i){
+                    // Not calling MAIN
+                }
+
+                void MAIN(){
+
+                }
+                

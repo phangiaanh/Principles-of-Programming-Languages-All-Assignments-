@@ -1,0 +1,10 @@
+
+                void main(){
+                    funcall(a, a + 1);
+                    do
+                        do
+                            do
+                                A = nonAss(a[ass])[ass][ass];
+                                B != C = D + E == 6.e-12;
+                }
+                

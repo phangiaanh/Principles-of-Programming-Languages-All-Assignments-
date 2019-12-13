@@ -1,0 +1,11 @@
+
+				void main(){
+                    do{
+                        sitDown;
+                        beHumble;
+                    }while(living);
+                    WhiLe(feeling);
+                    WhiLe(breathing);
+                    WhIle(youStillCan);
+                }
+				

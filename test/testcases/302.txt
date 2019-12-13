@@ -1,0 +1,4 @@
+
+				float XXX;
+				string YYY[000];
+				

@@ -1,0 +1,13 @@
+
+				void main(){
+                    do
+                        do
+                            do
+                                do
+                                    tooManyDos("stop");
+                                while(free);
+                            while(free);
+                        while(notFree);
+                    while(busy == false);
+				}
+				

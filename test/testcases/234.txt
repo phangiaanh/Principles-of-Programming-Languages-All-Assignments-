@@ -1,0 +1,11 @@
+
+                void main(){
+                    do{
+                        {
+                            printf("Easy testcase");
+                        }
+                    }
+                    while(busy == false);
+
+                }
+                

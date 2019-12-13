@@ -1,0 +1,1 @@
+Your,password,[,34.,e,BKU,],is,too,weak,;,<EOF>

@@ -1,0 +1,17 @@
+
+                int main(int i){
+                    for(i; i < i; i){
+                        for(i; i < i; i){
+                            if(true){
+                                i = i % 1;
+                                i = i + 1;
+                            }else{
+                                continue;
+                            }
+                            break;
+                            continue;
+                        }
+                    }
+                    return 1;
+                }
+                

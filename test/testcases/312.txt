@@ -1,0 +1,35 @@
+
+				int AAA()
+				{	
+					float AAA,BBB,CCC;
+		 			int AAA[999],BBB[999],CCC,DDD,EEE;
+		 			boolean AAA[999],BBB[999],CCC[999],DDD[999],EEE[999];
+	 				string AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+				}	
+
+
+				void BBB()
+				{
+					float AAA,BBB,CCC;
+		 			int AAA[999],BBB[999],CCC,DDD,EEE;
+		 			boolean AAA[999],BBB[999],CCC[999],DDD[999],EEE[999];
+	 				string AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+				}
+
+				float CCC()
+				{	
+					float AAA,BBB,CCC;
+		 			int AAA[999],BBB[999],CCC,DDD,EEE;
+		 			boolean AAA[999],BBB[999],CCC[999],DDD[999],EEE[999];
+	 				string AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+				}	
+
+
+				string DDD()
+				{
+					float AAA,BBB,CCC;
+		 			int AAA[999],BBB[999],CCC,DDD,EEE;
+		 			boolean AAA[999],BBB[999],CCC[999],DDD[999],EEE[999];
+	 				string AAA,AAA[999],BBB,BBB[999],CCC,CCC[999],DDD,DDD[999],EEE,EEE[999];
+				}
+				

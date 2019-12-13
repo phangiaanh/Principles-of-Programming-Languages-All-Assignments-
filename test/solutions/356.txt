@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(main),[],VoidType,Block([Dowhile([Dowhile([Dowhile([Dowhile([CallExpr(Id(tooManyDos),[StringLiteral(stop)])],Id(free))],Id(free))],Id(notFree))],BinaryOp(==,Id(busy),BooleanLiteral(false)))]))])

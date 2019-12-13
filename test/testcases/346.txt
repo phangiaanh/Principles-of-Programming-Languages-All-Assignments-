@@ -1,0 +1,11 @@
+ 
+				void main(){
+                    if((life == difficult) || (feeling == depression))
+                        if(beHumble())
+                            if(beKind())
+                                if(bePositive())
+                                    believeInTheFuture(you);
+                    else
+                        printf("Have a good day!");
+                }
+				

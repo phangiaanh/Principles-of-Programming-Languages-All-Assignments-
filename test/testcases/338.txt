@@ -1,0 +1,10 @@
+
+				boolean AAA, AAA[999];
+                string BBB(int BBB, boolean BBB[]){
+                    {
+                        {}
+                    }
+                }
+                float DDD(){}
+                int EEE;
+				

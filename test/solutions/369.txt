@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(main),[],VoidType,Block([CallExpr(Id(funcall),[Id(a),BinaryOp(+,Id(a),IntLiteral(1))]),If(Id(PPL),Return(StringLiteral(Runnnnnnnnnn)),Return()),Return(StringLiteral(Still runnnnnnn))]))])

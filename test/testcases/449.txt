@@ -1,0 +1,16 @@
+
+                void main(int i){
+                    {
+                        {
+                            {
+                                {
+                                    do
+                                        i = i + 1;  
+                                    while(false);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                

@@ -1,0 +1,11 @@
+
+                int One;
+                float Two;
+                string Three;
+                boolean Four;
+                void Five(int One, float Two, string Three, boolean Four, int One[]){}
+                int main(int One[]){
+                    Five(1, 2., "Three", true, One);
+                    return 1;
+                }
+                

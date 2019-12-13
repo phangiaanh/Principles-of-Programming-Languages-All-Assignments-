@@ -1,0 +1,18 @@
+
+				void main(){
+                    chanceOfMeetingYourFutureWife = 0;
+                    if(meetSomeone(aGirl)){
+                        {
+                            {
+                                shy(you);
+                                runAway(you);
+                            }
+                        }
+                        she = smile("looking at you");
+                    }
+                    if(meetSomeone(aGirl)){
+                        beStrong = true;
+                        chanceOfMeetingYourFutureWife = 1;
+                    }
+                }
+				

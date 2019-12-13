@@ -1,0 +1,14 @@
+
+                int main(int i[]){
+                    float a[3];
+                    boolean b[999];
+                    if(b[998] || false){
+                        if(b[0] == true){
+                            return 1;
+                        }
+                    }else{
+                        a[--------------------------------2] = a[-----------2] / 3;
+                    }
+                    return 1;
+                }
+                

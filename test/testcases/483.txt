@@ -1,0 +1,12 @@
+
+                int main(){
+                    return GCD(6,9);
+                }
+
+                int GCD(int a, int b){
+                    if (a == 0) return a;
+                    else {
+                        return GCD(a,b-a);
+                    }
+                }
+                

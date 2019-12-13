@@ -1,0 +1,7 @@
+
+				boolean XXX,YYY,ZZZ;
+				string UUU()
+				{
+					string XXX,YYY,ZZZ[999];
+				}
+				

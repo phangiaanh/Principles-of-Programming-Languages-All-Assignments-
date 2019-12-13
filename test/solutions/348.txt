@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(main),[],VoidType,Block([CallExpr(Id(letMakeAStair),[BooleanLiteral(true)]),If(Id(stair),Block([]),If(Id(stair),Block([]),If(Id(stair),Block([Block([])]),Block([Block([])]))))]))])

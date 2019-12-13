@@ -1,0 +1,1 @@
+Can we have a string,[,string,],inside a string,<EOF>

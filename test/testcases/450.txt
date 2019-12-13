@@ -1,0 +1,16 @@
+
+                void main(int i){
+                    for(1; true; 1){
+                        {
+                            {
+                                do{
+
+                                }
+                                while(true);
+                                break;
+                            }
+                        }
+                    }
+                    continue;
+                }
+                

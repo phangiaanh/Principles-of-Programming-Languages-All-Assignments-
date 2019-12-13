@@ -1,0 +1,1 @@
+Not Left Value: BinaryOp(*,Id(first),Id(second))

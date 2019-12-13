@@ -1,0 +1,7 @@
+
+				int AAA, BBB;
+                boolean[] BBB(float DDD[]){
+                    DDD("AAA");
+                    return;
+                }
+				

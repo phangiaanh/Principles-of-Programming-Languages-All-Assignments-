@@ -1,0 +1,12 @@
+
+                int first;
+                float second;
+                void main(string str){
+                    if(!true){
+                        return;
+                    }else{
+                        if(getFloat() == 3.2) return;
+                        else second = first + second;
+                    }
+                }
+                

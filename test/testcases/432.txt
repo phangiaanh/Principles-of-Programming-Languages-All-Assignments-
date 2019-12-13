@@ -1,0 +1,18 @@
+
+                float one;
+                float main(){
+                    one =  -(-one * getFloat() - 3.2 / 4 + Floating(Floating(Floating(one))));
+                    if(true && false){
+                        // do nothing
+                    }else{
+                        if(true >= false){
+                            return 3;
+                        }
+                    }
+                    return one;
+                }
+
+                float Floating(float f){
+                    return f;
+                }
+                

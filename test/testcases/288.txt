@@ -1,0 +1,15 @@
+
+                int return_to_easy_testases;
+                float[] function(int a, string b, boolean c){
+                    for(i = 0; i <= 9; i = i * 3){
+                        if(arr[i] == 3) return true;
+                        else continue;
+                        do
+                            A = B + C * D % E == F && G;
+                            return B != -C+D*EF[EF[EF()]];
+                            int a;
+                        while(A == B = C);
+                    }
+                    float string;
+                }
+                

@@ -1,0 +1,11 @@
+
+                int func(int a, float b, boolean c, string d){
+                    return 1;
+                }
+
+                void main(){
+                    //func(1, 1.1, true, "OK");
+                    //func(1, 1, false, "FALSE");
+                    func(1.1, 1, false, "FAILED");
+                }
+                

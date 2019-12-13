@@ -1,0 +1,14 @@
+
+				void main(){
+                    int i,j;
+                    i = j = 0;
+                    for( i = 0; i <= j; i = i + 1){
+                        {
+                            {
+                                // do nothing
+                            }
+                            var = arr[3];
+                        }
+                    }
+                }
+				

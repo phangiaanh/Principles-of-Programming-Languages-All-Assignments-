@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(main),[],VoidType,Block([For(BinaryOp(=,Id(life),Id(sea));BinaryOp(=,Id(you),Id(fish));BinaryOp(=,Id(living),Id(swimming));Block([If(BinaryOp(!=,CallExpr(Id(fish),[Id(sea)]),Id(swimming)),BinaryOp(=,Id(sea),BooleanLiteral(false)),BinaryOp(=,Id(swimming),BinaryOp(+,Id(swimming),IntLiteral(1))))]))]))])

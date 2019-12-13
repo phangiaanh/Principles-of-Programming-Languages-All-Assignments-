@@ -1,0 +1,10 @@
+
+                int first;
+                float second;
+                boolean third[999];
+                void main(string str){
+                    for(first = 0; first < second; first = first + 1){
+                        (second + first)[99] = true;
+                    }
+                }
+                

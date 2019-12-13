@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(main),[],VoidType,Block([Dowhile([Block([Id(sitDown),Id(beHumble)])],Id(living)),CallExpr(Id(WhiLe),[Id(feeling)]),CallExpr(Id(WhiLe),[Id(breathing)]),CallExpr(Id(WhIle),[Id(youStillCan)])]))])

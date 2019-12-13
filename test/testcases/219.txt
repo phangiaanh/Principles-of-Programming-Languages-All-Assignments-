@@ -1,0 +1,5 @@
+
+                void amIEmpty(int a[]){
+                    // make your dream come true
+                }
+                

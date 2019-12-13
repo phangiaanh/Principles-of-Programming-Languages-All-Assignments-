@@ -1,0 +1,1 @@
+-34.e12 is not a "float(%f)" number!

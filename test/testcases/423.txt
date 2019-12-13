@@ -1,0 +1,17 @@
+
+                int first;
+                float second;
+                boolean array[1000];
+                string another[1000];
+                string main(string str){
+                    do{
+                        array[first / 3] = (array[Return(Return(Return(Return(1))))] == true);
+                    }while(array[first]);
+                    another[0] = second;
+                    return "OK";
+                }
+
+                int Return(int a){
+                    return a;
+                }
+                

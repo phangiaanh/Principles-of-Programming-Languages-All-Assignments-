@@ -1,0 +1,11 @@
+
+                int left;
+                float right;
+                string name;
+                float main(){
+                    boolean TRUE;
+                    TRUE = right < left;
+                    left = right % left;
+                    return right;
+                }
+                

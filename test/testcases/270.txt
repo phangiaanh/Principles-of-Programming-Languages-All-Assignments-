@@ -1,0 +1,9 @@
+
+                void main(){
+                    for(A != B; B = C = D = -E; i+_+){
+                        for(A%b; C%D; C[D%E]){
+                            createString(createString(createString(a[a[a[4]]])));
+                        }
+                    }
+                }
+                

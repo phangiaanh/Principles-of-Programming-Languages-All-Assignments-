@@ -1,0 +1,11 @@
+
+                float main(){
+                    if(sky)
+                        if(sea)
+                    else{earth;}
+                    else{rain;}
+                    if(light)
+                    else{dark;}
+                    else{//life}
+                }
+                

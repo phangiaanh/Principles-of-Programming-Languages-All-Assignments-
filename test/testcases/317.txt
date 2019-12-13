@@ -1,0 +1,5 @@
+
+				int AAA(float BBB[], int AAA, string CCC[])
+				{
+				}
+				

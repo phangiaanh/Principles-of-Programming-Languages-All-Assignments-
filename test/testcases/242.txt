@@ -1,0 +1,13 @@
+
+                void main(){
+                    int i;
+                    for(i = 3; i < infinity; i = i + 1)
+                        do
+                            statement1;
+                            statement2;
+                            statement3;
+                        while(somethingThatIsTrue);
+                    int endline;
+                    string[] line;
+                }
+                

@@ -1,0 +1,8 @@
+
+                int main(){
+                    do
+                        enjoyYourLife(true);
+                        makeABetterVersionOfYourSelf(true);
+                    while(lifeIsShort());
+                }
+                

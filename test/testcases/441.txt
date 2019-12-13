@@ -1,0 +1,16 @@
+
+                string[] func(int a, float b, boolean c, string d, int A[], float B[], boolean C[], string D[]){
+                    return D;
+                }
+
+                string[] main(int E[]){
+                    int A[99];
+                    float B[99];
+                    boolean C[99];
+                    string D[99];
+                    func(0, 0, false, "FAILED", A, B, C, D);
+                    func(0, 0, false, "FAILED", E, B, C, D);
+                    func(0, 0, false, "FAILED", 0, 0, false, "FAILED");
+                    return func(0, 0, false, "FAILED", A, B, C, D);
+                }
+                

@@ -100,7 +100,7 @@ class TestAST:
         parser = MCParser(tokens)
         tree = parser.program()
         asttree = ASTGeneration().visit(tree)
-        #dest.write(str(asttree))
+        dest.write(str(asttree))
         dest.close()
         dest = open("./test/solutions/" + str(num) + ".txt","r")
         line = dest.read()

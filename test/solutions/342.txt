@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(amIEmpty),[VarDecl(a,IntType)],ArrayTypePointer(FloatType),Block([If(Id(smile),BinaryOp(=,Id(difficult),BinaryOp(/,Id(difficult),IntLiteral(2))),BinaryOp(=,Id(difficult),BinaryOp(*,Id(difficult),IntLiteral(2)))),Return(Id(Hollow))]))])

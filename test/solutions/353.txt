@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(main),[],VoidType,Block([Dowhile([Block([Block([CallExpr(Id(printf),[StringLiteral(Easy testcase)])])])],BinaryOp(==,Id(busy),BooleanLiteral(false)))]))])

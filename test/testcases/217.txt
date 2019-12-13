@@ -1,0 +1,8 @@
+
+                int life, death;
+                boolean[] amILiving(float people[]){
+                    printf("There is no answer");
+                    return life || death;
+                }
+                return love;
+                

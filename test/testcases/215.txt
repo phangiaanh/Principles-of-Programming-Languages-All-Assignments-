@@ -1,0 +1,6 @@
+
+                boolean true_false;
+                boolean isTrue(int a, b, c){
+                    printf("Yeah you can't declare parameters like that!")
+                }
+                

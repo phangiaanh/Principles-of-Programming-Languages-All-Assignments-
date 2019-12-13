@@ -1,0 +1,1 @@
+Program([VarDecl(XXX,BoolType),VarDecl(YYY,BoolType),VarDecl(ZZZ,BoolType),FuncDecl(Id(UUU),[],StringType,Block([VarDecl(XXX,StringType),VarDecl(YYY,StringType),VarDecl(ZZZ,ArrayType(StringType,999))]))])

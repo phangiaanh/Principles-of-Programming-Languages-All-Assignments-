@@ -1,0 +1,17 @@
+
+                int main(int a[]){
+                    int b;
+                    b = 1;
+                    a[b + 1] = b;
+                    int c;
+                    {
+                        int c;
+                        {
+                            int c;
+                            c = 1;
+                        }
+                        c = 1;
+                    }
+                    return a[c];
+                }
+                

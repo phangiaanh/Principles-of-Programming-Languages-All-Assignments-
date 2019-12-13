@@ -1,0 +1,20 @@
+
+                void main(int i){
+                    for(i = 0; i < 3; i = i + 1){
+                        return;
+                    }
+
+                    if(true){
+                        i = i * 1;
+                    }else{
+                        // Still doing stuff
+                        // Still not return
+                    }
+                }
+
+                int MAIN(){
+                    if(true){
+                        return 1;
+                    }
+                }
+                

@@ -1,0 +1,15 @@
+
+                int main(int i){
+                    for(i = 0; i < 3; i = i + 1){
+                        // Just doing stuff
+                    }
+
+                    if(true){
+                        i = i * 1;
+                    }else{
+                        // Still doing stuff
+                        // Still not return
+                    }
+                    // OK not return
+                }
+                

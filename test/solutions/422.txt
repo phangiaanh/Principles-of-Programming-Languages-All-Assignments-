@@ -1,0 +1,1 @@
+Type Mismatch In Expression: ArrayCell(CallExpr(Id(array),[]),BinaryOp(+,CallExpr(Id(num),[]),BinaryOp(/,Id(second),IntLiteral(3))))

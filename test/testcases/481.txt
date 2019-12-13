@@ -1,0 +1,12 @@
+
+                boolean global;
+                int main(){
+	            	int a,b,c;
+	            	a=b=3;
+	            	putInt(b);
+                    
+	            	putInt(c);
+
+	            	return getInt();
+	            }
+                

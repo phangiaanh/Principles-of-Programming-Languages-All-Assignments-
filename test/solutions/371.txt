@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(main),[],VoidType,Block([For(Id(test);Id(all);Id(statements);If(BinaryOp(==,Id(thisTestcase),BooleanLiteral(true)),Dowhile([StringLiteral(Yeah you nailed the statements),Break(),Return(BooleanLiteral(true)),Continue()],CallExpr(Id(stillRunning),[])))),CallExpr(Id(printf),[StringLiteral(Congrats!)])]))])

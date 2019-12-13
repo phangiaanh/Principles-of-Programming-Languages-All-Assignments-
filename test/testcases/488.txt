@@ -1,0 +1,18 @@
+
+                int isInterrupt;
+                int countNumber;
+                //countNumber = 0;
+                int interruptVector[0];
+                int main(){
+                    int count;
+                    count = 0;
+                    do{
+                        if(countNumber % 3 == 0) return interruptVector[countNumber];
+                        else
+                            for(count; count < countNumber; countNumber)
+                                countNumber = interruptVector[countNumber + count];
+                        return 1;
+                    }
+                    while(true);
+                }
+                

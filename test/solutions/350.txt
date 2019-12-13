@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(main),[],VoidType,Block([If(BinaryOp(==,Id(believe),BooleanLiteral(true)),BinaryOp(=,Id(stronger),Id(yes))),If(BinaryOp(==,Id(kind),BooleanLiteral(true)),BinaryOp(=,Id(better),Id(yes))),If(BinaryOp(==,Id(fear),Id(no)),BinaryOp(=,Id(success),Id(yes)),Block([CallExpr(Id(cout),[StringLiteral(Keep fighting!)])]))]))])

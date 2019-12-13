@@ -1,0 +1,10 @@
+
+                void main(){
+                    funcall(a, a + 1);
+                    if(PPL)
+                        return "Runnnnnnnnnn";
+                    else
+                        return;
+                    return "Still runnnnnnn";
+                }
+                

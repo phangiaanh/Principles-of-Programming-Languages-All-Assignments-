@@ -1,0 +1,18 @@
+
+                int left;
+                float right;
+                string name;
+                boolean[] main(){
+                    boolean TRUE[99];
+                    name = "My Name";
+                    TRUE[3] = (getInt() != round(right));
+                    TRUE[4] = left == right;
+                    return TRUE;
+                }
+
+                int round(float f){
+                    int temp;
+                    temp = round(f);
+                    return temp;
+                }
+                

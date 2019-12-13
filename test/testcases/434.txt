@@ -1,0 +1,15 @@
+
+                boolean TRUE[999];
+                string STR[999];
+                boolean[] main(string s){
+                    if(TRUE[99] == false){
+                        TRUE[99] = true;
+                    }else{
+                        if(true || !false){
+                            STR[99] = s;
+                        }
+                        TRUE[99] = STR[99];
+                    }
+                    return one;
+                }
+                

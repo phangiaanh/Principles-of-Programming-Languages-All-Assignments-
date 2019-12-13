@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(moreThanICanSay),[VarDecl(toYou,StringType)],ArrayTypePointer(StringType),Block([CallExpr(Id(printf),[StringLiteral(I love you!)])])),FuncDecl(Id(countNumbers),[],ArrayTypePointer(FloatType),Block([])),VarDecl(var,IntType),VarDecl(var1,IntType),VarDecl(var2,ArrayType(IntType,999)),VarDecl(var,ArrayType(BoolType,999)),VarDecl(bool,ArrayType(BoolType,0))])

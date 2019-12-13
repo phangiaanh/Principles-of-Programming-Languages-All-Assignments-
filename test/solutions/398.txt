@@ -1,0 +1,1 @@
+Program([VarDecl(a,IntType),VarDecl(b,StringType),VarDecl(c,BoolType),FuncDecl(Id(create),[],ArrayTypePointer(BoolType),Block([VarDecl(main,IntType),VarDecl(main,FloatType),VarDecl(main,StringType),For(Id(smt1);Id(smt2);Id(smt3);Block([CallExpr(Id(smt1),[Id(smt2)])]))]))])

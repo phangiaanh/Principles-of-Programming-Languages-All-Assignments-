@@ -1,0 +1,18 @@
+
+                float one[2];
+                float[] main(){
+                    one[0] =  -(-one[0] * getFloat() - 3.2 / 4 + Floating(Floating(Floating(one[0]))));
+                    if(true && false){
+                        one[1] = 3;
+                    }else{
+                        if(true || !false){
+                            one = one[1];
+                        }
+                    }
+                    return one;
+                }
+
+                float Floating(float f){
+                    return f;
+                }
+                

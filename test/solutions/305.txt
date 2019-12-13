@@ -1,0 +1,1 @@
+Program([VarDecl(AAA,ArrayType(BoolType,999)),VarDecl(BBB,ArrayType(BoolType,0)),VarDecl(CCC,ArrayType(BoolType,999)),VarDecl(DDD,ArrayType(BoolType,0))])

@@ -1,0 +1,16 @@
+
+                float hug;
+
+                int Someone(float hug){
+                    return 3000;
+                }
+
+                void main(int You){
+                    if(true || false){
+                        hug = 3000;
+                        You = Someone(hug);
+                    }
+                    else
+                        putStringLn("Have a good day!");
+                }
+                

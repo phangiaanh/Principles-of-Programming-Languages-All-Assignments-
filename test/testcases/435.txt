@@ -1,0 +1,15 @@
+
+                boolean TRUE[999];
+                string STR[999];
+                void main(string s){
+                    if(TRUE[99] == TRUE[90]){
+                        TRUE[99] = TRUE[998];
+                    }else{
+                        if(true || !false){
+                            STR[99] = s;
+                        }
+                        TRUE[99] = true || main(STR[99]);
+                    }
+                    return one;
+                }
+                

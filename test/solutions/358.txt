@@ -1,0 +1,1 @@
+Program([FuncDecl(Id(main),[],VoidType,Block([Dowhile([Block([CallExpr(Id(anythingYouWant),[]),CallExpr(Id(butNotIllegal),[])]),CallExpr(Id(whiLe),[Id(doingSomething)]),BinaryOp(=,Id(becomeABetterPerson),IntLiteral(1))],Id(enjoyLife))]))])

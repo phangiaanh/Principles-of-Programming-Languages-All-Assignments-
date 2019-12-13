@@ -1,0 +1,8 @@
+
+                void _(int _, float _[]){
+                    string _[0];
+                }
+                string[] _(void nothing){
+                    //do nothing
+                }
+                

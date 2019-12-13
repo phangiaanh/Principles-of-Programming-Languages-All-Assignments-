@@ -1,0 +1,23 @@
+
+                void main(boolean stair){
+                    stair = true;
+                    letMakeAStair(true);
+                    if(stair){
+                        //do nothing
+                    }
+                    else
+                        if(stair){
+                            //do nothing}}}}}}
+                        }
+                        else
+                            if(stair){
+                                {// do nothing}
+                            }}
+                            else{
+                                {// do nothing}
+                }}}
+
+                void letMakeAStair(boolean bool){
+                    return;
+                }
+                

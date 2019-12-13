@@ -1,0 +1,17 @@
+
+                int main(int i){
+                    for(i; i < i; i){
+                        if(true){
+                            return 1;
+                        }else{
+                            return 1;
+                        }
+                        int a;
+                        int b;
+                        int c;
+                        int d;
+                        return 3;
+                    }
+                    return 1;
+                }
+                

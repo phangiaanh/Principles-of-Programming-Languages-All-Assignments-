@@ -1,0 +1,10 @@
+
+                int[] main(){
+                    if(feeling == depression){
+                        printf("Believe in the future and move on");
+                    }
+                    else{
+                        actFromNowOn(now);
+                    }
+                }
+                

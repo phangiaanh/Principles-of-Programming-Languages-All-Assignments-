@@ -1,0 +1,12 @@
+
+                void main(){
+                    do{
+                        {
+                            printf("Easy testcase");
+                        }
+                    }
+                    While(busy == false);
+                    int shitHappens;
+                    guessWhatWrongInThisTestcase(viewer);
+                }
+                

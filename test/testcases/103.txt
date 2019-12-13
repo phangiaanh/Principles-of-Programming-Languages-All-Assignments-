@@ -1,1 +1,3 @@
-aAsVN
+First line/* Comments 
+
+	 *// Second line

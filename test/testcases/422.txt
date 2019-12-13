@@ -1,0 +1,21 @@
+
+                int first;
+                float second;
+                void main(string str){
+                    for(first = 0; first < second; first = first + 1){
+                        (array())[num() / 3] = 3;
+                        (array())[num() + second / 3] = 3;
+                    }
+                }
+                int[] array(){
+                    int input[3];
+                    if(first < 3){
+                        return input;
+                    }
+                    return input;
+                }
+
+                int num(){
+                    return first + 1;
+                }
+                

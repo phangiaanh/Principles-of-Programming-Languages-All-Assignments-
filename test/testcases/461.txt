@@ -1,0 +1,17 @@
+
+                int main(int i){
+                    for(i; i < 3; i = i + 1){
+                        return 1; 
+                        // Not yet
+                    }
+
+                    if(true){
+                        return 1;
+                        // Still not yet
+                    }
+
+                    return 1;
+                    // Now 
+                    i;
+                }
+                

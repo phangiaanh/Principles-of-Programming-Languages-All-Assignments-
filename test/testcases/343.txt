@@ -1,0 +1,8 @@
+
+				void amIEmpty(int a){
+                    if(falling)
+                        Flying();
+                    int var;
+                    float var[3];
+                }
+				

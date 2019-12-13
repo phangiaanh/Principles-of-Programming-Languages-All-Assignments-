@@ -1,0 +1,14 @@
+
+                string statement1, statement2, statement3;
+				void main(float infinity){
+                    int i;
+                    for(i = 3; i < infinity; i = i + 1)
+                        do
+                            statement1;
+                            statement2;
+                            statement3;
+                        while(true);
+                    int endline;
+                    string line;
+                }
+                

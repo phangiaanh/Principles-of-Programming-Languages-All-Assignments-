@@ -1,0 +1,13 @@
+
+				void main(){
+                    for(something;something;something)
+                        if(thatMakesYouHappy){}
+                        else{
+                            print("dontDoThat");
+                        }
+                    for(something;something;something){
+                        a = 3;
+                        a = a * 3 + 4;
+                    }
+                }
+				

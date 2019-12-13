@@ -1,0 +1,1 @@
+Program([VarDecl(AAA,BoolType),FuncDecl(Id(BBB),[VarDecl(CCC,IntType)],BoolType,Block([VarDecl(DDD,IntType),VarDecl(DDD,IntType),BinaryOp(=,Id(DDD),Id(EEE)),BinaryOp(=,Id(EEE),Id(DDD)),Block([])]))])

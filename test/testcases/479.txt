@@ -1,0 +1,26 @@
+
+                boolean global;
+                int main(int a[]){
+                    int b;
+                    b = 1;
+                    a[b + 1] = b;
+                    int x;
+                    {
+                        string x;
+                        {
+                            {
+                                {
+                                    string x;
+                                    {
+                                        x = "OK";
+                                    }
+                                }
+                            }
+                        }
+                        string b;
+                        b = x;
+                        // Uninitiliazed
+                    }
+                    return 1;
+                }
+                

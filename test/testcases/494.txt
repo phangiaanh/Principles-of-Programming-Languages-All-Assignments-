@@ -1,0 +1,13 @@
+
+                float main(){
+                    return amIEmpty(1, true, 1);
+                }
+
+
+				float amIEmpty(int a, boolean smile, float difficult){
+                    if(smile) 
+                        return difficult = difficult / 2;
+                    else
+                        return difficult = difficult * 2;
+                }
+                

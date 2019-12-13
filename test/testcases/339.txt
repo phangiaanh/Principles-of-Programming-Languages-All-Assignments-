@@ -1,0 +1,9 @@
+
+				boolean AAA;
+                boolean BBB(int CCC){
+                    int DDD, DDD;
+                    DDD = EEE;
+                    EEE = DDD;
+                    {}
+                }
+				

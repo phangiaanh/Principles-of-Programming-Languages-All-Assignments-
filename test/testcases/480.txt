@@ -1,0 +1,19 @@
+
+                boolean global;
+                int main(int a[]){
+                    int b;
+                    b = 1;
+                    a[b + 1] = b;
+                    int c, d, e;
+                    {
+                        {
+                            {
+                                d = 1;
+                                e = 1;
+                            }
+                        }
+                    }
+                    e = c + d;
+                    return 1;
+                }
+                

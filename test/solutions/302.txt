@@ -1,0 +1,1 @@
+Program([VarDecl(XXX,FloatType),VarDecl(YYY,ArrayType(StringType,0))])

@@ -1,0 +1,12 @@
+
+                int main(float infinity){
+                    int i;
+                    for(i = 3; i < infinity; i = i + 1){
+                        for(i; i == i; i){
+                            {//do nothing
+                        }}
+                        break;
+                    }
+                    return 1;
+                }
+                

@@ -1,0 +1,8 @@
+
+				void main(){
+                    int i;
+                    if(willIBeBetter)
+                        return nothing;
+                    break;
+                }
+				

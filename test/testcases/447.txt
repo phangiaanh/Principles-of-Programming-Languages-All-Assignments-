@@ -1,0 +1,16 @@
+
+                int main(int i){
+                    for(1; true; 1){
+                        if(true) return 1;
+                        else return 1;
+                    }
+
+                    return 1;
+                }
+
+                float MAIN(){
+                    for(1; true; 1){
+                        if(true) return 1;
+                    }
+                }
+                

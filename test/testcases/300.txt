@@ -1,1 +1,7 @@
-int main() {}
+
+                int main(){
+                    justRemember();
+                    printf("Falling is the chance of Flying");
+                    goodLuck("PhanGiaAnh");
+                }
+                

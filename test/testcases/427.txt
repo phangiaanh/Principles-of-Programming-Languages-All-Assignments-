@@ -1,0 +1,14 @@
+
+                string main(string str, int INT){
+                    do{
+                        -3;
+                        print("Assignment 3");
+                        print(-str);
+                    }while(INT < 100);
+                    return "OK";
+                }
+
+                void print(string s){
+                    return;
+                }
+                

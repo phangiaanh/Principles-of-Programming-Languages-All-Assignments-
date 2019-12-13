@@ -1,0 +1,10 @@
+
+                void main(){
+                    {/*
+                        This happens inside the scope!
+                    }*/
+                    if(ABC[ABC[5]]){
+                        thereIsSomethingWrong(3lookup);
+                    }
+                }
+                

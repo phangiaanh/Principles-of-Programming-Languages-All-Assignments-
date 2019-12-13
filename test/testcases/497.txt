@@ -1,0 +1,13 @@
+
+				void main(boolean free, boolean notFree,boolean busy){
+                    do
+                        do
+                            do
+                                do
+                                    putStringLn("stop");
+                                while(free);
+                            while(free);
+                        while(notFree);
+                    while(busy == false);
+				}
+                
