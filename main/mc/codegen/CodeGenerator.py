@@ -116,7 +116,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
         isInit = (consdecl.name.name == "<init>")
         isClInit = (consdecl.name.name == "<clinit>")
         isMain = consdecl.name.name == "main" and len(consdecl.param) == 0 and isinstance(consdecl.returnType, VoidType)
-        
+
         #Get return type
         returnType = VoidType() if (isInit or isClInit) else consdecl.returnType
         
@@ -158,19 +158,30 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
         #Start of body: Create new label
         self.emit.printout(self.emit.emitLABEL(frame.getStartLabel(), frame))
-
-        
-
-
-        # Generate code for statements
+        if isMain:
+            VarDeclJasminArray = None
+            #Generate code for local variables only
+            # for x in glenv:
+            #     if isinstance(x.mtype, ArrayType) and x.value is not None:
+            #         if isinstance(x.mtype.eletype, StringType):
+            #             VarDeclJasminArray = self.emit.emitAN
+            #         else:
+            #             VarDeclJasminArray = self.emit.emitNE
+            #         self.emit.printout(VarDeclJasminArray)
+        # if not isMain and not isInit and not isClInit:
         if isInit:
             self.emit.printout(self.emit.emitREADVAR("this", ClassType(self.className), 0, frame))
             self.emit.printout(self.emit.emitINVOKESPECIAL(frame))
+        # if isClInit:
+        
+
+
+        #5. Generate code for statements
         list(map(lambda x: self.visit(x, SubBody(frame, glenv)), body.member))
 
+        #6. Finish labels
         self.emit.printout(self.emit.emitLABEL(frame.getEndLabel(), frame))
-        if type(returnType) is VoidType:
-            self.emit.printout(self.emit.emitRETURN(VoidType(), frame))
+        self.emit.printout(self.emit.emitRETURN(returnType, frame))
         self.emit.printout(self.emit.emitENDMETHOD(frame))
         frame.exitScope()
     #========================================================
@@ -186,7 +197,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
         self.emit.printout(self.emit.emitPROLOG(self.className, "java.lang.Object"))
         
         #2. Create SubBody
-        e = SubBody(None, self.env)
+        e = SubBody(Frame(None, None), self.env)
         
         #3.1. Visit VarDecl
         FuncList = []
@@ -221,7 +232,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
             if isinstance(x.mtype, ArrayType):
                 self.genMETHOD(FuncDecl(Id("<clinit>"), [], None, Block([])), e.sym, Frame("<clinit>", VoidType))
                 #ArrayType constructor only need to be called once
-                break
+                #break
 
         #6. Write to file .j
         self.emit.emitEPILOG()
@@ -236,19 +247,19 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
         #Check if the VarDecl is global or local
         #If the indexLocal field is empty(there is no new scope), set isGlobal
-        isGlobal = (len(frame.indecLocal) == 0)
+        isGlobal = (len(frame.indexLocal) == 0)
         VarDeclJasmin = None
         
         if isGlobal:
             #Call emitATTRIBUTE for static variable(global)
-            VarDeclJasmin = self.emit.emitATTRIBUTE(ast.variable.name, ast.varType, False, None)
-            sym.append(Symbol(ast.variable.name, ast.varType, None))
+            VarDeclJasmin = self.emit.emitATTRIBUTE(ast.variable, ast.varType, False, None)
+            sym.append(Symbol(ast.variable, ast.varType, None))
         else:
             #New index for a new variable
             idx = frame.getNewIndex()
             #Call emitVAR for variable in scope
-            VarDeclJasmin = self.emit.emitVAR(idx, ast.variable.name, ast.varType, frame.getStartLabel(), frame.getEndLabel(), frame) 
-            sym.append(Symbol(ast.variable.name, ast.varType, idx))
+            VarDeclJasmin = self.emit.emitVAR(idx, ast.variable, ast.varType, frame.getStartLabel(), frame.getEndLabel(), frame) 
+            sym.append(Symbol(ast.variable, ast.varType, idx))
         self.emit.printout(VarDeclJasmin)
         return SubBody(frame, sym)
 
@@ -272,6 +283,11 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
         #Return new SubBody with a new Symbol
         return SubBody(frame, sym + [Symbol(ast.name.name, MType(list(map(lambda x: x.varType, ast.param)), ast.returnType), CName(self.className))])
+
+
+    # def BinaryOp(self, ast, o):
+
+
 
     def visitCallExpr(self, ast, o):
         #ast: CallExpr
