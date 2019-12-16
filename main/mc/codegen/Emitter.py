@@ -46,7 +46,7 @@ class Emitter():
         #in: Int or Sring
         #frame: Frame
         
-        frame.push();
+        frame.push()
         if type(in_) is int:
             i = in_
             if i >= -1 and i <=5:
@@ -73,7 +73,7 @@ class Emitter():
         if rst == "0.0" or rst == "1.0" or rst == "2.0":
             return self.jvm.emitFCONST(rst)
         else:
-            return self.jvm.emitLDC(in_)           
+            return self.jvm.emitLDC(str(in_))           
 
     ''' 
     *    generate code to push a constant onto the operand stack.
@@ -448,6 +448,40 @@ class Emitter():
         result.append(self.emitLABEL(labelO, frame))
         return ''.join(result)
 
+    def emitFREOP(self, op, in_, frame):
+        #op: String
+        #in_: Type
+        #frame: Frame
+        #..., value1, value2 -> ..., result
+
+        result = list()
+        labelF = frame.getNewLabel()
+        labelT = frame.getNewLabel()
+
+        frame.pop()
+        frame.pop()
+
+        result.append(self.jvm.emitFCMPL())
+        if op == ">":
+            result.append(self.jvm.emitIFLE(labelF))
+        elif op == ">=":
+            result.append(self.jvm.emitIFLT(labelF))
+        elif op == "<":
+            result.append(self.jvm.emitIFGE(labelF))
+        elif op == "<=":
+            result.append(self.jvm.emitIFGT(labelF))
+        elif op == "<>":
+            result.append(self.jvm.emitIFEQ(labelF))
+        elif op == "=":
+            result.append(self.jvm.emitIFNE(labelF))
+        result.append(self.emitPUSHCONST("1", IntType(), frame))
+        frame.pop()
+        result.append(self.emitGOTO(str(labelT), frame))
+        result.append(self.emitLABEL(labelF, frame))
+        result.append(self.emitPUSHCONST("0", IntType(), frame))
+        result.append(self.emitLABEL(labelT, frame))
+        return ''.join(result)
+
     def emitRELOP(self, op, in_, trueLabel, falseLabel, frame):
         #op: String
         #in_: Type
@@ -613,7 +647,7 @@ class Emitter():
         #label: Int
         #frame: Frame
 
-        return self.jvm.emitGOTO(label)
+        return self.jvm.emitGOTO(str(label))
 
     ''' generate some starting directives for a class.<p>
     *   .source MPC.CLASSNAME.java<p>

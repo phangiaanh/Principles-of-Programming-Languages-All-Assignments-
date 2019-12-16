@@ -3,16 +3,33 @@
 .super java.lang.Object
 .field static a Z
 
-.method public static main([Ljava/lang/String;)V
-.var 0 is args [Ljava/lang/String; from Label0 to Label1
+.method public static inta()V
 Label0:
-	sipush 200
-	invokestatic io/putInt(I)V
-	sipush 300
-	invokestatic io/putInt(I)V
 Label1:
 	return
-.limit stack 1
+.limit stack 0
+.limit locals 0
+.end method
+
+.method public static main([Ljava/lang/String;)V
+.var 0 is args [Ljava/lang/String; from Label2 to Label3
+Label2:
+	iconst_5
+	i2f
+	ldc 3.0
+	fcmpl
+	ifge Label4
+	iconst_1
+	goto Label5
+Label4:
+	iconst_0
+Label5:
+	invokestatic io/putBool(Z)V
+	iconst_3
+	invokestatic io/putInt(I)V
+Label3:
+	return
+.limit stack 3
 .limit locals 1
 .end method
 

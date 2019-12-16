@@ -7,10 +7,12 @@ class CheckCodeGenSuite(unittest.TestCase):
     def test_int(self):
         """Simple program: int main() {} """
         input = """
+                void inta(){}
                 boolean a;
-                void main() {putInt(200);
-                putInt(300);}"""
-        expect = "200300"
+                void main() {putBool(5<3.0);
+                putInt(3);
+                }"""
+        expect = "false3"
         self.assertTrue(TestCodeGen.test(input,expect,500))
     def test_int_ast(self):
     	input = Program([
