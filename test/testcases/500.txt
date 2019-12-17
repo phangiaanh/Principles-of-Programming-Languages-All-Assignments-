@@ -1,6 +1,10 @@
 
-                void inta(){}
-                boolean a;
-                void main() {putBool(5<3.0);
-                putInt(3);
+                int a[99];
+                void main() {
+                    int b[99];
+                    b[0] = 1;
+                    putInt(b[0]);
                 }
+
+
+

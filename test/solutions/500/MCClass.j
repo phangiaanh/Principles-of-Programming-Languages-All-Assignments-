@@ -1,36 +1,27 @@
 .source MCClass.java
 .class public MCClass
 .super java.lang.Object
-.field static a Z
-
-.method public static inta()V
-Label0:
-Label1:
-	return
-.limit stack 0
-.limit locals 0
-.end method
+.field static a [I
 
 .method public static main([Ljava/lang/String;)V
-.var 0 is args [Ljava/lang/String; from Label2 to Label3
-Label2:
-	iconst_5
-	i2f
-	ldc 3.0
-	fcmpl
-	ifge Label4
-	iconst_1
-	goto Label5
-Label4:
+.var 0 is args [Ljava/lang/String; from Label0 to Label1
+.var 1 is b [I from Label0 to Label1
+Label0:
+	bipush 99
+	newarray int
+	astore_1
+	aload_1
 	iconst_0
-Label5:
-	invokestatic io/putBool(Z)V
-	iconst_3
+	iconst_1
+	iastore
+	aload_1
+	iconst_0
+	iaload
 	invokestatic io/putInt(I)V
-Label3:
+Label1:
 	return
 .limit stack 3
-.limit locals 1
+.limit locals 2
 .end method
 
 .method public <init>()V
@@ -42,4 +33,15 @@ Label1:
 	return
 .limit stack 1
 .limit locals 1
+.end method
+
+.method public static <clinit>()V
+Label0:
+	bipush 99
+	newarray int
+	putstatic MCClass.a [I
+Label1:
+	return
+.limit stack 1
+.limit locals 0
 .end method

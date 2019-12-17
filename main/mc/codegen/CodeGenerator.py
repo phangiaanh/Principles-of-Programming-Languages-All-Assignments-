@@ -161,6 +161,9 @@ class CodeGenVisitor(BaseVisitor, Utils):
         if not isInit and not isClInit:
             for x in consdecl.param:
                 e = self.visit(x, e)
+            for x in consdecl.body.member:
+                if isinstance(x, VarDecl):
+                    e = self.visit(x, e)
 
         globalEnvi = e.sym
         frame = e.frame
@@ -169,25 +172,49 @@ class CodeGenVisitor(BaseVisitor, Utils):
         #Start of body: Create new label
         self.emit.printout(self.emit.emitLABEL(frame.getStartLabel(), frame))
         if isMain:
-            VarDeclJasminArray = None
             #Generate code for local variables only
-            # for x in globalEnvi:
-            #     if isinstance(x.mtype, ArrayType) and x.value is not None:
-            #         if isinstance(x.mtype.eletype, StringType):
-            #             VarDeclJasminArray = self.emit.emitAN
-            #         else:
-            #             VarDeclJasminArray = self.emit.emitNE
-            #         self.emit.printout(VarDeclJasminArray)
-        # if not isMain and not isInit and not isClInit:
+            for x in globalEnvi:
+                VarDeclJasminArray = None
+                if isinstance(x.mtype, ArrayType) and x.value is not None:
+                    if isinstance(x.mtype.eleType, StringType):
+                        VarDeclJasminArray = self.emit.emitANEWARRAY(x.name, x.mtype, x.value, frame)
+                    else:
+                        VarDeclJasminArray = self.emit.emitNEWARRAY(x.name, x.mtype, x.value, frame)
+                    self.emit.printout(VarDeclJasminArray)
+
+        #Normal function
+        if not isMain and not isInit and not isClInit:
+            for x in body.member:
+                if isinstance(x, VarDecl) and isinstance(x.mtype, ArrayType):
+                    VarDeclJasminArray = None
+                    varFound = self.lookup(x.variable, globalEnvi[::-1], lambda y: y.name)
+                    if varFound.value is not None:
+                        if isinstance(varFound.mtype.eleType, StringType):
+                            VarDeclJasminArray = self.emit.emitANEWARRAY(VarFound.name, VarFound.mtype, VarFound.value, frame)
+                        else:
+                            VarDeclJasminArray = self.emit.emitNEWARRAY(VarFound.name, VarFound.mtype, VarFound.value, frame)
+                        self.emit.printout(VarDeclJasminArray)
+
         if isInit:
             self.emit.printout(self.emit.emitREADVAR("this", ClassType(self.className), 0, frame))
             self.emit.printout(self.emit.emitINVOKESPECIAL(frame))
-        # if isClInit:
+        if isClInit:
+            for x in globalEnvi:
+                VarDeclJasminArray = None
+                if isinstance(x.mtype, ArrayType) and x.value is None:
+                    if isinstance(x.mtype.eleType, StringType):
+                        VarDeclJasminArray = self.emit.emitANEWARRAY(self.className + "." + x.name, x.mtype, x.value, frame)
+                    else:
+                        VarDeclJasminArray = self.emit.emitNEWARRAY(self.className + "." + x.name, x.mtype, x.value, frame)
+                    self.emit.printout(VarDeclJasminArray)
         
 
 
         #5. Generate code for statements
-        list(map(lambda x: self.visit(x, SubBody(frame, globalEnvi)), body.member))
+        for x in body.member:
+            if not isinstance(x, VarDecl):
+                self.visit(x, SubBody(frame, globalEnvi))
+        # list(map(lambda x: self.visit(x, SubBody(frame, globalEnvi)), body.member))
 
         #6. Finish labels
         self.emit.printout(self.emit.emitLABEL(frame.getEndLabel(), frame))
@@ -242,7 +269,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
             if isinstance(x.mtype, ArrayType):
                 self.genMETHOD(FuncDecl(Id("<clinit>"), [], None, Block([])), e.sym, Frame("<clinit>", VoidType))
                 #ArrayType constructor only need to be called once
-                #break
+                break
 
         #6. Write to file .j
         self.emit.emitEPILOG()
@@ -341,7 +368,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
             elif ast.op in ["*", "/"]:
                 return self.printCode(leftString + rightString + self.emit.emitMULOP(ast.op, FloatType(), frame), ctxt, FloatType())
             elif ast.op in ["<", "<=", ">", ">="]:
-                return leftString + rightString + self.emit.emitFREOP(ast.op,FloatType(),frame),FloatType()
+                return self.printCode(leftString + rightString + self.emit.emitFREOP(ast.op, FloatType(), frame), ctxt, FloatType())
         
         else:
 
@@ -376,7 +403,6 @@ class CodeGenVisitor(BaseVisitor, Utils):
         ctxt = o
         frame = ctxt.frame
         nenv = ctxt.sym
-        print(ast)
         #Get function symbol
         sym = self.lookup(ast.method.name, nenv, lambda x: x.name)
         
@@ -399,7 +425,128 @@ class CodeGenVisitor(BaseVisitor, Utils):
         return self.printCode(finalCode, ctxt, sym.mtype.rettype)
 
 
-    # def visitId(self, ast, o):
+    def visitId(self, ast, o):
+        #For an easier understanding
+        ctxt = o
+        frame = ctxt.frame
+        nenv = ctxt.sym
+
+        #ctxt must be Access
+        isLeft = ctxt.isLeft
+        isFirst = ctxt.isFirst
+
+        id = self.lookup(ast.name, nenv[::-1], lambda x: x.name)
+
+        #LHS visit the first time
+        if isLeft and isFirst:
+            #If not ArrayType, doing nothing because this is the first time visit
+            if not isinstance(id.mtype, ArrayType):
+                return self.printCode("", ctxt, id.mtype)
+            else:
+                #If local, emit READVAR. If global, emit GETSTATIC
+                if id.value is not None:
+                    return self.printCode(self.emit.emitREADVAR(id.name, id.mtype, id.value, frame), ctxt, id.mtype)
+                else:
+                    return self.printCode(self.emit.emitGETSTATIC(self.className + "." + id.name, id.mtype, frame), ctxt, id.mtype)
+
+        #RHS
+        if not isLeft and not isFirst:
+            if id.value is not None:
+                return self.printCode(self.emit.emitREADVAR(id.name, id.mtype, id.value, frame), ctxt, id.mtype)
+            else:
+                return self.printCode(self.emit.emitGETSTATIC(self.className + "." + id.name, id.mtype, frame), ctxt, id.mtype)
+        
+        #LHS visit the second time
+        if isLeft and not isFirst:
+            if not isinstance(id.mtype, ArrayType):
+                if id.value is None:
+                    return self.printCode(self.emit.emitPUTSTATIC(self.className + "." + id.name, id.mtype, frame), ctxt, id.mtype)
+                else:
+                    return self.printCode(self.emit.emitWRITEVAR(id.name, id.mtype, id.value, frame), ctxt, id.mtype)
+            else:
+                return self.printCode(self.emit.emitASTORE(id.mtype.eleType, frame), ctxt, id.mtype.eleType)
+
+
+    def visitArrayCell(self, ast, o):
+        #For an easier understanding
+        ctxt = o
+        frame = ctxt.frame
+        nenv = ctxt.sym
+
+        #ctxt must be Access
+        isLeft = ctxt.isLeft
+        isFirst = ctxt.isFirst
+
+        #LHS visit the first time
+        if isLeft and isFirst:
+            arrString, arrType = self.visit(ast.arr, Access(frame, nenv, True, True))
+            idxString, idxType = self.visit(ast.idx, Access(frame, nenv, False, False))
+
+            arrString += idxString
+            return self.printCode(arrString, ctxt, arrType.eleType)
+
+        if not isLeft and not isFirst:
+            arrString, arrType = self.visit(ast.arr, Access(frame, nenv, True, True))
+            idxString, idxType = self.visit(ast.idx, Access(frame, nenv, False, False))
+
+            arrString += idxString
+            arrString += self.emit.emitALOAD(arrType.eleType, frame)
+            return self.printCode(arrString, ctxt, arrType.eleType)
+
+        if isLeft and not isFirst:
+            return self.visit(ast.arr, Access(frame, nenv, True, False))
+
+
+    def visitIf(self, ast, o):
+        #For an easier understanding
+        ctxt = o
+        frame = ctxt.frame
+        nenv = ctxt.sym
+
+        thenStmt = ast.thenStmt
+        elseStmt = ast.elseStmt
+
+        #Code for expr
+        exprString, exprType = self.visit(ast.expr, Access(frame, nenv, False, False))
+        self.emit.printout(exprString)
+
+        #Create two new labels
+        trueLabel = frame.getNewLabel()
+        falseLabel = frame.getNewLabel()
+
+        #Code IFTRUE + trueLabel
+        self.emit.printout(self.emit.emitIFTRUE(trueLabel, frame))
+
+        #Check elseStmt
+        if elseStmt is not None:
+            elseSubBody = SubBody(frame, nenv)
+            self.visit(elseStmt, elseSubBody)
+        
+        #Labels
+        self.emit.printout(self.emit.emitGOTO(falseLabel,frame))
+        self.emit.printout(self.emit.emitLABEL(trueLabel,frame))
+        thenSubBody = SubBody(frame, nenv)
+        self.visit(thenStmt, thenSubBody)
+
+        #Out
+        self.emit.printout(self.emit.emitLABEL(falseLabel, frame))
+        
+
+
+    def visitReturn(self, ast, o):
+        #For an easier understanding
+        ctxt = o
+        frame = ctxt.frame
+        nenv = ctxt.sym
+
+        if ast.expr is not None:
+            exprString, exprType = self.visit(ast.expr, Access(frame, nenv, False, False))
+            self.emit.printout(exprString)
+
+            if isinstance(exprType, IntType) and isinstance(frame.returnType, FloatType):
+                self.emit.printout(self.emit.emitI2F(frame))
+
+        self.emit.printout(self.emit.emitGOTO(frame.getEndLabel(), frame))
 
 
 

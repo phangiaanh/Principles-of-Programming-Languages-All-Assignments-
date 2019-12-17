@@ -24,6 +24,8 @@ class Emitter():
             return "V"
         elif typeIn is ArrayPointerType:
             return "[" + self.getJVMType(inType.eleType)
+        elif typeIn is ArrayType:
+            return "[" + self.getJVMType(inType.eleType)
         elif typeIn is MType:
             return "(" + "".join(list(map(lambda x: self.getJVMType(x), inType.partype))) + ")" + self.getJVMType(inType.rettype)
         elif typeIn is cgen.ClassType:
@@ -71,7 +73,7 @@ class Emitter():
         frame.push()
         rst = "{0:.4f}".format(f)
         if rst == "0.0" or rst == "1.0" or rst == "2.0":
-            return self.jvm.emitFCONST(rst)
+            return self.jvm.emitFCONST(str(rst))
         else:
             return self.jvm.emitLDC(str(in_))           
 
@@ -123,7 +125,7 @@ class Emitter():
         if type(in_) is IntType:
             return self.jvm.emitIASTORE()
         elif type(in_) is BoolType:
-            return self.jvm.emitBASTORE()
+            return self.jvm.emitIASTORE()
         elif type(in_) is FloatType:
             return self.jvm.emitFASTORE()
         elif type(in_) is ArrayPointerType or type(in_) is ClassType or type(in_) is StringType:
@@ -623,9 +625,15 @@ class Emitter():
         #in_: Type
         #frame: Frame
 
-        if type(in_) is IntType:
+        if type(in_) is IntType or type(in_) is BoolType:
             frame.pop()
             return self.jvm.emitIRETURN()
+        elif type(in_) is FloatType:
+            frame.pop()
+            return self.jvm.emitFRETURN()
+        elif type(in_) is StringType or type(in_) is ArrayType:
+            frame.pop()
+            return self.jvm.emitARETURN()
         elif type(in_) is VoidType:
             return self.jvm.emitRETURN()
 
@@ -690,7 +698,32 @@ class Emitter():
     def clearBuff(self):
         self.buff.clear()
 
+    def emitNEWARRAY(self, name, typeIn, val, frame):
+	    eleType = Emitter.getFullType(typeIn.eleType)
+	    size = typeIn.dimen 
+	    stmt = self.emitPUSHICONST(size, frame)
+	    frame.pop()
+	    stmt += self.jvm.emitNEWARRAY(eleType)
+	    frame.push()
+	    if val is None:
+	    	stmt += self.emitPUTSTATIC(name, typeIn, frame)
+	    else:
+	    	stmt += self.emitWRITEVAR(name, typeIn, val, frame)
+	    return stmt
 
+
+    def emitANEWARRAY(self,name,typeIn,val,frame):
+	    eleType = Emitter.getFullType(typeIn.eleType)
+	    size = typeIn.dimen 
+	    stmt = self.emitPUSHICONST(size, frame)
+	    frame.pop()
+	    stmt += self.jvm.emitNEWARRAY(eleType)
+	    frame.push()
+	    if val is None:
+	    	stmt += self.emitPUTSTATIC(name, typeIn, frame)
+	    else:
+	    	stmt += self.emitWRITEVAR(name, typeIn, val, frame)
+	    return stmt
 
 
 
