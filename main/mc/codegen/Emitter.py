@@ -128,7 +128,7 @@ class Emitter():
             return self.jvm.emitIASTORE()
         elif type(in_) is FloatType:
             return self.jvm.emitFASTORE()
-        elif type(in_) is ArrayPointerType or type(in_) is ClassType or type(in_) is StringType:
+        elif type(in_) is ArrayPointerType or type(in_) is cgen.ClassType or type(in_) is StringType:
             return self.jvm.emitAASTORE()
         else:
             raise IllegalOperandException(str(in_))
@@ -162,7 +162,7 @@ class Emitter():
             return self.jvm.emitILOAD(index)
         elif type(inType) is FloatType:
             return self.jvm.emitFLOAD(index)
-        elif type(inType) is ArrayType or type(inType) is cgen.ClassType or type(inType) is StringType:
+        elif type(inType) is ArrayPointerType or type(inType) is ArrayType or type(inType) is cgen.ClassType or type(inType) is StringType:
             return self.jvm.emitALOAD(index)
         else:
             raise IllegalOperandException(name)
@@ -711,13 +711,12 @@ class Emitter():
 	    	stmt += self.emitWRITEVAR(name, typeIn, val, frame)
 	    return stmt
 
-
     def emitANEWARRAY(self,name,typeIn,val,frame):
 	    eleType = Emitter.getFullType(typeIn.eleType)
 	    size = typeIn.dimen 
 	    stmt = self.emitPUSHICONST(size, frame)
 	    frame.pop()
-	    stmt += self.jvm.emitNEWARRAY(eleType)
+	    stmt += self.jvm.emitANEWARRAY(eleType)
 	    frame.push()
 	    if val is None:
 	    	stmt += self.emitPUTSTATIC(name, typeIn, frame)
@@ -725,6 +724,10 @@ class Emitter():
 	    	stmt += self.emitWRITEVAR(name, typeIn, val, frame)
 	    return stmt
 
+    def emitCLONEARRAY(self, inType, frame):
+        frame.push()
+        return JasminCode.INDENT + "invokevirtual " + self.getJVMType(inType) + '/clone()Ljava/lang/Object;' + JasminCode.END + self.emitCHECKCAST(inType)
 
-
+    def emitCHECKCAST(self, inType):
+        return JasminCode.INDENT + "checkcast " + self.getJVMType(inType) + JasminCode.END
         

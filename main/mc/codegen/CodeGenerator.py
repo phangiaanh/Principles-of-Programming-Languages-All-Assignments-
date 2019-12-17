@@ -12,6 +12,8 @@ from Emitter import Emitter
 from Frame import Frame
 from abc import ABC, abstractmethod
 
+import copy
+
 
 #==============================SUPPORTING CLASSES==============================
 class ClassType(Type):
@@ -113,6 +115,19 @@ class CodeGenVisitor(BaseVisitor, Utils):
             return code, typ
 
 
+    def checkArray(self, x, e):
+        globalEnvi = e.sym
+        frame = e.frame
+        if isinstance(x, VarDecl):
+            varFound = self.lookup(x.variable, globalEnvi[::-1], lambda y: y.name)
+            if isinstance(varFound.mtype, ArrayType) and varFound.value is not None:
+                if isinstance(varFound.mtype.eleType, StringType):
+                    VarDeclJasminArray = self.emit.emitANEWARRAY(varFound.name, varFound.mtype, varFound.value, frame)
+                else:
+                    VarDeclJasminArray = self.emit.emitNEWARRAY(varFound.name, varFound.mtype, varFound.value, frame)
+                self.emit.printout(VarDeclJasminArray)
+
+
     def genMETHOD(self, consdecl, sym, frame):
         #consdecl: FuncDecl
         #sym: Any
@@ -120,10 +135,10 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
         #1. Setup declarations
         #Check if it is init, clinit, main or regular functions
-        isInit = (consdecl.name.name == "<init>")
-        isClInit = (consdecl.name.name == "<clinit>")
+        isInit = (consdecl.name.name == '<init>')
+        isClInit = (consdecl.name.name == '<clinit>')
         # isMain = consdecl.name.name == "main" and len(consdecl.param) == 0 and isinstance(consdecl.returnType, VoidType)
-        isMain = consdecl.name.name == "main"
+        isMain = consdecl.name.name == 'main'
 
         #Get return type
         returnType = VoidType() if (isInit or isClInit) else consdecl.returnType
@@ -157,43 +172,39 @@ class CodeGenVisitor(BaseVisitor, Utils):
         elif isMain:
             self.emit.printout(self.emit.emitVAR(frame.getNewIndex(), "args", ArrayPointerType(StringType()), frame.getStartLabel(), frame.getEndLabel(), frame))
 
+
         e = SubBody(frame, sym)
         if not isInit and not isClInit:
             for x in consdecl.param:
                 e = self.visit(x, e)
-            for x in consdecl.body.member:
-                if isinstance(x, VarDecl):
-                    e = self.visit(x, e)
-
+        
         globalEnvi = e.sym
         frame = e.frame
         body = consdecl.body
 
         #Start of body: Create new label
         self.emit.printout(self.emit.emitLABEL(frame.getStartLabel(), frame))
-        if isMain:
-            #Generate code for local variables only
-            for x in globalEnvi:
-                VarDeclJasminArray = None
-                if isinstance(x.mtype, ArrayType) and x.value is not None:
-                    if isinstance(x.mtype.eleType, StringType):
-                        VarDeclJasminArray = self.emit.emitANEWARRAY(x.name, x.mtype, x.value, frame)
-                    else:
-                        VarDeclJasminArray = self.emit.emitNEWARRAY(x.name, x.mtype, x.value, frame)
-                    self.emit.printout(VarDeclJasminArray)
+        # if isMain:
+        #     #Generate code for local variables only
+        #     for x in globalEnvi:
+        #         if isinstance(x.mtype, ArrayType) and x.value is not None:
+        #             if isinstance(x.mtype.eleType, StringType):
+        #                 VarDeclJasminArray = self.emit.emitANEWARRAY(x.name, x.mtype, x.value, frame)
+        #             else:
+        #                 VarDeclJasminArray = self.emit.emitNEWARRAY(x.name, x.mtype, x.value, frame)
+        #             self.emit.printout(VarDeclJasminArray)
 
         #Normal function
-        if not isMain and not isInit and not isClInit:
-            for x in body.member:
-                if isinstance(x, VarDecl) and isinstance(x.mtype, ArrayType):
-                    VarDeclJasminArray = None
-                    varFound = self.lookup(x.variable, globalEnvi[::-1], lambda y: y.name)
-                    if varFound.value is not None:
-                        if isinstance(varFound.mtype.eleType, StringType):
-                            VarDeclJasminArray = self.emit.emitANEWARRAY(VarFound.name, VarFound.mtype, VarFound.value, frame)
-                        else:
-                            VarDeclJasminArray = self.emit.emitNEWARRAY(VarFound.name, VarFound.mtype, VarFound.value, frame)
-                        self.emit.printout(VarDeclJasminArray)
+        # if not isMain and not isInit and not isClInit:
+        #     for x in body.member:
+        #         if isinstance(x, VarDecl):
+        #             varFound = self.lookup(x.variable, globalEnvi[::-1], lambda y: y.name)
+        #             if isinstance(varFound.mtype, ArrayType) and varFound.value is not None:
+        #                 if isinstance(varFound.mtype.eleType, StringType):
+        #                     VarDeclJasminArray = self.emit.emitANEWARRAY(varFound.name, varFound.mtype, varFound.value, frame)
+        #                 else:
+        #                     VarDeclJasminArray = self.emit.emitNEWARRAY(varFound.name, varFound.mtype, varFound.value, frame)
+        #                 self.emit.printout(VarDeclJasminArray)
 
         if isInit:
             self.emit.printout(self.emit.emitREADVAR("this", ClassType(self.className), 0, frame))
@@ -212,8 +223,15 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
         #5. Generate code for statements
         for x in body.member:
-            if not isinstance(x, VarDecl):
-                self.visit(x, SubBody(frame, globalEnvi))
+            if isinstance(x, VarDecl):
+                e = self.visit(x, e)
+                self.checkArray(x, e)
+            else:
+                self.visit(x, e)
+            
+
+
+        # list(map(lambda x: self.visit(x, SubBody(frame, globalEnvi)), stmtList))
         # list(map(lambda x: self.visit(x, SubBody(frame, globalEnvi)), body.member))
 
         #6. Finish labels
@@ -416,6 +434,8 @@ class CodeGenVisitor(BaseVisitor, Utils):
         for x in ast.param:
             str1,typ1 = self.visit(x, Access(frame, nenv, False, False))
             in_ += str1
+            if isinstance(typ1, ArrayType):
+                in_ += self.emit.emitCLONEARRAY(typ1,frame)
             if isinstance(sym.mtype.partype[i], FloatType) and isinstance(typ1, IntType):
                 in_ += self.emit.emitI2F(frame)
             i += 1   
@@ -486,7 +506,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
             return self.printCode(arrString, ctxt, arrType.eleType)
 
         if not isLeft and not isFirst:
-            arrString, arrType = self.visit(ast.arr, Access(frame, nenv, True, True))
+            arrString, arrType = self.visit(ast.arr, Access(frame, nenv, False, False))
             idxString, idxType = self.visit(ast.idx, Access(frame, nenv, False, False))
 
             arrString += idxString
@@ -532,6 +552,102 @@ class CodeGenVisitor(BaseVisitor, Utils):
         self.emit.printout(self.emit.emitLABEL(falseLabel, frame))
         
 
+    def visitDowhile(self, ast, o):
+        #For an easier understanding
+        ctxt = o
+        frame = ctxt.frame
+        nenv = ctxt.sym
+
+        stmtList = ast.sl
+
+        frame.enterLoop()
+        continueLabel = frame.getContinueLabel()
+        breakLabel = frame.getBreakLabel()
+
+        self.emit.printout(self.emit.emitLABEL(continueLabel, frame))
+
+        e = SubBody(frame, nenv)
+        list(map(lambda x: self.visit(x, e), stmtList))
+
+        exprString, exprType = self.visit(ast.exp, Access(frame, nenv, False, False))
+        self.emit.printout(exprString)
+
+        self.emit.printout(self.emit.emitIFFALSE(breakLabel, frame))
+
+        self.emit.printout(self.emit.emitGOTO(continueLabel, frame))        
+        self.emit.printout(self.emit.emitLABEL(breakLabel, frame))
+
+        frame.exitLoop()
+
+
+    def visitFor(self, ast, o):
+        #For an easier understanding
+        ctxt = o
+        frame = ctxt.frame
+        nenv = ctxt.sym
+
+        #Get parameters
+        init = ast.expr1
+        condition = ast.expr2
+        step = ast.expr3
+        stmt = ast.loop
+
+        initString, initType = self.visit(init, Access(frame, nenv, False, False))
+        
+        #Code for initialization
+        self.emit.printout(initString)
+
+        frame.enterLoop()
+        continueLabel = frame.getContinueLabel()
+        breakLabel = frame.getBreakLabel()
+
+        self.emit.printout(self.emit.emitLABEL(continueLabel, frame))
+
+        #Check condition
+        conditionString, conditionType = self.visit(condition, Access(frame, nenv, False, False))
+        self.emit.printout(conditionString)
+        self.emit.printout(self.emit.emitIFFALSE(breakLabel, frame))
+        e = SubBody(frame, nenv)
+        self.visit(stmt, e)
+
+        #Step
+        stepString, stepType = self.visit(step, Access(frame, nenv, False, False))
+        self.emit.printout(stepString)
+
+        self.emit.printout(self.emit.emitGOTO(continueLabel, frame))        
+        self.emit.printout(self.emit.emitLABEL(breakLabel, frame))
+        frame.exitLoop()
+
+
+    def visitBlock(self, ast, o):
+        #For an easier understanding
+        ctxt = o
+        frame = ctxt.frame
+        nenv = copy.copy(ctxt.sym)
+
+        #Start scope
+        frame.enterScope(False)
+        
+        #Create new labels
+        startLabel = frame.getStartLabel()
+        endLabel = frame.getEndLabel()
+        e = SubBody(frame, nenv)
+
+        #Start label
+        self.emit.printout(self.emit.emitLABEL(startLabel, frame))
+
+        for x in ast.member:
+            if isinstance(x, VarDecl):
+                e = self.visit(x, e)
+                self.checkArray(x, e)
+            else:
+                self.visit(x, e)
+
+        self.emit.printout(self.emit.emitLABEL(endLabel, frame))
+        frame.exitScope()
+        
+
+
 
     def visitContinue(self, ast, o):
         #For an easier understanding
@@ -565,8 +681,8 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
             if isinstance(exprType, IntType) and isinstance(frame.returnType, FloatType):
                 self.emit.printout(self.emit.emitI2F(frame))
-
         self.emit.printout(self.emit.emitGOTO(frame.getEndLabel(), frame))
+        return True
 
 
     def visitIntLiteral(self, ast, o):
@@ -574,25 +690,25 @@ class CodeGenVisitor(BaseVisitor, Utils):
         #o: Any
         ctxt = o
         frame = ctxt.frame
-        return self.emit.emitPUSHICONST(ast.value, frame), IntType()
+        return self.printCode(self.emit.emitPUSHICONST(ast.value, frame), ctxt, IntType())
     
 
     def visitFloatLiteral(self,ast,o):
         ctxt = o
         frame = ctxt.frame
-        return self.emit.emitPUSHFCONST(ast.value, frame), FloatType()
+        return self.printCode(self.emit.emitPUSHFCONST(ast.value, frame), ctxt, FloatType())
 
 
     def visitBooleanLiteral(self,ast,o):
         ctxt = o
         frame = ctxt.frame
-        return self.emit.emitPUSHICONST(str(ast.value), frame),  BoolType()
+        return self.printCode(self.emit.emitPUSHICONST(str(ast.value), frame), ctxt, BoolType())
 
 
     def visitStringLiteral(self, ast, o):
         ctxt = o
         frame = ctxt.frame
-        return self.emit.emitPUSHCONST('"' + ast.value + '"', StringType(), frame), StringType()
+        return self.printCode(self.emit.emitPUSHCONST('"' + ast.value + '"', StringType(), frame), ctxt, StringType())
     #===============================================
 
 #=========================================================================
