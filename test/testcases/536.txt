@@ -1,0 +1,13 @@
+
+
+		int i[10];
+		float f[100];
+		boolean b[1000];
+
+		void main()
+		{
+			putInt(i[2]);
+			putFloat(f[3]);
+			putBool(b[4]);
+		}
+		

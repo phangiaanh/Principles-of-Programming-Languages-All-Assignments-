@@ -1,0 +1,19 @@
+	
+
+		float f;
+
+		void main()
+		{
+			f=3;
+
+			putIntLn(2);
+			testFloat(f);
+		}
+		
+		void testFloat(float f)
+		{
+			putFloatLn(f);
+		}
+
+
+		

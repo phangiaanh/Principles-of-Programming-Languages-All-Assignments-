@@ -1,1 +1,14 @@
-Program([FuncDecl(Id(main),[],VoidType,Block([CallExpr(Id(putInt),[IntLiteral(5)])]))])
+
+
+		int get()
+		{
+			putInt(2+3);
+			putInt(3+5);
+			return 1;
+		}
+
+		void main()
+		{
+			get();
+		}
+		

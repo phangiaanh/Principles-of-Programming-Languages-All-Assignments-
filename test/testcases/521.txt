@@ -1,0 +1,12 @@
+
+		
+		int a;
+		boolean b;
+
+		void main()
+		{
+			a=2;
+			b=a==1 || a==2;
+			putBoolLn(b);
+		}
+		

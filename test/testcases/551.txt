@@ -1,0 +1,11 @@
+
+		void main() {
+            int i,t;
+            for (i = 0; i < 10; i = i + 1)
+                putInt(i);
+		   
+            t = -10;
+            for (1; t < 10; t = t + 2)
+                putInt(i);
+        }
+		

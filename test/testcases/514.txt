@@ -1,0 +1,11 @@
+
+
+		int a[100],i;
+
+		void main()
+		{
+			for(i=1;i<10;i=i+2) a[i]=i%2;
+
+			for(i=0;i<10;i=i+1) putIntLn(a[i]);
+		}
+		

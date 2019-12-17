@@ -1,0 +1,8 @@
+
+		int i;
+		void main()
+		{
+			for(i=10;i>=5;i=i-1) putIntLn(-i*2);
+			for(i=10;i>=5;i=i-1) putBoolLn(!(i*2==10));
+		}
+		

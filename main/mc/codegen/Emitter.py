@@ -87,7 +87,7 @@ class Emitter():
         #typ: Type
         #frame: Frame
         
-        if type(typ) is IntType:
+        if type(typ) is IntType or type(typ) is BoolType:
             return self.emitPUSHICONST(in_, frame)
         elif type(typ) is StringType:
             frame.push()
@@ -125,7 +125,7 @@ class Emitter():
         if type(in_) is IntType:
             return self.jvm.emitIASTORE()
         elif type(in_) is BoolType:
-            return self.jvm.emitIASTORE()
+            return self.jvm.emitBASTORE()
         elif type(in_) is FloatType:
             return self.jvm.emitFASTORE()
         elif type(in_) is ArrayPointerType or type(in_) is cgen.ClassType or type(in_) is StringType:
@@ -196,7 +196,7 @@ class Emitter():
             return self.jvm.emitISTORE(index)
         elif type(inType) is FloatType:
             return self.jvm.emitFSTORE(index)
-        elif type(inType) is ArrayType or type(inType) is cgen.ClassType or type(inType) is StringType:
+        elif type(inType) is ArrayPointerType or type(inType) is ArrayType or type(inType) is cgen.ClassType or type(inType) is StringType:
             return self.jvm.emitASTORE(index)
         else:
             raise IllegalOperandException(name)
@@ -332,12 +332,12 @@ class Emitter():
         label1 = frame.getNewLabel()
         label2 = frame.getNewLabel()
         result = list()
-        result.append(emitIFTRUE(label1, frame))
-        result.append(emitPUSHCONST("true", in_, frame))
-        result.append(emitGOTO(label2, frame))
-        result.append(emitLABEL(label1, frame))
-        result.append(emitPUSHCONST("false", in_, frame))
-        result.append(emitLABEL(label2, frame))
+        result.append(self.emitIFTRUE(label1, frame))
+        result.append(self.emitPUSHCONST("true", in_, frame))
+        result.append(self.emitGOTO(label2, frame))
+        result.append(self.emitLABEL(label1, frame))
+        result.append(self.emitPUSHCONST("false", in_, frame))
+        result.append(self.emitLABEL(label2, frame))
         return ''.join(result)
 
     '''
@@ -631,7 +631,7 @@ class Emitter():
         elif type(in_) is FloatType:
             frame.pop()
             return self.jvm.emitFRETURN()
-        elif type(in_) is StringType or type(in_) is ArrayType:
+        elif type(in_) is StringType or type(in_) is ArrayType or type(in_) is ArrayPointerType:
             frame.pop()
             return self.jvm.emitARETURN()
         elif type(in_) is VoidType:

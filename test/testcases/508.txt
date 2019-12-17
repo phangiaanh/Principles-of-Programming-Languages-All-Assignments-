@@ -1,0 +1,39 @@
+
+
+		int sum(int a[],int l)
+		{
+			int tmp,i;
+			tmp=0;
+			for(i=0;i<l;i=i+1) tmp=tmp+a[i];
+			return tmp;
+		}
+
+		int ia[10];
+
+
+		void main()
+		{
+			putStringLn("2.3");
+
+			int i;
+			
+			for(i=0;i<10;i=i+1) ia[i]=i;
+			for(i=0;i<10;i=i+1) fa[i]=i+1;
+			
+			putIntLn(sum(ia,10));
+			putFloatLn(multiply(fa,10));
+		}
+		
+		
+		float fa[10];
+
+		float multiply(float a[],int l)
+		{
+			float tmp;
+			int i;
+			tmp=1;
+			for(i=0;i<l;i=i+1) tmp=tmp*a[i];
+			return tmp;
+		}
+		
+		

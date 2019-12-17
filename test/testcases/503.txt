@@ -1,0 +1,12 @@
+
+
+		string enter()
+		{
+			return "hello";
+		}
+
+		void main()
+		{
+			putString(enter());
+		}
+		

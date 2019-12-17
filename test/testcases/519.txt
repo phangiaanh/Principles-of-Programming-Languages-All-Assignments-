@@ -1,0 +1,11 @@
+
+
+		int a0[0];
+		boolean b0[0];
+		string c0[0];
+		float d0[0];
+
+		void main()
+		{
+		}
+		

@@ -1,0 +1,20 @@
+
+		void main()
+		{
+			int n,i,choice;
+			n=20;  
+			
+			do  
+			{  
+			    choice=n%17;
+			    if(choice == 0)  
+			    {  
+			        break;  
+			    }  
+			    n=n+1;  
+			}
+			while(true);  
+
+			putIntLn(n);
+		}
+		

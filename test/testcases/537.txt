@@ -1,0 +1,27 @@
+
+		 void main() {
+                int b;
+                b = foo()[1];
+                foo()[1] = 5;
+                putInt(b);
+                putInt(foo()[1]);
+
+                string c;
+                c = foo2()[1];
+                foo2()[1] = "haha";
+                putString(c);
+                putString(foo2()[1]);
+            }
+
+            int[] foo(){
+                int a[10];
+                a[1] = 5;
+                return a;
+            }
+
+            string[] foo2(){
+                string a[10];
+                a[1] = "thong";
+                return a;
+            }
+		

@@ -1,0 +1,20 @@
+
+		int i,j,l,a[10],mul;
+		
+		int[] returnArray()
+		{
+			int a[11];
+			for(j=0;j<l;j=j+1) a[j]=j+1;
+
+			return a;
+		}
+
+		void main()
+		{
+			l=10;
+
+			mul=1;
+			for(i=0;i<l;i=i+1) mul=mul*returnArray()[i];
+			putIntLn(mul);
+		}
+		

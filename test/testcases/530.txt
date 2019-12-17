@@ -1,0 +1,24 @@
+
+
+		string random;
+		int one;
+
+		string getRandomString()
+		{
+			return "random";
+		}
+
+		void main()
+		{
+			random=getRandomString();
+			one=getOne();
+
+			putStringLn(random);
+			putIntLn(one);
+		}
+
+		int getOne()
+		{
+			return 1;			
+		}
+		

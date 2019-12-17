@@ -172,8 +172,10 @@ class CodeGenVisitor(BaseVisitor, Utils):
         elif isMain:
             self.emit.printout(self.emit.emitVAR(frame.getNewIndex(), "args", ArrayPointerType(StringType()), frame.getStartLabel(), frame.getEndLabel(), frame))
 
+        newFrame = frame
+        newSym = copy.copy(sym)
 
-        e = SubBody(frame, sym)
+        e = SubBody(newFrame, newSym)
         if not isInit and not isClInit:
             for x in consdecl.param:
                 e = self.visit(x, e)
@@ -442,7 +444,11 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
         #Concatenate two strings
         finalCode = in_ + self.emit.emitINVOKESTATIC(cname + "/" + sym.name, ctype, frame)
-        return self.printCode(finalCode, ctxt, sym.mtype.rettype)
+        # return self.printCode(finalCode, ctxt, sym.mtype.rettype)
+        if type(ctxt) is Access: return finalCode, sym.mtype.rettype
+        else:
+            self.emit.printout(finalCode)
+            return sym.mtype.rettype
 
 
     def visitId(self, ast, o):
@@ -455,36 +461,35 @@ class CodeGenVisitor(BaseVisitor, Utils):
         isLeft = ctxt.isLeft
         isFirst = ctxt.isFirst
 
-        id = self.lookup(ast.name, nenv[::-1], lambda x: x.name)
-
+        id_ = self.lookup(ast.name, nenv[::-1], lambda x: x.name)
         #LHS visit the first time
         if isLeft and isFirst:
             #If not ArrayType, doing nothing because this is the first time visit
-            if not isinstance(id.mtype, ArrayType):
-                return self.printCode("", ctxt, id.mtype)
+            if not isinstance(id_.mtype, ArrayType) and not isinstance(id_.mtype, ArrayPointerType):
+                return self.printCode("", ctxt, id_.mtype)
             else:
                 #If local, emit READVAR. If global, emit GETSTATIC
-                if id.value is not None:
-                    return self.printCode(self.emit.emitREADVAR(id.name, id.mtype, id.value, frame), ctxt, id.mtype)
+                if id_.value is not None:
+                    return self.printCode(self.emit.emitREADVAR(id_.name, id_.mtype, id_.value, frame), ctxt, id_.mtype)
                 else:
-                    return self.printCode(self.emit.emitGETSTATIC(self.className + "." + id.name, id.mtype, frame), ctxt, id.mtype)
+                    return self.printCode(self.emit.emitGETSTATIC(self.className + "." + id_.name, id_.mtype, frame), ctxt, id_.mtype)
 
         #RHS
         if not isLeft and not isFirst:
-            if id.value is not None:
-                return self.printCode(self.emit.emitREADVAR(id.name, id.mtype, id.value, frame), ctxt, id.mtype)
+            if id_.value is not None:
+                return self.printCode(self.emit.emitREADVAR(id_.name, id_.mtype, id_.value, frame), ctxt, id_.mtype)
             else:
-                return self.printCode(self.emit.emitGETSTATIC(self.className + "." + id.name, id.mtype, frame), ctxt, id.mtype)
+                return self.printCode(self.emit.emitGETSTATIC(self.className + "." + id_.name, id_.mtype, frame), ctxt, id_.mtype)
         
         #LHS visit the second time
         if isLeft and not isFirst:
-            if not isinstance(id.mtype, ArrayType):
-                if id.value is None:
-                    return self.printCode(self.emit.emitPUTSTATIC(self.className + "." + id.name, id.mtype, frame), ctxt, id.mtype)
+            if not isinstance(id_.mtype, ArrayType) and not isinstance(id_.mtype, ArrayPointerType):
+                if id_.value is None:
+                    return self.printCode(self.emit.emitPUTSTATIC(self.className + "." + id_.name, id_.mtype, frame), ctxt, id_.mtype)
                 else:
-                    return self.printCode(self.emit.emitWRITEVAR(id.name, id.mtype, id.value, frame), ctxt, id.mtype)
+                    return self.printCode(self.emit.emitWRITEVAR(id_.name, id_.mtype, id_.value, frame), ctxt, id_.mtype)
             else:
-                return self.printCode(self.emit.emitASTORE(id.mtype.eleType, frame), ctxt, id.mtype.eleType)
+                return self.printCode(self.emit.emitASTORE(id_.mtype.eleType, frame), ctxt, id_.mtype.eleType)
 
 
     def visitArrayCell(self, ast, o):
@@ -600,19 +605,25 @@ class CodeGenVisitor(BaseVisitor, Utils):
         frame.enterLoop()
         continueLabel = frame.getContinueLabel()
         breakLabel = frame.getBreakLabel()
+        label = frame.getNewLabel()
 
+        #Skip the update
+        self.emit.printout(self.emit.emitGOTO(label, frame))   
+        
         self.emit.printout(self.emit.emitLABEL(continueLabel, frame))
 
+        #Step
+        stepString, stepType = self.visit(step, Access(frame, nenv, False, False))
+        self.emit.printout(stepString)
+
         #Check condition
+        self.emit.printout(self.emit.emitLABEL(label, frame))
         conditionString, conditionType = self.visit(condition, Access(frame, nenv, False, False))
         self.emit.printout(conditionString)
         self.emit.printout(self.emit.emitIFFALSE(breakLabel, frame))
         e = SubBody(frame, nenv)
         self.visit(stmt, e)
 
-        #Step
-        stepString, stepType = self.visit(step, Access(frame, nenv, False, False))
-        self.emit.printout(stepString)
 
         self.emit.printout(self.emit.emitGOTO(continueLabel, frame))        
         self.emit.printout(self.emit.emitLABEL(breakLabel, frame))
@@ -656,7 +667,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
         nenv = ctxt.sym
 
         continueLabel = frame.getContinueLabel()
-        self.emit.printout(self.emit/emitGOTO(continueLabel, frame))
+        self.emit.printout(self.emit.emitGOTO(continueLabel, frame))
 
 
     def visitBreak(self, ast, o):
@@ -666,7 +677,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
         nenv = ctxt.sym
 
         breakLabel = frame.getBreakLabel()
-        self.emit.printout(self.emit/emitGOTO(breakLabel, frame))
+        self.emit.printout(self.emit.emitGOTO(breakLabel, frame))
 
 
     def visitReturn(self, ast, o):
@@ -678,10 +689,12 @@ class CodeGenVisitor(BaseVisitor, Utils):
         if ast.expr is not None:
             exprString, exprType = self.visit(ast.expr, Access(frame, nenv, False, False))
             self.emit.printout(exprString)
+            
 
             if isinstance(exprType, IntType) and isinstance(frame.returnType, FloatType):
                 self.emit.printout(self.emit.emitI2F(frame))
-        self.emit.printout(self.emit.emitGOTO(frame.getEndLabel(), frame))
+        
+        self.emit.printout(self.emit.emitGOTO(frame.endLabel[0], frame))
         return True
 
 
@@ -702,7 +715,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
     def visitBooleanLiteral(self,ast,o):
         ctxt = o
         frame = ctxt.frame
-        return self.printCode(self.emit.emitPUSHICONST(str(ast.value), frame), ctxt, BoolType())
+        return self.printCode(self.emit.emitPUSHICONST(str(ast.value).lower(), frame), ctxt, BoolType())
 
 
     def visitStringLiteral(self, ast, o):

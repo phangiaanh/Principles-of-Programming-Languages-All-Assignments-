@@ -1,0 +1,9 @@
+
+		void main()
+		{
+			b=!(true&&true||false||false);
+			putBool(b);
+		}
+
+		boolean b;
+		

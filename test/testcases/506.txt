@@ -1,0 +1,14 @@
+
+
+		void enter(int n)
+		{
+			int i;
+			for(i=1;i<=n;i=i+1) putIntLn(i);
+		}
+
+		void main()
+		{
+			enter(10);
+			putFloatLn(2.39+2.3);
+		}
+		

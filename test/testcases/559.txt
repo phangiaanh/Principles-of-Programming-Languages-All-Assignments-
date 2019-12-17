@@ -1,0 +1,22 @@
+
+		void main()
+		{
+			int i,j,number;
+			i=1;
+			j=3;
+			putStringLn("Enter a number: ");    
+			number=10;
+			do
+			{    
+				putString("number * i = ");
+				putIntLn(number*i);    
+				i=i+1;
+			}
+			{
+				putString("number * j = ");
+				putIntLn(number*j);    
+				j=j+1;
+			}
+			while(i<=5);    
+		}
+		

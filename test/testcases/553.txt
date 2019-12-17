@@ -1,0 +1,21 @@
+
+		int a;
+
+		void testFor()
+		{
+			int i;
+			for(i=0;i<=10;i=i+1) a=a*2;
+			putIntLn(a);
+			int a;
+			for(a=9;true;a=a+1)
+			{
+				putIntLn(a);
+				if (a==20) break;
+			}
+		}
+
+		void main()
+		{
+			testFor();
+		}
+		

@@ -1,0 +1,20 @@
+
+
+		int a0,a1[1],a2,a3[3],a4,a5[5];
+
+		float f0[1],f1,f2[1],f3,f4[3];
+		boolean b0,b1[1],b2,b3[3],b4;
+
+
+		void declareVar()
+		{
+			int a0,a2,a4;
+			int a1[1],a3[3],a5[5];
+			putBool(b0);
+		}
+
+		void main()
+		{
+			declareVar();
+		}
+		

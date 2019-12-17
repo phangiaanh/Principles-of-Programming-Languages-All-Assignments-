@@ -1,0 +1,22 @@
+
+		void main()
+		{
+			int i,j;
+			i=1;
+			j=1;   
+			for(i=1;i<=3;i=i+1)
+			{      
+				for(j=1;j<=3;j=j+1)
+				{    
+					putInt(i);
+					putString(" ");
+					putInt(j);
+					putLn();    
+					if(i==2 && j==2)
+					{    
+						break;   
+					}		    
+				}
+			}
+		}
+		

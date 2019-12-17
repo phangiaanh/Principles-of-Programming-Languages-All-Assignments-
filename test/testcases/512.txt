@@ -1,0 +1,15 @@
+
+
+		string a;
+
+		void main()
+		{
+			a=getHelloString();
+			putStringLn(a);
+		}
+
+		string getHelloString()
+		{
+			return "hello";
+		}
+		

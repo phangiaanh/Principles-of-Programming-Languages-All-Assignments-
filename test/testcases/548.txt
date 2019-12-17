@@ -1,0 +1,11 @@
+
+		void main()
+		{	
+			int a;
+			a=5;
+			if (a==1) putBool(true);
+			else 
+				if (a==2) putBool(false);
+			else putBool(true);
+		}
+		

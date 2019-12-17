@@ -1,0 +1,23 @@
+
+		void main() {
+			int i,j;
+			i = 0;
+			do
+				i = i + 1;
+				if (i == 5)
+					break;
+			while (i < 10);
+			putInt(i);
+
+			j = 0;
+			i = 0;
+			do
+				i = i + 1;
+				if (i == 5)
+					continue;
+				j = j + 1;
+			while (i < 10);
+			putInt(i);
+			putInt(j);
+		}
+		

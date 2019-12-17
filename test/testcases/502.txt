@@ -1,0 +1,12 @@
+
+
+		float get()
+		{
+			return 1.0;
+		}
+
+		void main()
+		{
+			putFloat(get());
+		}
+		

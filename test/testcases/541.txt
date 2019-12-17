@@ -1,0 +1,51 @@
+
+		void main() {
+            boolean a;
+            a=false;
+
+
+            {
+            	boolean a;
+            	a = 5 > 3 + 1;
+            }
+            putBool(a);
+
+
+            {
+            	boolean a;
+            	a = 5+1-------1 <= 5;
+            }
+            putBool(a);
+
+            {
+            	boolean a;
+            	a = 5*9 >= 9*5;
+            }
+            putBool(a);
+
+
+            {
+            	boolean a;
+            	a = 5*30 == 3*7;
+            }
+            putBool(a);
+			
+			{
+				boolean a;
+            	a = 5 != 3+2;
+            }
+            putBool(a);
+			
+			{
+				boolean a;
+            	a = 5 - 2.5 < 3 * 7.1 -15;
+            }
+            putBool(a);
+
+            {
+            	boolean a;
+            	a = 5*3 == 3*5;
+            }
+            putBool(a);
+        }
+		

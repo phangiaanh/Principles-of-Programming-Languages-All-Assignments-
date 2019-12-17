@@ -1,0 +1,9 @@
+
+		void main()
+		{
+			putIntLn(2);
+			putFloatLn(2.3+2.3);
+			putBoolLn(true||false&&true&&false);
+			putStringLn("2.3");
+		}
+		

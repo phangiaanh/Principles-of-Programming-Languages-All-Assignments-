@@ -1,0 +1,25 @@
+
+		void main()
+		{
+			float f;
+			f=1;
+			
+			setInt(1);
+
+			if (f==i)
+			{
+				putString("Float is equal to int");
+			}
+			else
+			{
+				putString("Float is not equal to int");
+			}
+		}
+
+		int i;
+
+		void setInt(int k)
+		{
+			i=k;
+		}
+		

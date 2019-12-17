@@ -1,0 +1,12 @@
+
+
+		boolean check()
+		{
+			return true;
+		}
+
+		void main()
+		{
+			putBool(check());
+		}
+		

@@ -1,0 +1,14 @@
+
+
+		int enter(int a[]){
+            return a[0];
+        }
+        int i;
+
+        void main() {
+            int a[9];
+            a[0] = 1;
+            putFloat(enter(a));
+			
+        }
+		

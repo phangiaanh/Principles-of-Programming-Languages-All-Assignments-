@@ -1,0 +1,13 @@
+
+		void main()
+		{
+			int i;
+			i=0;
+		   	do
+		   	{
+				putStringLn("while vs do-while");
+		  	}
+		  	while(i==1);
+		   	putString("Out of loop");
+		}
+		

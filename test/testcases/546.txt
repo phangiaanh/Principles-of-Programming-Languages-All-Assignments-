@@ -1,0 +1,42 @@
+
+		void main() {
+            int a;
+            a = 6;
+            if (a > 5 && a < 10)
+                putInt(a);
+			
+            if (a > 5)
+                if (a < 10)
+                    putInt(a);
+			
+            if (a > 5 && a < 10){
+                int a;
+                a = 11;
+                putInt(a);
+                putInt(a+1);
+                putInt(a+2);
+            }
+            putInt(a);
+
+            if (a > 55 && a < 10){
+                putInt(a);
+            }
+            else{
+                putInt(a+1);
+            }
+
+            if(true)
+                if(true)
+                    if(false)
+                        if(true)
+                            putInt(a);
+                        else
+                            putInt(a+1);
+                    else
+                        putInt(a+2);
+                else
+                    putInt(a+3);
+            else
+                putInt(a+4);
+        }
+		

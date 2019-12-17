@@ -1,0 +1,14 @@
+
+		 void main() {
+                int a[10];
+                int i,j,k;
+                for (i = 0; i < 10; i = i + 1)
+                    a[i] = i;
+
+                for (j = 0; j < 10; j = j + 1)
+                    putInt(a[j]);
+
+                for (k = 9; k >= 0; k = k - 1)
+                    putInt(a[k]);
+            }
+		

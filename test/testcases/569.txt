@@ -1,0 +1,15 @@
+
+		void main()
+		{
+			for (num=0; num<=6; num=num+2) {
+    
+			    if (num==3) {
+			        continue;
+			    }
+			    putInt(num);
+			    putString(" ");
+   			}
+		}
+
+		int num;
+		

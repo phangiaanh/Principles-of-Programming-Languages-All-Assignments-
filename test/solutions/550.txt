@@ -1,0 +1,2 @@
+Enter a positive integer: 
+13 is a prime number.

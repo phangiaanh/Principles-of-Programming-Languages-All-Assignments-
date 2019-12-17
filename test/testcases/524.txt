@@ -1,0 +1,12 @@
+
+		
+		int tmp,i;
+
+		void main()
+		{
+			tmp=1;
+			for(i=0;i<2019;i=i+1) tmp=(tmp*5)%13;
+
+			putIntLn(tmp);
+		}
+		

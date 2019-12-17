@@ -1,0 +1,23 @@
+
+		void main()
+		{
+			int i, number;
+
+			putString("\nPlease Enter any integer\n");
+			number=5;
+
+			for(i=1;i<= number; i=i+1)
+			{
+			   	if(i%2 != 0)
+			   	{
+			     	putString("\nOdd Numbers = ");
+			     	putInt(i);
+			     	putStringLn(" (Skipped By Continue)");
+			     	continue;
+			   	}
+
+			   	putString("\nEven numbers = ");
+			   	putIntLn(i);
+			}
+		}
+		

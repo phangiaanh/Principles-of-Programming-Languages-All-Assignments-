@@ -1,0 +1,15 @@
+
+		int a[30];
+		void main()
+		{
+			{
+				int a;
+			}
+			int b;
+			float c;
+			boolean d;
+			string e;
+
+			for(b=0;b<30;b=b+1) putIntLn(b);
+		}
+		

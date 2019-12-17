@@ -1,0 +1,14 @@
+
+		void main()
+		{
+			putFloatLn(getFloatLiteral());
+		}
+
+		float getFloatLiteral()
+		{
+			float m;
+			m=1;
+			m=1-2;
+			return m;
+		}
+		

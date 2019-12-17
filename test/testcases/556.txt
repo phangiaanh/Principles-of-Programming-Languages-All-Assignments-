@@ -1,0 +1,30 @@
+
+		void main() {
+            int a;
+            a = 0;
+            do{
+                int a;
+                a = 7;
+                a = a + 1;
+            }
+            a = a + 1;
+            while(a < 10);
+            putInt(a);
+
+            int i, j, result;
+            i = 0;
+            j = 0;
+            result = 0;
+
+            j = 0;
+            result = 0;
+            do
+                if (j == 5)
+                    result = result + 2;
+                else
+                    result = result + 1;
+                j = j + 1;
+            while (j < 10);
+            putInt(result);
+        }
+		

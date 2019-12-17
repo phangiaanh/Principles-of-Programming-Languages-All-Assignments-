@@ -1,0 +1,30 @@
+
+		void main()
+		{
+			int n, i, flag;
+			flag=0;
+		    putStringLn("Enter a positive integer: ");
+		    n=13;
+		    for (i = 2; i <= n / 2; i=i+1) {
+		        if (n%  i== 0) {
+		            flag = 1;
+		            break;
+		        }
+		    }
+		    if (n == 1) {
+		        putStringLn("1 is neither prime nor composite.");
+		    }
+		    else {
+		        if (flag == 0)
+		        {
+		        	putInt(n);
+		            putStringLn(" is a prime number.");
+		        }
+		        else
+		        {
+		        	putInt(n);
+		            putStringLn(" is not a prime number.");
+		        }
+		    }		
+		}
+		
