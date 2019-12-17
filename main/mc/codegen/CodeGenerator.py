@@ -533,6 +533,26 @@ class CodeGenVisitor(BaseVisitor, Utils):
         
 
 
+    def visitContinue(self, ast, o):
+        #For an easier understanding
+        ctxt = o
+        frame = ctxt.frame
+        nenv = ctxt.sym
+
+        continueLabel = frame.getContinueLabel()
+        self.emit.printout(self.emit/emitGOTO(continueLabel, frame))
+
+
+    def visitBreak(self, ast, o):
+        #For an easier understanding
+        ctxt = o
+        frame = ctxt.frame
+        nenv = ctxt.sym
+
+        breakLabel = frame.getBreakLabel()
+        self.emit.printout(self.emit/emitGOTO(breakLabel, frame))
+
+
     def visitReturn(self, ast, o):
         #For an easier understanding
         ctxt = o
@@ -547,7 +567,6 @@ class CodeGenVisitor(BaseVisitor, Utils):
                 self.emit.printout(self.emit.emitI2F(frame))
 
         self.emit.printout(self.emit.emitGOTO(frame.getEndLabel(), frame))
-
 
 
     def visitIntLiteral(self, ast, o):
