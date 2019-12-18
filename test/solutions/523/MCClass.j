@@ -109,7 +109,7 @@ Label17:
 	invokestatic io/putBoolLn(Z)V
 Label9:
 	return
-.limit stack 12
+.limit stack 8
 .limit locals 1
 .end method
 

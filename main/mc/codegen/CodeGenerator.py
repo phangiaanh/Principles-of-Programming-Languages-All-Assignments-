@@ -108,9 +108,15 @@ class CodeGenVisitor(BaseVisitor, Utils):
         self.emit = Emitter(self.path + "/" + self.className + ".j")
 
     #====================METHOD GENERATOR====================
-    def printCode(self, code, o, typ):
+    def printCode(self, ast, code, o, typ):
         if isinstance(o, SubBody):
-            return self.emit.printout(code)
+            self.emit.printout(code)
+            if isinstance(ast, BinaryOp):
+                if ast.op != "=":
+                    self.emit.emitPOP(o.frame)
+            if isinstance(ast, (UnaryOp, IntLiteral, FloatLiteral, BooleanLiteral, StringLiteral, Id)):
+                self.emit.emitPOP(o.frame)
+            return None
         elif isinstance(o, Access):
             return code, typ
 
@@ -357,24 +363,24 @@ class CodeGenVisitor(BaseVisitor, Utils):
             #Boolean Operators
             if isinstance(leftType, BoolType) or isinstance(rightType, BoolType):
                 if ast.op == "&&":
-                    return self.printCode(leftString + rightString + self.emit.emitANDOP(frame), ctxt, BoolType())
+                    return self.printCode(ast, leftString + rightString + self.emit.emitANDOP(frame), ctxt, BoolType())
                 elif ast.op == "||":
-                    return self.printCode(leftString + rightString + self.emit.emitOROP(frame), ctxt, BoolType())
+                    return self.printCode(ast, leftString + rightString + self.emit.emitOROP(frame), ctxt, BoolType())
                 elif ast.op in ["==", "!="]:
-                    return self.printCode(leftString + rightString + self.emit.emitREOP(ast.op, BoolType(), frame), ctxt, BoolType())
+                    return self.printCode(ast, leftString + rightString + self.emit.emitREOP(ast.op, BoolType(), frame), ctxt, BoolType())
             
             #Integer Operators
             if isinstance(leftType, IntType) and isinstance(rightType, IntType):
                 if ast.op in ["+", "-"]:
-                    return self.printCode(leftString + rightString + self.emit.emitADDOP(ast.op, IntType(), frame), ctxt, IntType())
+                    return self.printCode(ast, leftString + rightString + self.emit.emitADDOP(ast.op, IntType(), frame), ctxt, IntType())
                 elif ast.op == "*":
-                    return self.printCode(leftString + rightString + self.emit.emitMULOP(ast.op, IntType(), frame), ctxt, IntType())
+                    return self.printCode(ast, leftString + rightString + self.emit.emitMULOP(ast.op, IntType(), frame), ctxt, IntType())
                 elif ast.op == "/":
-                    return self.printCode(leftString + rightString + self.emit.emitDIV(frame), ctxt, IntType())
+                    return self.printCode(ast, leftString + rightString + self.emit.emitDIV(frame), ctxt, IntType())
                 elif ast.op == "%":
-                    return self.printCode(leftString + rightString + self.emit.emitMOD(frame), ctxt, IntType())
+                    return self.printCode(ast, leftString + rightString + self.emit.emitMOD(frame), ctxt, IntType())
                 elif ast.op in [">", ">=", "<", "<=", "==", "!="]:
-                    return self.printCode(leftString + rightString + self.emit.emitREOP(ast.op, IntType(), frame), ctxt, BoolType())
+                    return self.printCode(ast, leftString + rightString + self.emit.emitREOP(ast.op, IntType(), frame), ctxt, BoolType())
 
             #Convert to Floating 
             if isinstance(leftType, IntType):
@@ -384,11 +390,11 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
             #Floating Operators
             if ast.op in ["+", "-"]:
-                return self.printCode(leftString + rightString + self.emit.emitADDOP(ast.op, FloatType(), frame), ctxt, FloatType())
+                return self.printCode(ast, leftString + rightString + self.emit.emitADDOP(ast.op, FloatType(), frame), ctxt, FloatType())
             elif ast.op in ["*", "/"]:
-                return self.printCode(leftString + rightString + self.emit.emitMULOP(ast.op, FloatType(), frame), ctxt, FloatType())
+                return self.printCode(ast, leftString + rightString + self.emit.emitMULOP(ast.op, FloatType(), frame), ctxt, FloatType())
             elif ast.op in ["<", "<=", ">", ">="]:
-                return self.printCode(leftString + rightString + self.emit.emitFREOP(ast.op, FloatType(), frame), ctxt, FloatType())
+                return self.printCode(ast, leftString + rightString + self.emit.emitFREOP(ast.op, FloatType(), frame), ctxt, FloatType())
         
         else:
 
@@ -399,7 +405,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
             coercion = isinstance(rightType, IntType) and isinstance(leftType, FloatType)
 
             finalCode = leftString + rightString + (self.emit.emitI2F(frame) if coercion else "") + leftStringExtra
-            return self.printCode(finalCode, ctxt, leftType)
+            return self.printCode(ast, finalCode, ctxt, leftType)
 
 
     def visitUnaryOp(self, ast, o):
@@ -411,9 +417,9 @@ class CodeGenVisitor(BaseVisitor, Utils):
         unaString, unaType = self.visit(ast.body, Access(frame, nenv, False, False))
 
         if ast.op != "!":
-            return self.printCode(unaString + self.emit.emitNEGOP(unaType, frame), ctxt, unaType)
+            return self.printCode(ast, unaString + self.emit.emitNEGOP(unaType, frame), ctxt, unaType)
         else:
-            return self.printCode(unaString + self.emit.emitNOT(unaType, frame), ctxt, unaType)
+            return self.printCode(ast, unaString + self.emit.emitNOT(unaType, frame), ctxt, unaType)
 
 
     def visitCallExpr(self, ast, o):
@@ -444,7 +450,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
         #Concatenate two strings
         finalCode = in_ + self.emit.emitINVOKESTATIC(cname + "/" + sym.name, ctype, frame)
-        # return self.printCode(finalCode, ctxt, sym.mtype.rettype)
+        # return self.printCode(ast, finalCode, ctxt, sym.mtype.rettype)
         if type(ctxt) is Access: return finalCode, sym.mtype.rettype
         else:
             self.emit.printout(finalCode)
@@ -456,40 +462,48 @@ class CodeGenVisitor(BaseVisitor, Utils):
         ctxt = o
         frame = ctxt.frame
         nenv = ctxt.sym
+        
+        id_ = self.lookup(ast.name, nenv[::-1], lambda x: x.name)
+
+        #Incase ctxt is SubBody
+        if isinstance(ctxt, SubBody):
+            if id_.value is not None:
+                return self.printCode(ast, self.emit.emitREADVAR(id_.name, id_.mtype, id_.value, frame), ctxt, id_.mtype)
+            else:
+                return self.printCode(ast, self.emit.emitGETSTATIC(self.className + "." + id_.name, id_.mtype, frame), ctxt, id_.mtype)
 
         #ctxt must be Access
         isLeft = ctxt.isLeft
         isFirst = ctxt.isFirst
 
-        id_ = self.lookup(ast.name, nenv[::-1], lambda x: x.name)
         #LHS visit the first time
         if isLeft and isFirst:
             #If not ArrayType, doing nothing because this is the first time visit
             if not isinstance(id_.mtype, ArrayType) and not isinstance(id_.mtype, ArrayPointerType):
-                return self.printCode("", ctxt, id_.mtype)
+                return self.printCode(ast, "", ctxt, id_.mtype)
             else:
                 #If local, emit READVAR. If global, emit GETSTATIC
                 if id_.value is not None:
-                    return self.printCode(self.emit.emitREADVAR(id_.name, id_.mtype, id_.value, frame), ctxt, id_.mtype)
+                    return self.printCode(ast, self.emit.emitREADVAR(id_.name, id_.mtype, id_.value, frame), ctxt, id_.mtype)
                 else:
-                    return self.printCode(self.emit.emitGETSTATIC(self.className + "." + id_.name, id_.mtype, frame), ctxt, id_.mtype)
+                    return self.printCode(ast, self.emit.emitGETSTATIC(self.className + "." + id_.name, id_.mtype, frame), ctxt, id_.mtype)
 
         #RHS
         if not isLeft and not isFirst:
             if id_.value is not None:
-                return self.printCode(self.emit.emitREADVAR(id_.name, id_.mtype, id_.value, frame), ctxt, id_.mtype)
+                return self.printCode(ast, self.emit.emitREADVAR(id_.name, id_.mtype, id_.value, frame), ctxt, id_.mtype)
             else:
-                return self.printCode(self.emit.emitGETSTATIC(self.className + "." + id_.name, id_.mtype, frame), ctxt, id_.mtype)
+                return self.printCode(ast, self.emit.emitGETSTATIC(self.className + "." + id_.name, id_.mtype, frame), ctxt, id_.mtype)
         
         #LHS visit the second time
         if isLeft and not isFirst:
             if not isinstance(id_.mtype, ArrayType) and not isinstance(id_.mtype, ArrayPointerType):
                 if id_.value is None:
-                    return self.printCode(self.emit.emitPUTSTATIC(self.className + "." + id_.name, id_.mtype, frame), ctxt, id_.mtype)
+                    return self.printCode(ast, self.emit.emitPUTSTATIC(self.className + "." + id_.name, id_.mtype, frame), ctxt, id_.mtype)
                 else:
-                    return self.printCode(self.emit.emitWRITEVAR(id_.name, id_.mtype, id_.value, frame), ctxt, id_.mtype)
+                    return self.printCode(ast, self.emit.emitWRITEVAR(id_.name, id_.mtype, id_.value, frame), ctxt, id_.mtype)
             else:
-                return self.printCode(self.emit.emitASTORE(id_.mtype.eleType, frame), ctxt, id_.mtype.eleType)
+                return self.printCode(ast, self.emit.emitASTORE(id_.mtype.eleType, frame), ctxt, id_.mtype.eleType)
 
 
     def visitArrayCell(self, ast, o):
@@ -508,7 +522,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
             idxString, idxType = self.visit(ast.idx, Access(frame, nenv, False, False))
 
             arrString += idxString
-            return self.printCode(arrString, ctxt, arrType.eleType)
+            return self.printCode(ast, arrString, ctxt, arrType.eleType)
 
         if not isLeft and not isFirst:
             arrString, arrType = self.visit(ast.arr, Access(frame, nenv, False, False))
@@ -516,7 +530,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
             arrString += idxString
             arrString += self.emit.emitALOAD(arrType.eleType, frame)
-            return self.printCode(arrString, ctxt, arrType.eleType)
+            return self.printCode(ast, arrString, ctxt, arrType.eleType)
 
         if isLeft and not isFirst:
             return self.visit(ast.arr, Access(frame, nenv, True, False))
@@ -703,25 +717,25 @@ class CodeGenVisitor(BaseVisitor, Utils):
         #o: Any
         ctxt = o
         frame = ctxt.frame
-        return self.printCode(self.emit.emitPUSHICONST(ast.value, frame), ctxt, IntType())
+        return self.printCode(ast, self.emit.emitPUSHICONST(ast.value, frame), ctxt, IntType())
     
 
     def visitFloatLiteral(self,ast,o):
         ctxt = o
         frame = ctxt.frame
-        return self.printCode(self.emit.emitPUSHFCONST(ast.value, frame), ctxt, FloatType())
+        return self.printCode(ast, self.emit.emitPUSHFCONST(ast.value, frame), ctxt, FloatType())
 
 
     def visitBooleanLiteral(self,ast,o):
         ctxt = o
         frame = ctxt.frame
-        return self.printCode(self.emit.emitPUSHICONST(str(ast.value).lower(), frame), ctxt, BoolType())
+        return self.printCode(ast, self.emit.emitPUSHICONST(str(ast.value).lower(), frame), ctxt, BoolType())
 
 
     def visitStringLiteral(self, ast, o):
         ctxt = o
         frame = ctxt.frame
-        return self.printCode(self.emit.emitPUSHCONST('"' + ast.value + '"', StringType(), frame), ctxt, StringType())
+        return self.printCode(ast, self.emit.emitPUSHCONST('"' + ast.value + '"', StringType(), frame), ctxt, StringType())
     #===============================================
 
 #=========================================================================
