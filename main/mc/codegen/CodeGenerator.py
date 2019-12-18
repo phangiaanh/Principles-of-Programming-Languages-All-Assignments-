@@ -1,10 +1,5 @@
-'''
- *   @author Nguyen Hua Phung
- *   @version 1.0
- *   23/10/2015
- *   This file provides a simple version of code generator
- *
-'''
+#Id: 1710009
+#Name: Phan Gia Anh
 from Utils import *
 from StaticCheck import *
 from StaticError import *
@@ -114,9 +109,12 @@ class CodeGenVisitor(BaseVisitor, Utils):
             if isinstance(ast, BinaryOp):
                 if ast.op != "=":
                     self.emit.printout(self.emit.emitPOP(o.frame))
-            if isinstance(ast, (UnaryOp, IntLiteral, FloatLiteral, BooleanLiteral, StringLiteral, Id)):
+            if isinstance(ast, (UnaryOp, IntLiteral, FloatLiteral, BooleanLiteral, StringLiteral, Id, ArrayCell)):
                 self.emit.printout(self.emit.emitPOP(o.frame))
-            return None
+            if isinstance(ast, CallExpr):
+                if not isinstance(typ, VoidType):
+                    self.emit.printout(self.emit.emitPOP(o.frame))
+            return typ
         elif isinstance(o, Access):
             return code, typ
 
@@ -192,28 +190,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
 
         #Start of body: Create new label
         self.emit.printout(self.emit.emitLABEL(frame.getStartLabel(), frame))
-        # if isMain:
-        #     #Generate code for local variables only
-        #     for x in globalEnvi:
-        #         if isinstance(x.mtype, ArrayType) and x.value is not None:
-        #             if isinstance(x.mtype.eleType, StringType):
-        #                 VarDeclJasminArray = self.emit.emitANEWARRAY(x.name, x.mtype, x.value, frame)
-        #             else:
-        #                 VarDeclJasminArray = self.emit.emitNEWARRAY(x.name, x.mtype, x.value, frame)
-        #             self.emit.printout(VarDeclJasminArray)
-
-        #Normal function
-        # if not isMain and not isInit and not isClInit:
-        #     for x in body.member:
-        #         if isinstance(x, VarDecl):
-        #             varFound = self.lookup(x.variable, globalEnvi[::-1], lambda y: y.name)
-        #             if isinstance(varFound.mtype, ArrayType) and varFound.value is not None:
-        #                 if isinstance(varFound.mtype.eleType, StringType):
-        #                     VarDeclJasminArray = self.emit.emitANEWARRAY(varFound.name, varFound.mtype, varFound.value, frame)
-        #                 else:
-        #                     VarDeclJasminArray = self.emit.emitNEWARRAY(varFound.name, varFound.mtype, varFound.value, frame)
-        #                 self.emit.printout(VarDeclJasminArray)
-
+        
         if isInit:
             self.emit.printout(self.emit.emitREADVAR("this", ClassType(self.className), 0, frame))
             self.emit.printout(self.emit.emitINVOKESPECIAL(frame))
@@ -236,12 +213,7 @@ class CodeGenVisitor(BaseVisitor, Utils):
                 self.checkArray(x, e)
             else:
                 self.visit(x, e)
-            
-
-
-        # list(map(lambda x: self.visit(x, SubBody(frame, globalEnvi)), stmtList))
-        # list(map(lambda x: self.visit(x, SubBody(frame, globalEnvi)), body.member))
-
+           
         #6. Finish labels
         self.emit.printout(self.emit.emitLABEL(frame.getEndLabel(), frame))
         self.emit.printout(self.emit.emitRETURN(returnType, frame))
@@ -442,19 +414,13 @@ class CodeGenVisitor(BaseVisitor, Utils):
         for x in ast.param:
             str1,typ1 = self.visit(x, Access(frame, nenv, False, False))
             in_ += str1
-            if isinstance(typ1, ArrayType):
-                in_ += self.emit.emitCLONEARRAY(typ1,frame)
             if isinstance(sym.mtype.partype[i], FloatType) and isinstance(typ1, IntType):
                 in_ += self.emit.emitI2F(frame)
             i += 1   
 
         #Concatenate two strings
         finalCode = in_ + self.emit.emitINVOKESTATIC(cname + "/" + sym.name, ctype, frame)
-        # return self.printCode(ast, finalCode, ctxt, sym.mtype.rettype)
-        if type(ctxt) is Access: return finalCode, sym.mtype.rettype
-        else:
-            self.emit.printout(finalCode)
-            return sym.mtype.rettype
+        return self.printCode(ast, finalCode, ctxt, sym.mtype.rettype)
 
 
     def visitId(self, ast, o):
@@ -512,6 +478,13 @@ class CodeGenVisitor(BaseVisitor, Utils):
         frame = ctxt.frame
         nenv = ctxt.sym
 
+        if isinstance(o, SubBody):
+            arrString, arrType = self.visit(ast.arr, Access(frame, nenv, True, True))
+            idxString, idxType = self.visit(ast.idx, Access(frame, nenv, False, False))
+
+            arrString += idxString
+            return self.printCode(ast, arrString, ctxt, arrType.eleType)
+        
         #ctxt must be Access
         isLeft = ctxt.isLeft
         isFirst = ctxt.isFirst
