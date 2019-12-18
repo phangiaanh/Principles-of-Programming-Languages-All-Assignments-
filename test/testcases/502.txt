@@ -1,12 +1,13 @@
 
+				int getTwoInt(int a)
+				{
+					putInt(2 + 3 * 5 / 2 - 3);
+					putInt(2 * a + 3);
+					return a + 1;
+				}
 
-		float get()
-		{
-			return 1.0;
-		}
-
-		void main()
-		{
-			putFloat(get());
-		}
-		
+				void main()
+				{
+					putInt(getTwoInt(2));
+				}
+				

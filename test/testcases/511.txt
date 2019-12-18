@@ -1,9 +1,20 @@
 
-		void main()
-		{
-			b=!(true&&true||false||false);
-			putBool(b);
-		}
+				int test;
 
-		boolean b;
-		
+				void printMultipleInt()
+				{
+					test = test + (1 * 2 * 3 % 3 * 4 * 5) / 10000;
+					putFloatLn(test);
+				}
+
+				void main()
+				{
+					if(false){
+						test = 3 + 0;
+					}else{
+						test = 1;
+					}
+					putFloatLn(test);
+					printMultipleInt();
+				}
+				

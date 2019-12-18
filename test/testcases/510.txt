@@ -1,17 +1,20 @@
 
+				int test;
 
-		int a;
+				void printMultipleInt()
+				{
+					test = test + (1 * 2 * 3 % 3 * 4 * 5) / 10000;
+					putFloatLn(test);
+				}
 
-		void printMultipleInt()
-		{
-			a=1*2*3/3*4*5;
-			putFloatLn(a);
-		}
-
-		void main()
-		{
-			a=1+2+3+4+5+6+7+8+9+10;
-			putFloatLn(a);
-			printMultipleInt();
-		}
-		
+				void main()
+				{
+					if(false){
+						test = 3.0;
+					}else{
+						test = 1;
+					}
+					putFloatLn(test);
+					printMultipleInt();
+				}
+				

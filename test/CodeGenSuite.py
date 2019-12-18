@@ -4,344 +4,335 @@ from AST import *
 
 
 class CheckCodeGenSuite(unittest.TestCase):
-	# def test_func_decl_0(self):
+	# def test_CallExpr_1(self):
 
 	# 	input = """
+	# 			boolean compare(float a, int b)
+	# 			{
+	# 				if(a > b) return true;
+	# 				else return false;
+	# 			}
 
-	# 	void cmp()
-	# 	{
-	# 		float m;
-	# 		m=1.2;
+	# 			void main()
+	# 			{
+	# 				if (compare(5.2, 3)) putInt(2);
+	# 				else putFloat(3);
+	# 			}
 
-	# 		int x;
-	# 		x=2;
-
-	# 		if (m>5) x=2;
-	# 	}
-
-
-	# 	void main()
-	# 	{
-	# 		putInt(2);
-	# 	}
-
-	# 	"""
+	# 			"""
 	# 	expect = "2"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,500))
-
-	# def test_func_decl_1(self):
-
-	# 	input = """
-
-	# 	int get()
-	# 	{
-	# 		putInt(2+3);
-	# 		putInt(3+5);
-	# 		return 1;
-	# 	}
-
-	# 	void main()
-	# 	{
-	# 		get();
-	# 	}
-	# 	"""
-	# 	expect = "58"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,501))
 
-	# def test_func_decl_2(self):
-
+	# def test_CallExpr_2(self):
 	# 	input = """
+	# 			int getTwoInt(int a)
+	# 			{
+	# 				putInt(2 + 3 * 5 / 2 - 3);
+	# 				putInt(2 * a + 3);
+	# 				return a + 1;
+	# 			}
 
-	# 	float get()
-	# 	{
-	# 		return 1.0;
-	# 	}
-
-	# 	void main()
-	# 	{
-	# 		putFloat(get());
-	# 	}
-	# 	"""
-	# 	expect = "1.0"
+	# 			void main()
+	# 			{
+	# 				putInt(getTwoInt(2));
+	# 			}
+	# 			"""
+	# 	expect = "673"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,502))
 
-	# def test_func_decl_3(self):
-
+	# def test_CallExpr_3(self):
 	# 	input = """
+	# 			float getThreeFloat(int _)
+	# 			{
+	# 				if(_ <= 1){
+	# 					if(_ >= 0) putFloat(1.5);
+	# 					else putFloat(-1);
+	# 				}
+	# 				else{
+	# 					if(_ <= 10) putFloat(5.5);
+	# 					else putFloat(2.0/3);
+	# 				}
+	# 				return _;
+	# 			}
 
-	# 	string enter()
-	# 	{
-	# 		return "hello";
-	# 	}
-
-	# 	void main()
-	# 	{
-	# 		putString(enter());
-	# 	}
-	# 	"""
-	# 	expect = "hello"
+	# 			void main()
+	# 			{
+	# 				putFloat(getThreeFloat(6));
+	# 			}
+	# 			"""
+	# 	expect = "5.56.0"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,503))
 
-	# def test_func_decl_4(self):
-
+	# def test_CallExpr_4(self):
 	# 	input = """
+	# 			string helloWorld(string str)
+	# 			{
+	# 				return "Hello World \\n";
+	# 			}
 
-	# 	boolean check()
-	# 	{
-	# 		return true;
-	# 	}
-
-	# 	void main()
-	# 	{
-	# 		putBool(check());
-	# 	}
-	# 	"""
-	# 	expect = "true"
+	# 			void main()
+	# 			{
+	# 				putStringLn(helloWorld("AAAAAAAAAAA"));
+	# 			}
+	# 			"""
+	# 	expect = "Hello World \n\n"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,504))
 
-	# def test_call_expr_5(self):
+	# def test_CallExpr_5(self):
 
-	# 	input = """	
+	# 	input = """
+	# 			boolean checkBool(boolean bool)
+	# 			{
+	# 				int i;
+	# 				for(i = 0; i < 10; i = i + 1){
+	# 					putBoolLn(bool);
+	# 					bool = !bool;
+	# 				}
+	# 				return bool;
+	# 			}
 
-	# 	float f;
-
-	# 	void main()
-	# 	{
-	# 		f=3;
-
-	# 		putIntLn(2);
-	# 		testFloat(f);
-	# 	}
-		
-	# 	void testFloat(float f)
-	# 	{
-	# 		putFloatLn(f);
-	# 	}
-
-
-	# 	"""
-	# 	expect = "2\n3.0\n"
+	# 			void main()
+	# 			{
+	# 				putBool(checkBool(true));
+	# 			}
+	# 			"""
+	# 	expect = "true\nfalse\ntrue\nfalse\ntrue\nfalse\ntrue\nfalse\ntrue\nfalse\ntrue"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,505))
 
-	# def test_call_expr_6(self):
+	# def test_CallExpr_6(self):
+	# 	input = """	
+	# 			float globalFloat;
 
-	# 	input = """
+	# 			void main()
+	# 			{
+	# 				putIntLn(2);
+	# 				testFloat();
+	# 				globalFloat = globalFloat + 2;
+	# 				testFloat();
+	# 			}
 
-	# 	void enter(int n)
-	# 	{
-	# 		int i;
-	# 		for(i=1;i<=n;i=i+1) putIntLn(i);
-	# 	}
-
-	# 	void main()
-	# 	{
-	# 		enter(10);
-	# 		putFloatLn(2.39+2.3);
-	# 	}
-	# 	"""
-	# 	expect = "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n4.69\n"
+	# 			void testFloat()
+	# 			{
+	# 				putFloatLn(globalFloat);
+	# 			}
+	# 			"""
+	# 	expect = "2\n0.0\n2.0\n"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,506))
 
-	# def test_call_expr_7(self):
-
+	# def test_CallExpr_7(self):
 	# 	input = """
+	# 			void putLoop(int n)
+	# 			{
+	# 				int i;
+	# 				for(i = 0; i <= n; i = i + 1) putIntLn(i);
+	# 			}
 
-	# 	boolean checkPrime(int n)
-	# 	{
-	# 		int i;
-	# 		if (n==1) return false;
-	# 		for(i=2;i<=n-1;i=i+1)
-	# 			if (n%i==0) return false;
-	# 		return true;
-	# 	}
-
-	# 	void main()
-	# 	{
-	# 		putBoolLn(true||false&&true&&false);
-
-	# 		putBool(checkPrime(1));
-	# 		putBool(checkPrime(2));
-	# 		putBool(checkPrime(3));
-	# 		putBool(checkPrime(4));
-	# 		putBool(checkPrime(5));
-	# 	}
-	# 	"""
-	# 	expect = "true\nfalsetruetruefalsetrue"
+	# 			void main()
+	# 			{
+	# 				putLoop(10);
+	# 				putString("Your PPL score will be: ");
+	# 				putFloatLn(4.74);
+	# 			}
+	# 			"""
+	# 	expect = "0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\nYour PPL score will be: 4.74\n"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,507))
 
-	# def test_call_expr_8(self):
-
+	# def test_CallExpr_8(self):
 	# 	input = """
+	# 			int sqrt(int n){
+	# 				int i;
+	# 				for(i = 1; i < n; i = i + 1){
+	# 					if(i * i > n) return i;
+	# 				}
+	# 				return i;
+	# 			}
 
-	# 	int sum(int a[],int l)
-	# 	{
-	# 		int tmp,i;
-	# 		tmp=0;
-	# 		for(i=0;i<l;i=i+1) tmp=tmp+a[i];
-	# 		return tmp;
-	# 	}
+	# 			boolean checkPrime(int n)
+	# 			{
+	# 				int i;
+	# 				if (n == 1) return false;
+	# 				for(i = 2; i <= sqrt(n); i = i + 1)
+	# 					if (n % i == 0) return false;
+	# 				return true;
+	# 			}
 
-	# 	int ia[10];
-
-
-	# 	void main()
-	# 	{
-	# 		putStringLn("2.3");
-
-	# 		int i;
-			
-	# 		for(i=0;i<10;i=i+1) ia[i]=i;
-	# 		for(i=0;i<10;i=i+1) fa[i]=i+1;
-			
-	# 		putIntLn(sum(ia,10));
-	# 		putFloatLn(multiply(fa,10));
-	# 	}
-		
-		
-	# 	float fa[10];
-
-	# 	float multiply(float a[],int l)
-	# 	{
-	# 		float tmp;
-	# 		int i;
-	# 		tmp=1;
-	# 		for(i=0;i<l;i=i+1) tmp=tmp*a[i];
-	# 		return tmp;
-	# 	}
-		
-	# 	"""
-	# 	expect = "2.3\n45\n3628800.0\n"
+	# 			void main()
+	# 			{
+	# 				putBoolLn(checkPrime(1));
+	# 				putBoolLn(checkPrime(21));
+	# 				putBoolLn(checkPrime(37));
+	# 				putBoolLn(checkPrime(47));
+	# 				putBoolLn(checkPrime(152));
+	# 			}
+	# 			"""
+	# 	expect = "false\nfalse\ntrue\ntrue\nfalse\n"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,508))
 
-	# def test_call_expr_9(self):
-
+	# def test_CallExpr_9(self):
 	# 	input = """
-	# 	void main()
-	# 	{
-	# 		putIntLn(2);
-	# 		putFloatLn(2.3+2.3);
-	# 		putBoolLn(true||false&&true&&false);
-	# 		putStringLn("2.3");
-	# 	}
-	# 	"""
-	# 	expect = "2\n4.6\ntrue\n2.3\n"
+	# 			int sum(int a[], int l)
+	# 			{
+	# 				int temp,i;
+	# 				temp = 0;
+	# 				for(i = 0; i < l; i = i + 1) temp = temp + a[i];
+	# 				return temp;
+	# 			}
+
+	# 			int a[10];
+
+	# 			void main()
+	# 			{
+	# 				putStringLn("Test sum and mul:");
+
+	# 				int i;
+
+	# 				for(i = 0; i < 10; i = i + 1) a[i]=i;
+	# 				for(i = 0; i < 10; i = i + 1) f[i]=i+1;
+
+	# 				putIntLn(sum(a,10));
+	# 				putFloatLn(multiply(f,10));
+	# 			}
+
+	# 			float f[10];
+
+	# 			float multiply(float a[],int l)
+	# 			{
+	# 				float temp;
+	# 				int i;
+	# 				temp = 1;
+	# 				for(i = 0; i < l; i = i + 1) temp = temp * a[i];
+	# 				return temp;
+	# 			}
+	# 			"""
+	# 	expect = "Test sum and mul:\n45\n3628800.0\n"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,509))
 
-	# def test_int_literal_10(self):
-
+	# def test_CallExpr_10(self):
 	# 	input = """
-
-	# 	int a;
-
-	# 	void printMultipleInt()
-	# 	{
-	# 		a=1*2*3/3*4*5;
-	# 		putFloatLn(a);
-	# 	}
-
-	# 	void main()
-	# 	{
-	# 		a=1+2+3+4+5+6+7+8+9+10;
-	# 		putFloatLn(a);
-	# 		printMultipleInt();
-	# 	}
-	# 	"""
-	# 	expect = "55.0\n40.0\n"
+	# 			void main()
+	# 			{
+	# 				putIntLn(1);
+	# 				putFloatLn(1 + 1.1 + 1.11 + 1.111);
+	# 				putBoolLn(true || false && true && false);
+	# 				putStringLn("Your results are OK");
+	# 			}
+	# 			"""
+	# 	expect = "1\n4.321\ntrue\nYour results are OK\n"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,510))
 
-	# def test_bool_literal_11(self):
-
+	# def test_Literal_1(self):
 	# 	input = """
-	# 	void main()
-	# 	{
-	# 		b=!(true&&true||false||false);
-	# 		putBool(b);
-	# 	}
+	# 			int test;
 
-	# 	boolean b;
-	# 	"""
-	# 	expect = "false"
+	# 			void printMultipleInt()
+	# 			{
+	# 				test = test + (1 * 2 * 3 % 3 * 4 * 5) / 10000;
+	# 				putFloatLn(test);
+	# 			}
+
+	# 			void main()
+	# 			{
+	# 				if(false){
+	# 					test = 3 + 0;
+	# 				}else{
+	# 					test = 1;
+	# 				}
+	# 				putFloatLn(test);
+	# 				printMultipleInt();
+	# 			}
+	# 			"""
+	# 	expect = "1.0\n1.0\n"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,511))
 
-	# def test_string_literal_12(self):
-
+	# def test_Literal_2(self):
 	# 	input = """
+	# 			void main()
+	# 			{
+	# 				b = !(true && true || false || false);
+	# 				putBool(b);
+	# 			}
 
-	# 	string a;
-
-	# 	void main()
-	# 	{
-	# 		a=getHelloString();
-	# 		putStringLn(a);
-	# 	}
-
-	# 	string getHelloString()
-	# 	{
-	# 		return "hello";
-	# 	}
-	# 	"""
-	# 	expect = "hello\n"
+	# 			boolean b;
+	# 			"""
+	# 	expect = "false"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,512))
 
-	# def test_float_literal_13(self):
-
+	# def test_Literal_3(self):
 	# 	input = """
-	# 	void main()
-	# 	{
-	# 		putFloatLn(getFloatLiteral());
-	# 	}
+	# 			string str;
 
-	# 	float getFloatLiteral()
-	# 	{
-	# 		float m;
-	# 		m=1;
-	# 		m=1-2;
-	# 		return m;
-	# 	}
-	# 	"""
-	# 	expect = "-1.0\n"
+	# 			void main()
+	# 			{
+	# 				str = getHelloString();
+	# 				putStringLn(str);
+	# 			}
+
+	# 			string getHelloString()
+	# 			{
+	# 				string helloS[10];
+	# 				helloS[0] = "The real Hello";
+	# 				return helloS[0];
+	# 			}
+	# 			"""
+	# 	expect = "The real Hello\n"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,513))
 
-	# def test_array_literal_14(self):
-
+	# def test_Literal_4(self):
 	# 	input = """
+	# 			void main()
+	# 			{
+	# 				putFloatLn(getFloatLiteral());
+	# 			}
 
-	# 	int a[100],i;
-
-	# 	void main()
-	# 	{
-	# 		for(i=1;i<10;i=i+2) a[i]=i%2;
-
-	# 		for(i=0;i<10;i=i+1) putIntLn(a[i]);
-	# 	}
-	# 	"""
-	# 	expect = "0\n1\n0\n1\n0\n1\n0\n1\n0\n1\n"
+	# 			float getFloatLiteral()
+	# 			{
+	# 				float f;
+	# 				f = 3.3;
+	# 				f = -f * 3 - 2;
+	# 				return f;
+	# 			}
+	# 			"""
+	# 	expect = "-11.9\n"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,514))
 
-	# def test_var_decl_15(self):
-
+	# def test_Literal_5(self):
 	# 	input = """
+	# 			int a[100], i;
 
-	# 	int a0,a1[1],a2,a3[3],a4,a5[5];
+	# 			void main()
+	# 			{
+	# 				for( i = 0; i < 10; i = i + 2) a[i] = (i * i) % 50 ;
 
-	# 	float f0[1],f1,f2[1],f3,f4[3];
-	# 	boolean b0,b1[1],b2,b3[3],b4;
-
-
-	# 	void declareVar()
-	# 	{
-	# 		int a0,a2,a4;
-	# 		int a1[1],a3[3],a5[5];
-	# 		putBool(b0);
-	# 	}
-
-	# 	void main()
-	# 	{
-	# 		declareVar();
-	# 	}
-	# 	"""
-	# 	expect = "false"
+	# 				for(i = 0; i < 10; i = i + 1) putIntLn(a[i]);
+	# 			}
+	# 			"""
+	# 	expect = "0\n0\n4\n0\n16\n0\n36\n0\n14\n0\n"
 	# 	self.assertTrue(TestCodeGen.test(input,expect,515))
+
+	def test_VarDecl_1(self):
+
+		input = """
+
+		int a0,a1[1],a2,a3[3],a4,a5[5];
+
+		float f0[1],f1,f2[1],f3,f4[3];
+		boolean b0,b1[1],b2,b3[3],b4;
+
+
+		void declareVar()
+		{
+			int a0,a2,a4;
+			int a1[1],a3[3],a5[5];
+			putBool(b0);
+		}
+
+		void main()
+		{
+			declareVar();
+		}
+		"""
+		expect = "false"
+		self.assertTrue(TestCodeGen.test(input,expect,515))
 
 	# def test_var_decl_16(self):
 
@@ -1817,18 +1808,22 @@ class CheckCodeGenSuite(unittest.TestCase):
 	# 	expect = ""
 	# 	self.assertTrue(TestCodeGen.test(input,expect,579))
 
-	def test_program_80(self):
+	# def test_program_80(self):
 
-		input = """
-		void main()
-		{
-			int a;
-			a = 0;
-			a;
-		}
-		"""
-		expect = ""
-		self.assertTrue(TestCodeGen.test(input,expect,580))
+	# 	input = """
+	# 	void main()
+	# 	{
+	# 		int a;
+	# 		a = 2;
+	# 		int b;
+	# 		b = a;
+	# 		a;
+	# 		1+1;
+	# 		putInt(b);
+	# 	}
+	# 	"""
+	# 	expect = "2"
+	# 	self.assertTrue(TestCodeGen.test(input,expect,580))
 
 	# def test_program_81(self):
 

@@ -1,19 +1,16 @@
-	
 
-		float f;
+				boolean checkBool(boolean bool)
+				{
+					int i;
+					for(i = 0; i < 10; i = i + 1){
+						putBoolLn(bool);
+						bool = !bool;
+					}
+					return bool;
+				}
 
-		void main()
-		{
-			f=3;
-
-			putIntLn(2);
-			testFloat(f);
-		}
-		
-		void testFloat(float f)
-		{
-			putFloatLn(f);
-		}
-
-
-		
+				void main()
+				{
+					putBool(checkBool(true));
+				}
+				

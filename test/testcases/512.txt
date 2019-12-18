@@ -1,15 +1,9 @@
 
+				void main()
+				{
+					b = !(true && true || false || false);
+					putBool(b);
+				}
 
-		string a;
-
-		void main()
-		{
-			a=getHelloString();
-			putStringLn(a);
-		}
-
-		string getHelloString()
-		{
-			return "hello";
-		}
-		
+				boolean b;
+				

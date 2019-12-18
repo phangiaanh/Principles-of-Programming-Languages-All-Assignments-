@@ -1,34 +1,38 @@
 .source MCClass.java
 .class public MCClass
 .super java.lang.Object
+.field static str Ljava/lang/String;
 
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
 Label0:
-	invokestatic MCClass/getFloatLiteral()F
-	invokestatic io/putFloatLn(F)V
+	invokestatic MCClass/getHelloString()Ljava/lang/String;
+	putstatic MCClass.str Ljava/lang/String;
+	getstatic MCClass.str Ljava/lang/String;
+	invokestatic io/putStringLn(Ljava/lang/String;)V
 Label1:
 	return
 .limit stack 1
 .limit locals 1
 .end method
 
-.method public static getFloatLiteral()F
+.method public static getHelloString()Ljava/lang/String;
 Label2:
-.var 0 is m F from Label2 to Label3
-	iconst_1
-	i2f
-	fstore_0
-	iconst_1
-	iconst_2
-	isub
-	i2f
-	fstore_0
-	fload_0
+.var 0 is helloS [Ljava/lang/String; from Label2 to Label3
+	bipush 10
+	anewarray java/lang/String
+	astore_0
+	aload_0
+	iconst_0
+	ldc "The real Hello"
+	aastore
+	aload_0
+	iconst_0
+	aaload
 	goto Label3
 Label3:
-	freturn
-.limit stack 2
+	areturn
+.limit stack 3
 .limit locals 1
 .end method
 

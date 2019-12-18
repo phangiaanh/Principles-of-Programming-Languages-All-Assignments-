@@ -1,9 +1,35 @@
 
-		void main()
-		{
-			putIntLn(2);
-			putFloatLn(2.3+2.3);
-			putBoolLn(true||false&&true&&false);
-			putStringLn("2.3");
-		}
-		
+				int sum(int a[], int l)
+				{
+					int temp,i;
+					temp = 0;
+					for(i = 0; i < l; i = i + 1) temp = temp + a[i];
+					return temp;
+				}
+
+				int a[10];
+
+				void main()
+				{
+					putStringLn("Test sum and mul:");
+
+					int i;
+
+					for(i = 0; i < 10; i = i + 1) a[i]=i;
+					for(i = 0; i < 10; i = i + 1) f[i]=i+1;
+
+					putIntLn(sum(a,10));
+					putFloatLn(multiply(f,10));
+				}
+
+				float f[10];
+
+				float multiply(float a[],int l)
+				{
+					float temp;
+					int i;
+					temp = 1;
+					for(i = 0; i < l; i = i + 1) temp = temp * a[i];
+					return temp;
+				}
+				

@@ -113,9 +113,9 @@ class CodeGenVisitor(BaseVisitor, Utils):
             self.emit.printout(code)
             if isinstance(ast, BinaryOp):
                 if ast.op != "=":
-                    self.emit.emitPOP(o.frame)
+                    self.emit.printout(self.emit.emitPOP(o.frame))
             if isinstance(ast, (UnaryOp, IntLiteral, FloatLiteral, BooleanLiteral, StringLiteral, Id)):
-                self.emit.emitPOP(o.frame)
+                self.emit.printout(self.emit.emitPOP(o.frame))
             return None
         elif isinstance(o, Access):
             return code, typ

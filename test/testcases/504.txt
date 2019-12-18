@@ -1,12 +1,11 @@
 
+				string helloWorld(string str)
+				{
+					return "Hello World \n";
+				}
 
-		boolean check()
-		{
-			return true;
-		}
-
-		void main()
-		{
-			putBool(check());
-		}
-		
+				void main()
+				{
+					putStringLn(helloWorld("AAAAAAAAAAA"));
+				}
+				

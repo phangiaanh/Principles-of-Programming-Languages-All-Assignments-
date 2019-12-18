@@ -1,2 +1,11 @@
-2
-3.0
+true
+false
+true
+false
+true
+false
+true
+false
+true
+false
+true

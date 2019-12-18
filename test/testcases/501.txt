@@ -1,14 +1,14 @@
 
+				boolean compare(float a, int b)
+				{
+					if(a > b) return true;
+					else return false;
+				}
 
-		int get()
-		{
-			putInt(2+3);
-			putInt(3+5);
-			return 1;
-		}
+				void main()
+				{
+					if (compare(5.2, 3)) putInt(2);
+					else putFloat(3);
+				}
 
-		void main()
-		{
-			get();
-		}
-		
+				

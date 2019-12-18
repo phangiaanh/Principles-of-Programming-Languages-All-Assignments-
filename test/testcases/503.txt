@@ -1,12 +1,19 @@
 
+				float getThreeFloat(int _)
+				{
+					if(_ <= 1){
+						if(_ >= 0) putFloat(1.5);
+						else putFloat(-1);
+					}
+					else{
+						if(_ <= 10) putFloat(5.5);
+						else putFloat(2.0/3);
+					}
+					return _;
+				}
 
-		string enter()
-		{
-			return "hello";
-		}
-
-		void main()
-		{
-			putString(enter());
-		}
-		
+				void main()
+				{
+					putFloat(getThreeFloat(6));
+				}
+				

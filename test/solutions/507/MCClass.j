@@ -2,99 +2,50 @@
 .class public MCClass
 .super java.lang.Object
 
-.method public static checkPrime(I)Z
+.method public static putLoop(I)V
 .var 0 is n I from Label0 to Label1
 Label0:
 .var 1 is i I from Label0 to Label1
-	iload_0
-	iconst_1
-	if_icmpne Label2
-	iconst_1
-	goto Label3
-Label2:
 	iconst_0
-Label3:
-	ifgt Label4
-	goto Label5
-Label4:
-	iconst_0
-	goto Label1
-Label5:
-	iconst_2
 	istore_1
-	goto Label8
-Label6:
+	goto Label4
+Label2:
 	iload_1
 	iconst_1
 	iadd
 	istore_1
-Label8:
+Label4:
 	iload_1
 	iload_0
+	if_icmpgt Label5
 	iconst_1
-	isub
-	if_icmpgt Label9
-	iconst_1
-	goto Label10
-Label9:
-	iconst_0
-Label10:
-	ifle Label7
-	iload_0
-	iload_1
-	irem
-	iconst_0
-	if_icmpne Label11
-	iconst_1
-	goto Label12
-Label11:
-	iconst_0
-Label12:
-	ifgt Label13
-	goto Label14
-Label13:
-	iconst_0
-	goto Label1
-Label14:
 	goto Label6
-Label7:
-	iconst_1
-	goto Label1
+Label5:
+	iconst_0
+Label6:
+	ifle Label3
+	iload_1
+	invokestatic io/putIntLn(I)V
+	goto Label2
+Label3:
 Label1:
-	ireturn
-.limit stack 12
+	return
+.limit stack 3
 .limit locals 2
 .end method
 
 .method public static main([Ljava/lang/String;)V
-.var 0 is args [Ljava/lang/String; from Label15 to Label16
-Label15:
-	iconst_1
-	iconst_0
-	iconst_1
-	iand
-	iconst_0
-	iand
-	ior
-	invokestatic io/putBoolLn(Z)V
-	iconst_1
-	invokestatic MCClass/checkPrime(I)Z
-	invokestatic io/putBool(Z)V
-	iconst_2
-	invokestatic MCClass/checkPrime(I)Z
-	invokestatic io/putBool(Z)V
-	iconst_3
-	invokestatic MCClass/checkPrime(I)Z
-	invokestatic io/putBool(Z)V
-	iconst_4
-	invokestatic MCClass/checkPrime(I)Z
-	invokestatic io/putBool(Z)V
-	iconst_5
-	invokestatic MCClass/checkPrime(I)Z
-	invokestatic io/putBool(Z)V
-Label16:
+.var 0 is args [Ljava/lang/String; from Label7 to Label8
+Label7:
+	bipush 10
+	invokestatic MCClass/putLoop(I)V
+	ldc "Your PPL score will be: "
+	invokestatic io/putString(Ljava/lang/String;)V
+	ldc 4.74
+	invokestatic io/putFloatLn(F)V
+Label8:
 	return
-.limit stack 18
+.limit stack 3
 .limit locals 1
 .end method
 

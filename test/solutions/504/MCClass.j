@@ -2,24 +2,26 @@
 .class public MCClass
 .super java.lang.Object
 
-.method public static check()Z
+.method public static helloWorld(Ljava/lang/String;)Ljava/lang/String;
+.var 0 is str Ljava/lang/String; from Label0 to Label1
 Label0:
-	iconst_1
+	ldc "Hello World \n"
 	goto Label1
 Label1:
-	ireturn
-.limit stack 2
-.limit locals 0
+	areturn
+.limit stack 1
+.limit locals 1
 .end method
 
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label2 to Label3
 Label2:
-	invokestatic MCClass/check()Z
-	invokestatic io/putBool(Z)V
+	ldc "AAAAAAAAAAA"
+	invokestatic MCClass/helloWorld(Ljava/lang/String;)Ljava/lang/String;
+	invokestatic io/putStringLn(Ljava/lang/String;)V
 Label3:
 	return
-.limit stack 2
+.limit stack 1
 .limit locals 1
 .end method
 

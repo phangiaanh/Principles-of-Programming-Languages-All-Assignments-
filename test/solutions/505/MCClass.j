@@ -1,32 +1,60 @@
 .source MCClass.java
 .class public MCClass
 .super java.lang.Object
-.field static f F
 
-.method public static main([Ljava/lang/String;)V
-.var 0 is args [Ljava/lang/String; from Label0 to Label1
+.method public static checkBool(Z)Z
+.var 0 is bool Z from Label0 to Label1
 Label0:
-	iconst_3
-	i2f
-	putstatic MCClass.f F
-	iconst_2
-	invokestatic io/putIntLn(I)V
-	getstatic MCClass.f F
-	invokestatic MCClass/testFloat(F)V
+.var 1 is i I from Label0 to Label1
+	iconst_0
+	istore_1
+	goto Label4
+Label2:
+	iload_1
+	iconst_1
+	iadd
+	istore_1
+Label4:
+	iload_1
+	bipush 10
+	if_icmpge Label5
+	iconst_1
+	goto Label6
+Label5:
+	iconst_0
+Label6:
+	ifle Label3
+Label7:
+	iload_0
+	invokestatic io/putBoolLn(Z)V
+	iload_0
+	ifgt Label9
+	iconst_1
+	goto Label10
+Label9:
+	iconst_0
+Label10:
+	istore_0
+Label8:
+	goto Label2
+Label3:
+	iload_0
+	goto Label1
 Label1:
-	return
-.limit stack 1
-.limit locals 1
+	ireturn
+.limit stack 6
+.limit locals 2
 .end method
 
-.method public static testFloat(F)V
-.var 0 is f F from Label2 to Label3
-Label2:
-	fload_0
-	invokestatic io/putFloatLn(F)V
-Label3:
+.method public static main([Ljava/lang/String;)V
+.var 0 is args [Ljava/lang/String; from Label11 to Label12
+Label11:
+	iconst_1
+	invokestatic MCClass/checkBool(Z)Z
+	invokestatic io/putBool(Z)V
+Label12:
 	return
-.limit stack 1
+.limit stack 7
 .limit locals 1
 .end method
 
