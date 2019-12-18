@@ -1,13 +1,12 @@
 
+				int enter(int a[]){
+        		    return a[0];
+        		}
+        		int i;
 
-		int i[10];
-		float f[100];
-		boolean b[1000];
-
-		void main()
-		{
-			putInt(i[2]);
-			putFloat(f[3]);
-			putBool(b[4]);
-		}
-		
+        		void main() {
+        		    int a[9];
+        		    a[0] = 1;
+        		    putFloat(-----enter(a));
+        		}
+				

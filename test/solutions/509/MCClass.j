@@ -104,14 +104,10 @@ Label18:
 	goto Label14
 Label15:
 	getstatic MCClass.a [I
-	invokevirtual [I/clone()Ljava/lang/Object;
-	checkcast [I
 	bipush 10
 	invokestatic MCClass/sum([II)I
 	invokestatic io/putIntLn(I)V
 	getstatic MCClass.f [F
-	invokevirtual [F/clone()Ljava/lang/Object;
-	checkcast [F
 	bipush 10
 	invokestatic MCClass/multiply([FI)F
 	invokestatic io/putFloatLn(F)V
@@ -160,7 +156,7 @@ Label22:
 	goto Label20
 Label20:
 	freturn
-.limit stack 13
+.limit stack 11
 .limit locals 4
 .end method
 

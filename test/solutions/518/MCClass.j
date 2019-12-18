@@ -1,44 +1,69 @@
 .source MCClass.java
 .class public MCClass
 .super java.lang.Object
-.field static a [I
+.field static a [Ljava/lang/String;
+.field static b Ljava/lang/String;
 
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
 Label0:
-Label2:
-.var 1 is a I from Label2 to Label3
-Label3:
-.var 1 is b I from Label0 to Label1
-.var 2 is c F from Label0 to Label1
-.var 3 is d Z from Label0 to Label1
-.var 4 is e Ljava/lang/String; from Label0 to Label1
+.var 1 is i I from Label0 to Label1
 	iconst_0
 	istore_1
-	goto Label6
-Label4:
+	goto Label4
+Label2:
 	iload_1
 	iconst_1
 	iadd
 	istore_1
-Label6:
+Label4:
 	iload_1
-	bipush 30
-	if_icmpge Label7
+	iconst_5
+	if_icmpge Label5
 	iconst_1
-	goto Label8
-Label7:
-	iconst_0
-Label8:
-	ifle Label5
-	iload_1
-	invokestatic io/putIntLn(I)V
-	goto Label4
+	goto Label6
 Label5:
+	iconst_0
+Label6:
+	ifle Label3
+	getstatic MCClass.a [Ljava/lang/String;
+	iload_1
+	ldc "1"
+	aastore
+	goto Label2
+Label3:
+	iconst_0
+	istore_1
+	goto Label9
+Label7:
+	iload_1
+	iconst_1
+	iadd
+	istore_1
+Label9:
+	iload_1
+	iconst_5
+	if_icmpge Label10
+	iconst_1
+	goto Label11
+Label10:
+	iconst_0
+Label11:
+	ifle Label8
+	getstatic MCClass.a [Ljava/lang/String;
+	iload_1
+	aaload
+	invokestatic io/putString(Ljava/lang/String;)V
+	goto Label7
+Label8:
+	ldc "Everything is okay"
+	putstatic MCClass.b Ljava/lang/String;
+	getstatic MCClass.b Ljava/lang/String;
+	invokestatic io/putStringLn(Ljava/lang/String;)V
 Label1:
 	return
-.limit stack 3
-.limit locals 5
+.limit stack 6
+.limit locals 2
 .end method
 
 .method public <init>()V
@@ -55,8 +80,8 @@ Label1:
 .method public static <clinit>()V
 Label0:
 	bipush 30
-	newarray int
-	putstatic MCClass.a [I
+	anewarray java/lang/String
+	putstatic MCClass.a [Ljava/lang/String;
 Label1:
 	return
 .limit stack 1

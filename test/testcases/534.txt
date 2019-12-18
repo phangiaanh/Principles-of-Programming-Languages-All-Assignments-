@@ -1,20 +1,27 @@
 
-		int i,j,l,a[10],mul;
-		
-		int[] returnArray()
-		{
-			int a[11];
-			for(j=0;j<l;j=j+1) a[j]=j+1;
+				float f;
 
-			return a;
-		}
+				void main()
+				{
+					f = 3;
 
-		void main()
-		{
-			l=10;
+					setInt(1);
 
-			mul=1;
-			for(i=0;i<l;i=i+1) mul=mul*returnArray()[i];
-			putIntLn(mul);
-		}
-		
+					if (f > i)
+					{
+						putString("Float is equal to int");
+					}
+					else
+					{
+						putString("Float is not equal to int");
+					}
+					setInt(5);
+				}
+
+				int i;
+
+				void setInt(int k)
+				{
+					i = k;
+				}
+				

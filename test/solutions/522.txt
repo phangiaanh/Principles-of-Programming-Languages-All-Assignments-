@@ -1,7 +1,1 @@
-truetrue
-truefalse
-truetrue
-truefalse
-falsetrue
-falsefalse
-falsetrue
+true

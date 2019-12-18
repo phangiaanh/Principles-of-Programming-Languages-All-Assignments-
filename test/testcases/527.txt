@@ -1,23 +1,11 @@
 
+				int a[99];
 
-		float a;
-		boolean b;
-
-		void check() {
-            int a[10];
-            a[1] = --2;
-            a[3] = ----1;
-            a[2] = ------6;
-            putInt(a[a[a[3-1+1*1/1]]]);
-        }
-
-		void main()
-		{
-			a=----1--2;
-			putFloatLn(a);
-
-			b=!true || !false;
-			putBoolLn(b);
-			check();
-		}
-		
+				void main()
+				{
+					int b[99];
+					b[9] = 1;
+					b[b[9] + 1 + 2 + 3 + 4 + 5]= --1;
+					putInt(b[17-1]);
+				}
+				

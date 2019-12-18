@@ -2,12 +2,18 @@
 .class public MCClass
 .super java.lang.Object
 .field static i I
-.field static a [Ljava/lang/String;
-.field static b [Ljava/lang/String;
 
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
 Label0:
+.var 1 is a [Ljava/lang/String; from Label0 to Label1
+	bipush 10
+	anewarray java/lang/String
+	astore_1
+.var 2 is b [Ljava/lang/String; from Label0 to Label1
+	bipush 10
+	anewarray java/lang/String
+	astore_2
 	iconst_0
 	putstatic MCClass.i I
 	goto Label4
@@ -26,7 +32,7 @@ Label5:
 	iconst_0
 Label6:
 	ifle Label3
-	getstatic MCClass.a [Ljava/lang/String;
+	aload_1
 	getstatic MCClass.i I
 	ldc "a"
 	aastore
@@ -50,19 +56,15 @@ Label10:
 	iconst_0
 Label11:
 	ifle Label8
-	getstatic MCClass.b [Ljava/lang/String;
+	aload_2
 	getstatic MCClass.i I
-	getstatic MCClass.a [Ljava/lang/String;
+	aload_1
 	getstatic MCClass.i I
 	aaload
 	aastore
 	goto Label7
 Label8:
 Label12:
-.var 1 is b [Ljava/lang/String; from Label12 to Label13
-	bipush 10
-	anewarray java/lang/String
-	astore_1
 	iconst_0
 	putstatic MCClass.i I
 	goto Label16
@@ -81,9 +83,9 @@ Label17:
 	iconst_0
 Label18:
 	ifle Label15
-	aload_1
+	aload_2
 	getstatic MCClass.i I
-	ldc "b"
+	ldc "c"
 	aastore
 	goto Label14
 Label15:
@@ -106,7 +108,7 @@ Label22:
 	iconst_0
 Label23:
 	ifle Label20
-	getstatic MCClass.a [Ljava/lang/String;
+	aload_1
 	getstatic MCClass.i I
 	aaload
 	invokestatic io/putString(Ljava/lang/String;)V
@@ -130,7 +132,7 @@ Label27:
 	iconst_0
 Label28:
 	ifle Label25
-	getstatic MCClass.b [Ljava/lang/String;
+	aload_2
 	getstatic MCClass.i I
 	aaload
 	invokestatic io/putString(Ljava/lang/String;)V
@@ -139,7 +141,7 @@ Label25:
 Label1:
 	return
 .limit stack 12
-.limit locals 2
+.limit locals 3
 .end method
 
 .method public <init>()V
@@ -151,18 +153,4 @@ Label1:
 	return
 .limit stack 1
 .limit locals 1
-.end method
-
-.method public static <clinit>()V
-Label0:
-	bipush 10
-	anewarray java/lang/String
-	putstatic MCClass.a [Ljava/lang/String;
-	bipush 10
-	anewarray java/lang/String
-	putstatic MCClass.b [Ljava/lang/String;
-Label1:
-	return
-.limit stack 1
-.limit locals 0
 .end method

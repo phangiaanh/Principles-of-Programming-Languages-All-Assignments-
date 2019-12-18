@@ -1,34 +1,18 @@
 .source MCClass.java
 .class public MCClass
 .super java.lang.Object
-.field static a F
+.field static a0 [I
+.field static b0 [Z
+.field static c0 [Ljava/lang/String;
+.field static d0 [F
 
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
 Label0:
-	iconst_1
-	iconst_2
-	iadd
-	iconst_3
-	iadd
-	i2f
-	ldc 1.0
-	fadd
-	ldc 1.1
-	fadd
-	ldc 1.2
-	fadd
-	ldc 1.3
-	fadd
-	putstatic MCClass.a F
-	getstatic MCClass.a F
-	bipush 10
-	i2f
-	fadd
-	invokestatic io/putFloatLn(F)V
+	invokestatic io/putLn()V
 Label1:
 	return
-.limit stack 2
+.limit stack 0
 .limit locals 1
 .end method
 
@@ -41,4 +25,24 @@ Label1:
 	return
 .limit stack 1
 .limit locals 1
+.end method
+
+.method public static <clinit>()V
+Label0:
+	iconst_0
+	newarray int
+	putstatic MCClass.a0 [I
+	iconst_0
+	newarray boolean
+	putstatic MCClass.b0 [Z
+	iconst_0
+	anewarray java/lang/String
+	putstatic MCClass.c0 [Ljava/lang/String;
+	iconst_0
+	newarray float
+	putstatic MCClass.d0 [F
+Label1:
+	return
+.limit stack 1
+.limit locals 0
 .end method

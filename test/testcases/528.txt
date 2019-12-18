@@ -1,12 +1,22 @@
 
-		int i;
+				float a;
+				boolean b;
 
-		void main()
-		{
-			float a;
-			a=10;
+				void check() {
+        		    int a[10];
+        		    a[1] = --2;
+        		    a[3] = ----1;
+        		    a[2] = ------6;
+        		    putInt(a[a[a[3 - 1 + 1 * 1 / 1]]]);
+        		}
 
-			for(i=0;i<10;i=i+1) a=-a;
-			putFloatLn(a);
-		}
-		
+				void main()
+				{
+					a = ----1--2;
+					putFloatLn(a);
+
+					b = !true || !false;
+					putBoolLn(b);
+					check();
+				}
+				

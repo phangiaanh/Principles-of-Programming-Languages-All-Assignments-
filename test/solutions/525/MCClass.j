@@ -1,76 +1,45 @@
 .source MCClass.java
 .class public MCClass
 .super java.lang.Object
+.field static tmp I
 .field static i I
 
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
 Label0:
-	bipush 10
+	iconst_1
+	putstatic MCClass.tmp I
+	iconst_0
 	putstatic MCClass.i I
 	goto Label4
 Label2:
 	getstatic MCClass.i I
 	iconst_1
-	isub
+	iadd
 	putstatic MCClass.i I
 Label4:
 	getstatic MCClass.i I
-	iconst_5
-	if_icmplt Label5
+	sipush 2019
+	if_icmpge Label5
 	iconst_1
 	goto Label6
 Label5:
 	iconst_0
 Label6:
 	ifle Label3
-	getstatic MCClass.i I
-	ineg
-	iconst_2
+	getstatic MCClass.tmp I
+	iconst_5
 	imul
-	invokestatic io/putIntLn(I)V
+	bipush 13
+	irem
+	putstatic MCClass.tmp I
 	goto Label2
 Label3:
-	bipush 10
-	putstatic MCClass.i I
-	goto Label9
-Label7:
-	getstatic MCClass.i I
-	iconst_1
-	isub
-	putstatic MCClass.i I
-Label9:
-	getstatic MCClass.i I
-	iconst_5
-	if_icmplt Label10
-	iconst_1
-	goto Label11
-Label10:
-	iconst_0
-Label11:
-	ifle Label8
-	getstatic MCClass.i I
-	iconst_2
-	imul
-	bipush 10
-	if_icmpne Label12
-	iconst_1
-	goto Label13
-Label12:
-	iconst_0
-Label13:
-	ifgt Label14
-	iconst_1
-	goto Label15
-Label14:
-	iconst_0
-Label15:
-	invokestatic io/putBoolLn(Z)V
-	goto Label7
-Label8:
+	getstatic MCClass.tmp I
+	invokestatic io/putIntLn(I)V
 Label1:
 	return
-.limit stack 10
+.limit stack 4
 .limit locals 1
 .end method
 

@@ -1,29 +1,45 @@
 .source MCClass.java
 .class public MCClass
 .super java.lang.Object
-.field static i [I
-.field static f [F
-.field static b [Z
+.field static i I
 
-.method public static main([Ljava/lang/String;)V
-.var 0 is args [Ljava/lang/String; from Label0 to Label1
+.method public static enter([I)I
+.var 0 is a [I from Label0 to Label1
 Label0:
-	getstatic MCClass.i [I
-	iconst_2
+	aload_0
+	iconst_0
 	iaload
-	invokestatic io/putInt(I)V
-	getstatic MCClass.f [F
-	iconst_3
-	faload
-	invokestatic io/putFloat(F)V
-	getstatic MCClass.b [Z
-	iconst_4
-	baload
-	invokestatic io/putBool(Z)V
+	goto Label1
 Label1:
-	return
+	ireturn
 .limit stack 2
 .limit locals 1
+.end method
+
+.method public static main([Ljava/lang/String;)V
+.var 0 is args [Ljava/lang/String; from Label2 to Label3
+Label2:
+.var 1 is a [I from Label2 to Label3
+	bipush 9
+	newarray int
+	astore_1
+	aload_1
+	iconst_0
+	iconst_1
+	iastore
+	aload_1
+	invokestatic MCClass/enter([I)I
+	ineg
+	ineg
+	ineg
+	ineg
+	ineg
+	i2f
+	invokestatic io/putFloat(F)V
+Label3:
+	return
+.limit stack 3
+.limit locals 2
 .end method
 
 .method public <init>()V
@@ -35,21 +51,4 @@ Label1:
 	return
 .limit stack 1
 .limit locals 1
-.end method
-
-.method public static <clinit>()V
-Label0:
-	bipush 10
-	newarray int
-	putstatic MCClass.i [I
-	bipush 100
-	newarray float
-	putstatic MCClass.f [F
-	sipush 1000
-	newarray boolean
-	putstatic MCClass.b [Z
-Label1:
-	return
-.limit stack 1
-.limit locals 0
 .end method

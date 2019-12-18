@@ -1,16 +1,27 @@
 
+		 		void main() {
+           		    int b;
+           		    b = foo()[1];
+           		    foo()[1] = -5;
+           		    putFloat(b);
+           		    putFloat(foo()[1]);
 
-		int[] returnArray()
-		{
-			int i;
-			int a[10];
-			for(i=0;i<10;i=i+1) a[i]=i;
-			return a;
-		}
+           		    string c;
+           		    c = foo2()[1];
+           		    foo2()[1] = "Fool";
+           		    putString(c);
+           		    putString(foo2()[1]);
+           		}
 
-		void main()
-		{
-			int b[10];
-			putIntLn(returnArray()[9]);
-		}
-		
+           		int[] foo(){
+           		    int a[10];
+           		    a[1] = -5 * 5;
+           		    return a;
+           		}
+
+           		string[] foo2(){
+           		    string a[10];
+           		    a[1] = "Anh";
+           		    return a;
+           		}
+				

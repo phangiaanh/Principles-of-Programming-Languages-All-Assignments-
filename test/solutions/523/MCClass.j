@@ -1,116 +1,65 @@
 .source MCClass.java
 .class public MCClass
 .super java.lang.Object
-.field static i I
-
-.method public static cmpGE(II)Z
-.var 0 is a I from Label0 to Label1
-.var 1 is b I from Label0 to Label1
-Label0:
-	iload_0
-	iload_1
-	if_icmplt Label2
-	iconst_1
-	goto Label3
-Label2:
-	iconst_0
-Label3:
-	goto Label1
-Label1:
-	ireturn
-.limit stack 3
-.limit locals 2
-.end method
-
-.method public static cmpLE(II)Z
-.var 0 is a I from Label4 to Label5
-.var 1 is b I from Label4 to Label5
-Label4:
-	iload_0
-	iload_1
-	if_icmpgt Label6
-	iconst_1
-	goto Label7
-Label6:
-	iconst_0
-Label7:
-	goto Label5
-Label5:
-	ireturn
-.limit stack 5
-.limit locals 2
-.end method
 
 .method public static main([Ljava/lang/String;)V
-.var 0 is args [Ljava/lang/String; from Label8 to Label9
-Label8:
-	iconst_5
-	putstatic MCClass.i I
-Label10:
-Label12:
-	ldc "Just for fun\n"
-	invokestatic io/putString(Ljava/lang/String;)V
-Label13:
-	getstatic MCClass.i I
-	iconst_5
+.var 0 is args [Ljava/lang/String; from Label0 to Label1
+Label0:
+.var 1 is i I from Label0 to Label1
 	iconst_1
-	iadd
 	iconst_2
-	iadd
+	imul
 	iconst_3
-	iadd
-	iconst_4
-	iadd
-	iconst_5
-	iadd
-	bipush 6
-	iadd
-	if_icmplt Label14
+	imul
+	istore_1
+	goto Label4
+Label2:
+	iload_1
+	iconst_2
+	imul
+	istore_1
+Label4:
+	iload_1
+	bipush 100
+	if_icmpgt Label5
 	iconst_1
-	goto Label15
-Label14:
+	goto Label6
+Label5:
 	iconst_0
-Label15:
-	ifle Label11
+Label6:
+	ifle Label3
+Label7:
+	iload_1
+	iload_1
+	imul
+	bipush 50
+	if_icmplt Label9
+	iconst_1
 	goto Label10
-Label11:
-	iconst_1
-	iconst_2
-	imul
-	iconst_3
-	imul
-	iconst_4
-	imul
-	iconst_5
-	imul
-	bipush 6
-	imul
-	bipush 7
-	imul
-	bipush 8
-	imul
-	bipush 9
-	imul
-	getstatic MCClass.i I
-	bipush 6
-	if_icmpne Label16
-	iconst_1
-	goto Label17
-Label16:
-	iconst_0
-Label17:
-	bipush 6
-	bipush 6
-	invokestatic MCClass/cmpGE(II)Z
-	invokestatic io/putBoolLn(Z)V
-	bipush 6
-	bipush 6
-	invokestatic MCClass/cmpGE(II)Z
-	invokestatic io/putBoolLn(Z)V
 Label9:
+	iconst_0
+Label10:
+	invokestatic io/putBool(Z)V
+	iload_1
+	iload_1
+	imul
+	iconst_2
+	irem
+	iconst_0
+	if_icmpne Label11
+	iconst_1
+	goto Label12
+Label11:
+	iconst_0
+Label12:
+	invokestatic io/putBoolLn(Z)V
+Label8:
+	goto Label2
+Label3:
+Label1:
 	return
-.limit stack 8
-.limit locals 1
+.limit stack 7
+.limit locals 2
 .end method
 
 .method public <init>()V

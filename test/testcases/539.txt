@@ -1,14 +1,15 @@
 
-		 void main() {
-                int a[10];
-                int i,j,k;
-                for (i = 0; i < 10; i = i + 1)
-                    a[i] = i;
+				int[] returnArray()
+				{
+					int i;
+					int a[10];
+					for(i = 0; i < 10; i = i + 1) a[i] = i * i;
+					return a;
+				}
 
-                for (j = 0; j < 10; j = j + 1)
-                    putInt(a[j]);
-
-                for (k = 9; k >= 0; k = k - 1)
-                    putInt(a[k]);
-            }
-		
+				void main()
+				{
+					int b[10];
+					putIntLn(-returnArray()[8]);
+				}
+				

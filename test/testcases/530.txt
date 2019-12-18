@@ -1,24 +1,18 @@
 
+				int i, a[10];
+				boolean b;
 
-		string random;
-		int one;
+				void setup()
+				{
+					for(i = 0; i < 10; i = i + 1) a[i] = i;
+				}
 
-		string getRandomString()
-		{
-			return "random";
-		}
-
-		void main()
-		{
-			random=getRandomString();
-			one=getOne();
-
-			putStringLn(random);
-			putIntLn(one);
-		}
-
-		int getOne()
-		{
-			return 1;			
-		}
-		
+				void main()
+				{
+					
+					for(i = 0; i < 10; i = i + 1){
+						if(a[i] > 5) b = !b;
+					}
+					putBoolLn(b);
+				}
+				

@@ -1,12 +1,17 @@
 
-		string a[30],b;
-
-		void main()
-		{
-			int i;
-			for(i=0;i<5;i=i+1) a[i]="1";
-			for(i=0;i<5;i=i+1) putString(a[i]);
-			b=a[4];
-			putStringLn(b);
-		}
-		
+				void main()
+				{
+					float a;
+					a = 1.0;
+					{
+						int a;
+						a = 5;
+						putFloatLn(a);
+						{
+							a = 6;
+							putFloatLn(a);
+						}
+					}
+					putFloat(a);
+				}
+				

@@ -2,60 +2,85 @@
 .class public MCClass
 .super java.lang.Object
 
-.method public static returnArray()[I
+.method public static main([Ljava/lang/String;)V
+.var 0 is args [Ljava/lang/String; from Label0 to Label1
 Label0:
-.var 0 is i I from Label0 to Label1
-.var 1 is a [I from Label0 to Label1
-	bipush 10
-	newarray int
-	astore_1
-	iconst_0
-	istore_0
-	goto Label4
-Label2:
-	iload_0
+.var 1 is b I from Label0 to Label1
+	invokestatic MCClass/foo()[I
 	iconst_1
-	iadd
-	istore_0
-Label4:
-	iload_0
-	bipush 10
-	if_icmpge Label5
+	iaload
+	istore_1
+	invokestatic MCClass/foo()[I
 	iconst_1
-	goto Label6
-Label5:
-	iconst_0
-Label6:
-	ifle Label3
-	aload_1
-	iload_0
-	iload_0
-	iastore
-	goto Label2
-Label3:
-	aload_1
-	goto Label1
+	iconst_5
+	ineg
+	invokestatic MCClass/foo()[I
+	iload_1
+	i2f
+	invokestatic io/putFloat(F)V
+	invokestatic MCClass/foo()[I
+	iconst_1
+	iaload
+	i2f
+	invokestatic io/putFloat(F)V
+.var 2 is c Ljava/lang/String; from Label0 to Label1
+	invokestatic MCClass/foo2()[Ljava/lang/String;
+	iconst_1
+	aaload
+	astore_2
+	invokestatic MCClass/foo2()[Ljava/lang/String;
+	iconst_1
+	ldc "Fool"
+	invokestatic MCClass/foo2()[Ljava/lang/String;
+	aload_2
+	invokestatic io/putString(Ljava/lang/String;)V
+	invokestatic MCClass/foo2()[Ljava/lang/String;
+	iconst_1
+	aaload
+	invokestatic io/putString(Ljava/lang/String;)V
 Label1:
-	areturn
-.limit stack 5
-.limit locals 2
+	return
+.limit stack 10
+.limit locals 3
 .end method
 
-.method public static main([Ljava/lang/String;)V
-.var 0 is args [Ljava/lang/String; from Label7 to Label8
-Label7:
-.var 1 is b [I from Label7 to Label8
+.method public static foo()[I
+Label2:
+.var 0 is a [I from Label2 to Label3
 	bipush 10
 	newarray int
-	astore_1
-	invokestatic MCClass/returnArray()[I
-	bipush 9
-	iaload
-	invokestatic io/putIntLn(I)V
-Label8:
-	return
-.limit stack 4
-.limit locals 2
+	astore_0
+	aload_0
+	iconst_1
+	iconst_5
+	ineg
+	iconst_5
+	imul
+	iastore
+	aload_0
+	goto Label3
+Label3:
+	areturn
+.limit stack 12
+.limit locals 1
+.end method
+
+.method public static foo2()[Ljava/lang/String;
+Label4:
+.var 0 is a [Ljava/lang/String; from Label4 to Label5
+	bipush 10
+	anewarray java/lang/String
+	astore_0
+	aload_0
+	iconst_1
+	ldc "Anh"
+	aastore
+	aload_0
+	goto Label5
+Label5:
+	areturn
+.limit stack 11
+.limit locals 1
 .end method
 
 .method public <init>()V

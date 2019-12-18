@@ -1,31 +1,11 @@
 
-		
-		int i;
-
-		boolean cmpGE(int a,int b)
-		{
-			return (a>=b);
-		}
-
-		boolean cmpLE(int a,int b)
-		{
-			return (a<=b);
-		}
-	
-		void main()
-		{
-			i=5;
-			do
-			{
-				putString("Just for fun\n");
-			}
-			while (i>=5+1+2+3+4+5+6);
-		
-			
-			1*2*3*4*5*6*7*8*9;
-			i==6;
-	
-			putBoolLn(cmpGE(6,6));
-			putBoolLn(cmpGE(6,6));
-		}
-		
+				void main()
+				{	
+					int i;
+					for(i = 1*2*3; i <= 100; i = i * 2)
+					{
+						putBool(i * i >= 50);
+						putBoolLn((i * i) % 2 == 0);
+					}
+				}
+				

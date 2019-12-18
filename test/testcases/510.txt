@@ -1,20 +1,9 @@
 
-				int test;
-
-				void printMultipleInt()
-				{
-					test = test + (1 * 2 * 3 % 3 * 4 * 5) / 10000;
-					putFloatLn(test);
-				}
-
 				void main()
 				{
-					if(false){
-						test = 3.0;
-					}else{
-						test = 1;
-					}
-					putFloatLn(test);
-					printMultipleInt();
+					putIntLn(1);
+					putFloatLn(1 + 1.1 + 1.11 + 1.111);
+					putBoolLn(true || false && true && false);
+					putStringLn("Your results are OK");
 				}
 				

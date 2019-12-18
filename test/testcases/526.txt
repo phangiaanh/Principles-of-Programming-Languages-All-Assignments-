@@ -1,10 +1,8 @@
 
-		int a[99];
-
-		void main()
-		{
-			int b[99];
-			b[--0*-0]=--1;
-			putInt(b[0]);
-		}
-		
+				int i;
+				void main()
+				{
+					for(i = 10; i >= 5; i = i - 1) putIntLn(-i * 2);
+					for(i = 10; i >= 5; i = i - 1) putBoolLn(!(i*2 > 7));
+				}
+				

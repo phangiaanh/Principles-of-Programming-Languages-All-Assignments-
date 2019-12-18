@@ -1,1 +1,1 @@
-3628800
+Float is equal to int

@@ -1,20 +1,12 @@
 
-		
-		int i,a[20];
-		string b;
+				int i;
 
-		void setup()
-		{
-			for(i=0;i<10;i=i+1) a[i]=i;
-		}
+				void main()
+				{
+					float a;
+					a = 10;
 
-		void main()
-		{
-			b="--12";
-			setup();
-			
-			for(i=2;i<10;i=i+1) a[i]=a[a[i-1]*(--1)];
-			for(i=0;i<10;i=i+1) putIntLn(a[i]);
-			putStringLn(b);
-		}
-		
+					for(i = 0; i < 99; i = i + 1) a = -a;
+					putFloatLn(a);
+				}
+				

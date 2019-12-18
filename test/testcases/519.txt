@@ -1,11 +1,17 @@
 
+				int a[69];
+				void main()
+				{
+					int a;
+					{
+						a = 3;
+					}
+					int b;
+					float c;
+					boolean d;
+					string e;
 
-		int a0[0];
-		boolean b0[0];
-		string c0[0];
-		float d0[0];
-
-		void main()
-		{
-		}
-		
+					putInt(a);
+					for(b = 0; b < 30; b = b + 1) putIntLn(b);
+				}
+				

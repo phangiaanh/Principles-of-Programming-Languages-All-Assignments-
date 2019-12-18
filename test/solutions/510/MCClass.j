@@ -1,58 +1,34 @@
 .source MCClass.java
 .class public MCClass
 .super java.lang.Object
-.field static test I
-
-.method public static printMultipleInt()V
-Label0:
-	getstatic MCClass.test I
-	iconst_1
-	iconst_2
-	imul
-	iconst_3
-	imul
-	iconst_3
-	irem
-	iconst_4
-	imul
-	iconst_5
-	imul
-	sipush 10000
-	idiv
-	iadd
-	putstatic MCClass.test I
-	getstatic MCClass.test I
-	i2f
-	invokestatic io/putFloatLn(F)V
-Label1:
-	return
-.limit stack 3
-.limit locals 0
-.end method
 
 .method public static main([Ljava/lang/String;)V
-.var 0 is args [Ljava/lang/String; from Label2 to Label3
-Label2:
-	iconst_0
-	ifgt Label4
-Label6:
+.var 0 is args [Ljava/lang/String; from Label0 to Label1
+Label0:
 	iconst_1
-	putstatic MCClass.test I
-Label7:
-	goto Label5
-Label4:
-Label8:
-	ldc 3.0
-	putstatic MCClass.test I
-Label9:
-Label5:
-	getstatic MCClass.test I
+	invokestatic io/putIntLn(I)V
+	iconst_1
 	i2f
+	ldc 1.1
+	fadd
+	ldc 1.11
+	fadd
+	ldc 1.111
+	fadd
 	invokestatic io/putFloatLn(F)V
-	invokestatic MCClass/printMultipleInt()V
-Label3:
+	iconst_1
+	iconst_0
+	iconst_1
+	iand
+	iconst_0
+	iand
+	ior
+	invokestatic io/putBoolLn(Z)V
+	ldc "Your results are OK"
+	invokestatic io/putStringLn(Ljava/lang/String;)V
+Label1:
 	return
-.limit stack 2
+.limit stack 7
 .limit locals 1
 .end method
 
