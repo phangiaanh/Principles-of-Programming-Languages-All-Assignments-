@@ -1,6 +1,36 @@
 
-		void main()
-		{
-			{{{{{{{putLn();}}}}}}}
-		}
-		
+				void main() {
+        		    boolean a;
+        		    a = false;
+        		    {
+        		    	boolean a;
+        		    	a = 5 > 3 + 1 * 2 - 3;
+        		    }
+        		    putBool(a);
+        		    {
+        		    	boolean a;
+        		    	a = 1 + 2 + 3 + 4 + 5 + 6 < 100;
+        		    }
+        		    putBool(a);
+        		    {
+        		    	boolean a;
+        		    	a = a = a = a = true;
+        		    }
+        		    putBool(a);
+        		    {
+        		    	boolean a;
+        		    	a = 3 == 3;
+        		    }
+        		    putBool(a);
+					{
+						boolean a;
+        		    	a = 3 != 9 * 8 / 7 + 3 * 5;
+        		    }
+        		    putBool(a);
+					{
+						boolean a;
+        		    	a = 5 - 2.5 < 3 * 7.1 - 15;
+        		    }
+        		    putBool(a);
+        		}
+				

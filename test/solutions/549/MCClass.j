@@ -1,58 +1,59 @@
 .source MCClass.java
 .class public MCClass
 .super java.lang.Object
-.field static result I
-.field static i I
 
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
 Label0:
-	iconst_0
-	putstatic MCClass.result I
-	iconst_0
-	putstatic MCClass.i I
-	goto Label4
-Label2:
-	getstatic MCClass.i I
-	iconst_1
-	iadd
-	putstatic MCClass.i I
-Label4:
-	getstatic MCClass.i I
-	bipush 10
-	if_icmpge Label5
-	iconst_1
-	goto Label6
-Label5:
-	iconst_0
-Label6:
-	ifle Label3
-	getstatic MCClass.i I
+.var 1 is b Z from Label0 to Label1
+.var 2 is a I from Label0 to Label1
 	iconst_5
-	if_icmpne Label7
+	istore_2
+	iload_2
 	iconst_1
-	goto Label8
-Label7:
-	iconst_0
-Label8:
-	ifgt Label9
-	getstatic MCClass.result I
+	if_icmplt Label2
 	iconst_1
-	iadd
-	putstatic MCClass.result I
-	goto Label10
-Label9:
 	goto Label3
-Label10:
-	goto Label2
+Label2:
+	iconst_0
 Label3:
-	getstatic MCClass.result I
-	invokestatic io/putInt(I)V
-	invokestatic io/putLn()V
+	ifgt Label4
+	iload_2
+	iconst_2
+	if_icmpne Label6
+	iconst_1
+	goto Label7
+Label6:
+	iconst_0
+Label7:
+	ifgt Label8
+	iconst_1
+	invokestatic io/putBool(Z)V
+	goto Label9
+Label8:
+	iconst_0
+	invokestatic io/putBool(Z)V
+Label9:
+	goto Label5
+Label4:
+	ldc "true"
+	invokestatic io/putString(Ljava/lang/String;)V
+Label5:
+	iload_2
+	bipush 9
+	if_icmpge Label14
+	iconst_1
+	goto Label15
+Label14:
+	iconst_0
+Label15:
+	dup
+	istore_1
+	invokestatic io/putBool(Z)V
 Label1:
 	return
-.limit stack 6
-.limit locals 1
+.limit stack 16
+.limit locals 3
 .end method
 
 .method public <init>()V

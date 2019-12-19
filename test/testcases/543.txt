@@ -1,9 +1,26 @@
 
-		
-		int a;
-        void main() {
-            putInt(a);
-            int a;
-        }
-
-		
+				void main()
+				{
+					{
+						{
+							{
+								{
+									{
+										{
+											{
+												{
+													{
+														{
+															putStringLn("Too muchhhhhhhhh");
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				

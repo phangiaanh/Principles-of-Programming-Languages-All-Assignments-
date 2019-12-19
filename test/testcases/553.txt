@@ -1,21 +1,21 @@
 
-		int a;
+				int result;
+				void main() {
+					int i;
+					int a[10], b[10], c[10];
 
-		void testFor()
-		{
-			int i;
-			for(i=0;i<=10;i=i+1) a=a*2;
-			putIntLn(a);
-			int a;
-			for(a=9;true;a=a+1)
-			{
-				putIntLn(a);
-				if (a==20) break;
-			}
-		}
-
-		void main()
-		{
-			testFor();
-		}
-		
+        		    for (i = 0; i < 10; i = i + 1){
+						a[i] = i * i;
+        		        putInt(a[i]);
+					}
+        		    for (i = 0; i < 10; i = i + 1){
+						b[i] = 2 * i;
+        		        putInt(b[i]);
+					}
+        		    for (i = 0; i < 10; i = i + 1){
+						c[i] = a[i] + b[i];
+        		        result = result + c[i];
+					}
+					putInt(result);
+        		}
+				

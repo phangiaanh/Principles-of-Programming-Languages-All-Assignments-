@@ -1,24 +1,11 @@
 
-		float a;
-        void main() {
-            putFloat(a);
-            float a;
-            a = 1;
-            {
-                float a;
-                a = 2;
-                {
-                    float a;
-                    a = 3;
-                    {
-                        float a;
-                        a = 4;
-                        putFloat(a);
-                    }
-                    putFloat(a);
-                }
-                putFloat(a);
-            }
-            putFloat(a);
-        }
-		
+				int a;
+        		void main() {
+        		    putInt(a);
+        		    {
+						{
+							int a;
+						}
+					}
+        		}
+				

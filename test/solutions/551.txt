@@ -1,1 +1,2 @@
-012345678910101010101010101010
+Enter a number:
+17 is a prime number!

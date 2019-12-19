@@ -1,11 +1,25 @@
 
-		void main() {
-            int i,t;
-            for (i = 0; i < 10; i = i + 1)
-                putInt(i);
-		   
-            t = -10;
-            for (1; t < 10; t = t + 2)
-                putInt(i);
-        }
-		
+				int n;
+				void main()
+				{
+					putStringLn("Enter a number:");
+					n = 17;
+					putInt(n);
+					if(checkPrime(n)){
+						putStringLn(" is a prime number!");
+					}
+					else{
+						putStringLn(" is not a prime number!");
+					}
+				}
+
+				boolean checkPrime(int n){
+					int i;
+					i = 2;
+					for(1; i < n / 2; i = i + 1){
+						if(n % i != 0) continue;
+						else return false;
+					}
+					return true;
+				}
+				

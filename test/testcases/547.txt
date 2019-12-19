@@ -1,11 +1,29 @@
 
-		void main() {
-            int a;
-            a = 0;
-            do
-                a = a + 1;
-                if (a==1) break;
-            while(a < 10);
-            putInt(a);
-        }
-		
+				void main() {
+        		    int a;
+        		    a = 6;
+        		      
+        		    putInt(a);
+
+        		    if (a > 55 && a < 10){
+        		        putInt(a);
+        		    }
+        		    else{
+        		        putInt(a+1);
+        		    }
+
+        		    if(true)
+        		        if(true)
+        		            if(false)
+        		                if(true)
+        		                    putInt(a);
+        		                else
+        		                    putInt(a+1);
+        		            else
+        		                putInt(a+2);
+        		        else
+        		            putInt(a+3);
+        		    else
+        		        putInt(a+4);
+        		}
+				

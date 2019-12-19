@@ -1,55 +1,47 @@
 .source MCClass.java
 .class public MCClass
 .super java.lang.Object
+.field static a F
 
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
 Label0:
-.var 1 is a I from Label0 to Label1
-	bipush 6
-	istore_1
-	iload_1
-	bipush 7
-	if_icmple Label2
+	getstatic MCClass.a F
+	invokestatic io/putFloat(F)V
+.var 1 is a F from Label0 to Label1
 	iconst_1
-	goto Label3
+	i2f
+	fstore_1
 Label2:
-	iconst_0
-Label3:
-	ifgt Label4
-	iload_1
-	iconst_1
-	iadd
-	invokestatic io/putInt(I)V
-	goto Label5
-Label4:
-	iload_1
-	invokestatic io/putInt(I)V
-Label5:
-	iload_1
-	bipush 10
-	if_icmpge Label6
-	iconst_1
-	goto Label7
-Label6:
-	iconst_0
-Label7:
-	ifgt Label8
-	goto Label9
-Label8:
-	iload_1
+.var 2 is a F from Label2 to Label3
 	iconst_2
-	iadd
-	invokestatic io/putInt(I)V
-Label9:
-	iload_1
+	i2f
+	fstore_2
+Label4:
+.var 3 is a F from Label4 to Label5
 	iconst_3
-	iadd
-	invokestatic io/putInt(I)V
+	i2f
+	fstore_3
+Label6:
+.var 4 is a F from Label6 to Label7
+	iconst_4
+	i2f
+	fstore 4
+	fload 4
+	invokestatic io/putFloatLn(F)V
+Label7:
+	fload_3
+	invokestatic io/putFloatLn(F)V
+Label5:
+	fload_2
+	invokestatic io/putFloatLn(F)V
+Label3:
+	fload_1
+	invokestatic io/putFloatLn(F)V
 Label1:
 	return
 .limit stack 6
-.limit locals 2
+.limit locals 5
 .end method
 
 .method public <init>()V

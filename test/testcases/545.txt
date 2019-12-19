@@ -1,15 +1,24 @@
 
-		void main()
-		{
-			int a;
-            a = 6;
-            if (a > 7)
-                putInt(a);
-            else
-                putInt(a+1);
-
-            if (a < 10)
-                putInt(a+2);
-            putInt(a+3);
-		}
-		
+				float a;
+        		void main() {
+        		    putFloat(a);
+        		    float a;
+        		    a = 1;
+        		    {
+        		        float a;
+        		        a = 2;
+        		        {
+        		            float a;
+        		            a = 3;
+        		            {
+        		                float a;
+        		                a = 4;
+        		                putFloatLn(a);
+        		            }
+        		            putFloatLn(a);
+        		        }
+        		        putFloatLn(a);
+        		    }
+        		    putFloatLn(a);
+        		}
+				

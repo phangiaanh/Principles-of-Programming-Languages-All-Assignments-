@@ -10,5 +10,4 @@
 					if (compare(5.2, 3)) putInt(2);
 					else putFloat(3);
 				}
-
 				

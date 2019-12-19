@@ -1,28 +1,24 @@
 
-		int a;
+				int a;
 
-		void testFor()
-		{
-			int i;
-			for(i=0;i<=10;i=i+1) a=a*2;
-			putIntLn(a);
-			foo();
-		}
+				int testFor()
+				{
+					int i;
+					for(i = 0; i <= 10; i = i + 1) a = a * 2;
+					{
+						int a;
+						a = 1;
+						for(1;true;1)
+						{
+							putIntLn(a = a + 1);
+							if (a == 10) break;
+						}					
+					}
+					return a;
+				}
 
-		void main()
-		{
-			testFor();
-		}
-
-		void foo()
-		{
-			int a;
-			float f;
-			f=-1*2*3;
-			for(a=9;f<=11;a=a+1)
-			{
-				putIntLn(a);
-				f=f*-2;
-			}
-		}
-		
+				void main()
+				{
+					putIntLn(testFor());
+				}
+				

@@ -1,11 +1,11 @@
 
-		void main()
-		{	
-			int a;
-			a=5;
-			if (a==1) putBool(true);
-			else 
-				if (a==2) putBool(false);
-			else putBool(true);
-		}
-		
+				void main() {
+        		    int a;
+        		    a = 10;
+        		    do
+        		        a = a - 1;
+        		        if (a == 1) break;
+        		    while(a < 10);
+        		    putInt(a);
+        		}
+				

@@ -5,7 +5,6 @@ from AST import *
 
 class CheckCodeGenSuite(unittest.TestCase):
 	def test_CallExpr_1(self):
-
 		input = """
 				boolean compare(float a, int b)
 				{
@@ -18,7 +17,6 @@ class CheckCodeGenSuite(unittest.TestCase):
 					if (compare(5.2, 3)) putInt(2);
 					else putFloat(3);
 				}
-
 				"""
 		expect = "2"
 		self.assertTrue(TestCodeGen.test(input,expect,501))
@@ -818,417 +816,389 @@ class CheckCodeGenSuite(unittest.TestCase):
 		expect = "01234567899.08.07.06.05.04.03.02.01.00.0"
 		self.assertTrue(TestCodeGen.test(input,expect,540))
 
-	# def test_block_40(self):
+	def test_Block_1(self):
+		input = """
+				void process(int a)
+				{
+					{
+						int a;
+						{
+							a = 1;
+							putIntLn(a);
+						}
+						{
+							int a;
+							a = 2;
+							putIntLn(a);
+						}
+					}
+					{
+						{
+							int a;
+							{
+								{
+									{
+										a = 4;
+									}
+								}
+							}
+							putIntLn(a);
+						}
+					}
+				}
 
-	# 	input = """
-	# 	void process(int a)
-	# 	{
-	# 		{
-	# 			{
-	# 				int a;
-	# 				a=1;
-	# 				putIntLn(a);
-	# 			}
-	# 			{
-	# 				int a;
-	# 				a=2;
-	# 				putIntLn(a);
-	# 			}
-	# 		}
-	# 		{
-	# 			{
-	# 				int a;
-	# 				a=3;
-	# 				putIntLn(a);
-	# 			}
-	# 			{
-	# 				int a;
-	# 				a=4;
-	# 				putIntLn(a);
-	# 			}
-	# 		}
-	# 	}
+				void main()
+				{
+					{
+						process(1000);
+					}
+				}
+				"""
+		expect = "1\n2\n4\n"
+		self.assertTrue(TestCodeGen.test(input,expect,541))
 
-	# 	void main()
-	# 	{
-	# 		{
-	# 			process(1000);
-	# 		}
-	# 	}
-	# 	"""
-	# 	expect = "1\n2\n3\n4\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,540))
+	def test_Block_2(self):
+		input = """
+				void main() {
+        		    boolean a;
+        		    a = false;
+        		    {
+        		    	boolean a;
+        		    	a = 5 > 3 + 1 * 2 - 3;
+        		    }
+        		    putBool(a);
+        		    {
+        		    	boolean a;
+        		    	a = 1 + 2 + 3 + 4 + 5 + 6 < 100;
+        		    }
+        		    putBool(a);
+        		    {
+        		    	boolean a;
+        		    	a = a = a = a = true;
+        		    }
+        		    putBool(a);
+        		    {
+        		    	boolean a;
+        		    	a = 3 == 3;
+        		    }
+        		    putBool(a);
+					{
+						boolean a;
+        		    	a = 3 != 9 * 8 / 7 + 3 * 5;
+        		    }
+        		    putBool(a);
+					{
+						boolean a;
+        		    	a = 5 - 2.5 < 3 * 7.1 - 15;
+        		    }
+        		    putBool(a);
+        		}
+				"""
+		expect = "falsefalsefalsefalsefalsefalse"
+		self.assertTrue(TestCodeGen.test(input,expect,542))
 
-	# def test_block_41(self):
+	def test_Block_3(self):
+		input = """
+				void main()
+				{
+					{
+						{
+							{
+								{
+									{
+										{
+											{
+												{
+													{
+														{
+															putStringLn("Too muchhhhhhhhh");
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				"""
+		expect = "Too muchhhhhhhhh\n"
+		self.assertTrue(TestCodeGen.test(input,expect,543))
 
-	# 	input = """
-	# 	void main() {
-    #         boolean a;
-    #         a=false;
+	def test_Block_4(self):
+		input = """
+				int a;
+        		void main() {
+        		    putInt(a);
+        		    {
+						{
+							int a;
+						}
+					}
+        		}
+				"""
+		expect = "0"
+		self.assertTrue(TestCodeGen.test(input,expect,544))
 
+	def test_Block_5(self):
+		input = """
+				float a;
+        		void main() {
+        		    putFloat(a);
+        		    float a;
+        		    a = 1;
+        		    {
+        		        float a;
+        		        a = 2;
+        		        {
+        		            float a;
+        		            a = 3;
+        		            {
+        		                float a;
+        		                a = 4;
+        		                putFloatLn(a);
+        		            }
+        		            putFloatLn(a);
+        		        }
+        		        putFloatLn(a);
+        		    }
+        		    putFloatLn(a);
+        		}
+				"""
+		expect = "0.04.0\n3.0\n2.0\n1.0\n"
+		self.assertTrue(TestCodeGen.test(input,expect,545))
 
-    #         {
-    #         	boolean a;
-    #         	a = 5 > 3 + 1;
-    #         }
-    #         putBool(a);
-
-
-    #         {
-    #         	boolean a;
-    #         	a = 5+1-------1 <= 5;
-    #         }
-    #         putBool(a);
-
-    #         {
-    #         	boolean a;
-    #         	a = 5*9 >= 9*5;
-    #         }
-    #         putBool(a);
-
-
-    #         {
-    #         	boolean a;
-    #         	a = 5*30 == 3*7;
-    #         }
-    #         putBool(a);
-			
-	# 		{
-	# 			boolean a;
-    #         	a = 5 != 3+2;
-    #         }
-    #         putBool(a);
-			
-	# 		{
-	# 			boolean a;
-    #         	a = 5 - 2.5 < 3 * 7.1 -15;
-    #         }
-    #         putBool(a);
-
-    #         {
-    #         	boolean a;
-    #         	a = 5*3 == 3*5;
-    #         }
-    #         putBool(a);
-    #     }
-	# 	"""
-	# 	expect = "falsefalsefalsefalsefalsefalsefalse"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,541))
-
-	# def test_block_42(self):
-
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		{{{{{{{putLn();}}}}}}}
-	# 	}
-	# 	"""
-	# 	expect = "\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,542))
-
-	# def test_block_43(self):
-
-	# 	input = """
+	def test_If_1(self):
+		input = """
+				float PI;
+				void main()
+				{
+					PI = 3.14;
+					float b;
+        		    b = PI;
+        		    if (b > 3)
+        		        putFloat(b);
+        		    else
+        		        putFloat(b/2);
 		
-	# 	int a;
-    #     void main() {
-    #         putInt(a);
-    #         int a;
-    #     }
+        		    if (b < 4)
+        		        putFloat(2 * b);
 
-	# 	"""
-	# 	expect = "0"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,543))
+        		    putFloat(PI);
+				}
+				"""
+		expect = "3.146.283.14"
+		self.assertTrue(TestCodeGen.test(input,expect,546))
 
-	# def test_block_44(self):
+	def test_If_2(self):
+		input = """
+				void main() {
+        		    int a;
+        		    a = 6;
+        		      
+        		    putInt(a);
 
-	# 	input = """
-	# 	float a;
-    #     void main() {
-    #         putFloat(a);
-    #         float a;
-    #         a = 1;
-    #         {
-    #             float a;
-    #             a = 2;
-    #             {
-    #                 float a;
-    #                 a = 3;
-    #                 {
-    #                     float a;
-    #                     a = 4;
-    #                     putFloat(a);
-    #                 }
-    #                 putFloat(a);
-    #             }
-    #             putFloat(a);
-    #         }
-    #         putFloat(a);
-    #     }
-	# 	"""
-	# 	expect = "0.04.03.02.01.0"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,544))
+        		    if (a > 55 && a < 10){
+        		        putInt(a);
+        		    }
+        		    else{
+        		        putInt(a+1);
+        		    }
 
-	# def test_if_45(self):
+        		    if(true)
+        		        if(true)
+        		            if(false)
+        		                if(true)
+        		                    putInt(a);
+        		                else
+        		                    putInt(a+1);
+        		            else
+        		                putInt(a+2);
+        		        else
+        		            putInt(a+3);
+        		    else
+        		        putInt(a+4);
+        		}
+				"""
+		expect = "678"
+		self.assertTrue(TestCodeGen.test(input,expect,547))
 
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int a;
-    #         a = 6;
-    #         if (a > 7)
-    #             putInt(a);
-    #         else
-    #             putInt(a+1);
+	def test_If_3(self):
+		input = """
+				void main() {
+        		    int a;
+        		    a = 10;
+        		    do
+        		        a = a - 1;
+        		        if (a == 1) break;
+        		    while(a < 10);
+        		    putInt(a);
+        		}
+				"""
+		expect = "1"
+		self.assertTrue(TestCodeGen.test(input,expect,548))
 
-    #         if (a < 10)
-    #             putInt(a+2);
-    #         putInt(a+3);
-	# 	}
-	# 	"""
-	# 	expect = "789"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,545))
+	def test_If_4(self):
+		input = """
+				void main()
+				{	
+					boolean b;
+					int a;
+					a = 5;
+					if (a >= 1) putString("true");
+					else 
+						if (a == 2) putBool(false);
+					else putBool(true);
+					putBool(b = a < 9 );
+				}
+				"""
+		expect = "truetrue"
+		self.assertTrue(TestCodeGen.test(input,expect,549))
 
-	# def test_if_46(self):
+	def test_If_5(self):
+		input = """
+				void setup(){
+					result = 0;
+					i = 0;
+				}
 
-	# 	input = """
-	# 	void main() {
-    #         int a;
-    #         a = 6;
-    #         if (a > 5 && a < 10)
-    #             putInt(a);
-			
-    #         if (a > 5)
-    #             if (a < 10)
-    #                 putInt(a);
-			
-    #         if (a > 5 && a < 10){
-    #             int a;
-    #             a = 11;
-    #             putInt(a);
-    #             putInt(a+1);
-    #             putInt(a+2);
-    #         }
-    #         putInt(a);
+				void main()
+				{
+					setup();
+					for (1; i < 10; i = i + 1)
+        		        if (i == 5)
+        		            break;
+        		        else
+        		            result = result * i;
+        		    putInt(result);
+        		    putLn();
+				}
 
-    #         if (a > 55 && a < 10){
-    #             putInt(a);
-    #         }
-    #         else{
-    #             putInt(a+1);
-    #         }
+				int result, i;
+				"""
+		expect = "0\n"
+		self.assertTrue(TestCodeGen.test(input,expect,550))
 
-    #         if(true)
-    #             if(true)
-    #                 if(false)
-    #                     if(true)
-    #                         putInt(a);
-    #                     else
-    #                         putInt(a+1);
-    #                 else
-    #                     putInt(a+2);
-    #             else
-    #                 putInt(a+3);
-    #         else
-    #             putInt(a+4);
-    #     }
-	# 	"""
-	# 	expect = "66111213678"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,546))
+	def test_For_1(self):
+		input = """
+				int n;
+				void main()
+				{
+					putStringLn("Enter a number:");
+					n = 17;
+					putInt(n);
+					if(checkPrime(n)){
+						putStringLn(" is a prime number!");
+					}
+					else{
+						putStringLn(" is not a prime number!");
+					}
+				}
 
-	# def test_if_47(self):
+				boolean checkPrime(int n){
+					int i;
+					i = 2;
+					for(1; i < n / 2; i = i + 1){
+						if(n % i != 0) continue;
+						else return false;
+					}
+					return true;
+				}
+				"""
+		expect = "Enter a number:\n17 is a prime number!\n"
+		self.assertTrue(TestCodeGen.test(input,expect,551))
 
-	# 	input = """
-	# 	void main() {
-    #         int a;
-    #         a = 0;
-    #         do
-    #             a = a + 1;
-    #             if (a==1) break;
-    #         while(a < 10);
-    #         putInt(a);
-    #     }
-	# 	"""
-	# 	expect = "1"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,547))
+	def test_For_2(self):
+		input = """
+				void main() {
+        		    int i, j;
+        		    for (i = 0; i < 5; i){
+        		        putInt(i = i + 1);
+						for(j = 0; j < 5; j){
+							putInt(j = j + 1);
+						}
+					}
+        		}
+				"""
+		expect = "112345212345312345412345512345"
+		self.assertTrue(TestCodeGen.test(input,expect,552))
 
-	# def test_if_48(self):
+	def test_For_3(self):
+		input = """
+				int result;
+				void main() {
+					int i;
+					int a[10], b[10], c[10];
 
-	# 	input = """
-	# 	void main()
-	# 	{	
-	# 		int a;
-	# 		a=5;
-	# 		if (a==1) putBool(true);
-	# 		else 
-	# 			if (a==2) putBool(false);
-	# 		else putBool(true);
-	# 	}
-	# 	"""
-	# 	expect = "true"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,548))
+        		    for (i = 0; i < 10; i = i + 1){
+						a[i] = i * i;
+        		        putInt(a[i]);
+					}
+        		    for (i = 0; i < 10; i = i + 1){
+						b[i] = 2 * i;
+        		        putInt(b[i]);
+					}
+        		    for (i = 0; i < 10; i = i + 1){
+						c[i] = a[i] + b[i];
+        		        result = result + c[i];
+					}
+					putInt(result);
+        		}
+				"""
+		expect = "0149162536496481024681012141618375"
+		self.assertTrue(TestCodeGen.test(input,expect,553))
 
-	# def test_if_49(self):
+	def test_For_4(self):
+		input = """
+				int a;
 
-	# 	input = """
+				int testFor()
+				{
+					int i;
+					for(i = 0; i <= 10; i = i + 1) a = a * 2;
+					{
+						int a;
+						a = 1;
+						for(1;true;1)
+						{
+							putIntLn(a = a + 1);
+							if (a == 10) break;
+						}					
+					}
+					return a;
+				}
 
-	# 	void main()
-	# 	{
-	# 		result=0;
-	# 		for (i = 0; i < 10; i = i + 1)
-    #             if (i == 5)
-    #                 break;
-    #             else
-    #                 result = result + 1;
-    #         putInt(result);
-    #         putLn();
-	# 	}
+				void main()
+				{
+					putIntLn(testFor());
+				}
+				"""
+		expect = "2\n3\n4\n5\n6\n7\n8\n9\n10\n0\n"
+		self.assertTrue(TestCodeGen.test(input,expect,554))
 
-	# 	int result,i;
-	# 	"""
-	# 	expect = "5\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,549))
+	def test_For_5(self):
+		input = """
+				void loop(int n){
+					int i;
+					i = 0;
+					for(1 + 2 + 3; i < n; 5.0 / 2){
+						putInt(i = i + 1);
+					}
+				}
 
-	# def test_for_50(self):
-
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int n, i, flag;
-	# 		flag=0;
-	# 	    putStringLn("Enter a positive integer: ");
-	# 	    n=13;
-	# 	    for (i = 2; i <= n / 2; i=i+1) {
-	# 	        if (n%  i== 0) {
-	# 	            flag = 1;
-	# 	            break;
-	# 	        }
-	# 	    }
-	# 	    if (n == 1) {
-	# 	        putStringLn("1 is neither prime nor composite.");
-	# 	    }
-	# 	    else {
-	# 	        if (flag == 0)
-	# 	        {
-	# 	        	putInt(n);
-	# 	            putStringLn(" is a prime number.");
-	# 	        }
-	# 	        else
-	# 	        {
-	# 	        	putInt(n);
-	# 	            putStringLn(" is not a prime number.");
-	# 	        }
-	# 	    }		
-	# 	}
-	# 	"""
-	# 	expect = "Enter a positive integer: \n13 is a prime number.\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,550))
-
-	# def test_for_51(self):
-
-	# 	input = """
-	# 	void main() {
-    #         int i,t;
-    #         for (i = 0; i < 10; i = i + 1)
-    #             putInt(i);
-		   
-    #         t = -10;
-    #         for (1; t < 10; t = t + 2)
-    #             putInt(i);
-    #     }
-	# 	"""
-	# 	expect = "012345678910101010101010101010"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,551))
-
-	# def test_for_52(self):
-
-	# 	input = """
-	# 	void main() {
-    #         int i, j, result;
-    #         result = 0;
-    #         for (i = 0; i < 10; i = i + 1)
-    #             for (j = 0; j < 10; j = j + 1)
-    #                 result = result + 1;
-    #         putInt(result);
-
-    #         for (i = 0; i < 10; i = i + 1){
-    #             result = result + 2;
-    #         }
-    #         putInt(result);
-
-    #         int a[10];
-    #         for (i = 0; i < 10; i = i + 1)
-    #             putInt(a[i]);
-    #         for (i = 0; i < 10; i = i + 1)
-    #             a[i] = i;
-    #         for (i = 0; i < 10; i = i + 1)
-    #             putInt(a[i]);
-    #         for (i = 0; i < 10; i = i + 1)
-    #             result = result + a[i];
-    #         putInt(result);
-    #     }
-	# 	"""
-	# 	expect = "10012000000000000123456789165"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,552))
-
-	# def test_for_53(self):
-
-	# 	input = """
-	# 	int a;
-
-	# 	void testFor()
-	# 	{
-	# 		int i;
-	# 		for(i=0;i<=10;i=i+1) a=a*2;
-	# 		putIntLn(a);
-	# 		int a;
-	# 		for(a=9;true;a=a+1)
-	# 		{
-	# 			putIntLn(a);
-	# 			if (a==20) break;
-	# 		}
-	# 	}
-
-	# 	void main()
-	# 	{
-	# 		testFor();
-	# 	}
-	# 	"""
-	# 	expect = "0\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,553))
-
-	# def test_for_54(self):
-
-	# 	input = """
-	# 	int a;
-
-	# 	void testFor()
-	# 	{
-	# 		int i;
-	# 		for(i=0;i<=10;i=i+1) a=a*2;
-	# 		putIntLn(a);
-	# 		foo();
-	# 	}
-
-	# 	void main()
-	# 	{
-	# 		testFor();
-	# 	}
-
-	# 	void foo()
-	# 	{
-	# 		int a;
-	# 		float f;
-	# 		f=-1*2*3;
-	# 		for(a=9;f<=11;a=a+1)
-	# 		{
-	# 			putIntLn(a);
-	# 			f=f*-2;
-	# 		}
-	# 	}
-	# 	"""
-	# 	expect = "0\n9\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,554))
+				void main(){
+					int a;
+					a = 1;
+					for(1; true; 1){
+						loop(a = a + 1);
+						if(a == 4) break;
+					}
+				}
+				"""
+		expect = "121231234"
+		self.assertTrue(TestCodeGen.test(input,expect,555))
 
 	# def test_do_while_55(self):
 

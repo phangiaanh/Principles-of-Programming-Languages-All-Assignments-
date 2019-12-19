@@ -3,17 +3,21 @@
 .super java.lang.Object
 .field static a I
 
-.method public static testFor()V
+.method public static testFor()I
 Label0:
 .var 0 is i I from Label0 to Label1
 	iconst_0
+	dup
 	istore_0
+	pop
 	goto Label4
 Label2:
 	iload_0
 	iconst_1
 	iadd
+	dup
 	istore_0
+	pop
 Label4:
 	iload_0
 	bipush 10
@@ -30,73 +34,56 @@ Label6:
 	putstatic MCClass.a I
 	goto Label2
 Label3:
-	getstatic MCClass.a I
-	invokestatic io/putIntLn(I)V
-	invokestatic MCClass/foo()V
-Label1:
-	return
-.limit stack 4
-.limit locals 1
-.end method
-
-.method public static main([Ljava/lang/String;)V
-.var 0 is args [Ljava/lang/String; from Label7 to Label8
 Label7:
-	invokestatic MCClass/testFor()V
-Label8:
-	return
-.limit stack 0
-.limit locals 1
-.end method
-
-.method public static foo()V
-Label9:
-.var 0 is a I from Label9 to Label10
-.var 1 is f F from Label9 to Label10
+.var 1 is a I from Label7 to Label8
 	iconst_1
-	ineg
-	iconst_2
-	imul
-	iconst_3
-	imul
-	i2f
-	fstore_1
-	bipush 9
-	istore_0
-	goto Label13
+	istore_1
+	goto Label11
+Label9:
 Label11:
-	iload_0
+	iconst_1
+	ifle Label10
+Label12:
+	iload_1
 	iconst_1
 	iadd
-	istore_0
-Label13:
-	fload_1
-	bipush 11
-	i2f
-	fcmpl
-	ifgt Label14
+	dup
+	istore_1
+	invokestatic io/putIntLn(I)V
+	iload_1
+	bipush 10
+	if_icmpne Label14
 	iconst_1
 	goto Label15
 Label14:
 	iconst_0
 Label15:
-	ifle Label12
+	ifgt Label16
+	goto Label17
 Label16:
-	iload_0
-	invokestatic io/putIntLn(I)V
-	fload_1
-	iconst_2
-	ineg
-	i2f
-	fmul
-	fstore_1
+	goto Label10
 Label17:
-	goto Label11
-Label12:
+Label13:
+	goto Label9
 Label10:
-	return
-.limit stack 6
+Label8:
+	getstatic MCClass.a I
+	goto Label1
+Label1:
+	ireturn
+.limit stack 13
 .limit locals 2
+.end method
+
+.method public static main([Ljava/lang/String;)V
+.var 0 is args [Ljava/lang/String; from Label18 to Label19
+Label18:
+	invokestatic MCClass/testFor()I
+	invokestatic io/putIntLn(I)V
+Label19:
+	return
+.limit stack 13
+.limit locals 1
 .end method
 
 .method public <init>()V
