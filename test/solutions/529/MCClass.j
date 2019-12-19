@@ -11,13 +11,17 @@ Label0:
 	i2f
 	fstore_1
 	iconst_0
+	dup
 	putstatic MCClass.i I
+	pop
 	goto Label4
 Label2:
 	getstatic MCClass.i I
 	iconst_1
 	iadd
+	dup
 	putstatic MCClass.i I
+	pop
 Label4:
 	getstatic MCClass.i I
 	bipush 99
@@ -37,7 +41,7 @@ Label3:
 	invokestatic io/putFloatLn(F)V
 Label1:
 	return
-.limit stack 3
+.limit stack 8
 .limit locals 2
 .end method
 

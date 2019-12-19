@@ -38,18 +38,18 @@ Label5:
 	invokestatic MCClass/setInt(I)V
 Label1:
 	return
-.limit stack 3
+.limit stack 4
 .limit locals 1
 .end method
 
 .method public static setInt(I)V
-.var 0 is k I from Label10 to Label11
 Label10:
+.var 0 is k I from Label10 to Label11
 	iload_0
 	putstatic MCClass.i I
 Label11:
 	return
-.limit stack 3
+.limit stack 6
 .limit locals 1
 .end method
 

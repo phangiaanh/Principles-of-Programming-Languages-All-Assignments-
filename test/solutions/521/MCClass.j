@@ -29,7 +29,7 @@ Label0:
 	invokestatic io/putFloatLn(F)V
 Label1:
 	return
-.limit stack 2
+.limit stack 4
 .limit locals 1
 .end method
 

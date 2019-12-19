@@ -14,7 +14,7 @@ Label0:
 	iconst_1
 	iconst_5
 	ineg
-	invokestatic MCClass/foo()[I
+	pop
 	iload_1
 	i2f
 	invokestatic io/putFloat(F)V
@@ -31,7 +31,7 @@ Label0:
 	invokestatic MCClass/foo2()[Ljava/lang/String;
 	iconst_1
 	ldc "Fool"
-	invokestatic MCClass/foo2()[Ljava/lang/String;
+	pop
 	aload_2
 	invokestatic io/putString(Ljava/lang/String;)V
 	invokestatic MCClass/foo2()[Ljava/lang/String;
@@ -40,7 +40,7 @@ Label0:
 	invokestatic io/putString(Ljava/lang/String;)V
 Label1:
 	return
-.limit stack 10
+.limit stack 12
 .limit locals 3
 .end method
 
@@ -61,7 +61,7 @@ Label2:
 	goto Label3
 Label3:
 	areturn
-.limit stack 12
+.limit stack 16
 .limit locals 1
 .end method
 
@@ -79,7 +79,7 @@ Label4:
 	goto Label5
 Label5:
 	areturn
-.limit stack 11
+.limit stack 16
 .limit locals 1
 .end method
 

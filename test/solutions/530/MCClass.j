@@ -8,13 +8,17 @@
 .method public static setup()V
 Label0:
 	iconst_0
+	dup
 	putstatic MCClass.i I
+	pop
 	goto Label4
 Label2:
 	getstatic MCClass.i I
 	iconst_1
 	iadd
+	dup
 	putstatic MCClass.i I
+	pop
 Label4:
 	getstatic MCClass.i I
 	bipush 10
@@ -33,7 +37,7 @@ Label6:
 Label3:
 Label1:
 	return
-.limit stack 5
+.limit stack 9
 .limit locals 0
 .end method
 
@@ -41,13 +45,17 @@ Label1:
 .var 0 is args [Ljava/lang/String; from Label7 to Label8
 Label7:
 	iconst_0
+	dup
 	putstatic MCClass.i I
+	pop
 	goto Label11
 Label9:
 	getstatic MCClass.i I
 	iconst_1
 	iadd
+	dup
 	putstatic MCClass.i I
+	pop
 Label11:
 	getstatic MCClass.i I
 	bipush 10
@@ -73,12 +81,12 @@ Label17:
 	goto Label19
 Label18:
 	getstatic MCClass.b Z
-	ifgt Label20
+	ifgt Label24
 	iconst_1
-	goto Label21
-Label20:
+	goto Label25
+Label24:
 	iconst_0
-Label21:
+Label25:
 	putstatic MCClass.b Z
 Label19:
 Label15:
@@ -88,7 +96,7 @@ Label10:
 	invokestatic io/putBoolLn(Z)V
 Label8:
 	return
-.limit stack 10
+.limit stack 23
 .limit locals 1
 .end method
 

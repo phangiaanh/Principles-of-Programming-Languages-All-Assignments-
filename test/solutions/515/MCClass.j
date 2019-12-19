@@ -8,13 +8,17 @@
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
 Label0:
 	iconst_0
+	dup
 	putstatic MCClass.i I
+	pop
 	goto Label4
 Label2:
 	getstatic MCClass.i I
 	iconst_2
 	iadd
+	dup
 	putstatic MCClass.i I
+	pop
 Label4:
 	getstatic MCClass.i I
 	bipush 10
@@ -36,13 +40,17 @@ Label6:
 	goto Label2
 Label3:
 	iconst_0
+	dup
 	putstatic MCClass.i I
+	pop
 	goto Label9
 Label7:
 	getstatic MCClass.i I
 	iconst_1
 	iadd
+	dup
 	putstatic MCClass.i I
+	pop
 Label9:
 	getstatic MCClass.i I
 	bipush 10
@@ -61,7 +69,7 @@ Label11:
 Label8:
 Label1:
 	return
-.limit stack 6
+.limit stack 11
 .limit locals 1
 .end method
 

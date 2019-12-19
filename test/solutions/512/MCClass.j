@@ -13,18 +13,18 @@ Label0:
 	ior
 	iconst_0
 	ior
-	ifgt Label2
+	ifgt Label6
 	iconst_1
-	goto Label3
-Label2:
+	goto Label7
+Label6:
 	iconst_0
-Label3:
+Label7:
 	putstatic MCClass.b Z
 	getstatic MCClass.b Z
 	invokestatic io/putBool(Z)V
 Label1:
 	return
-.limit stack 8
+.limit stack 24
 .limit locals 1
 .end method
 

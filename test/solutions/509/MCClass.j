@@ -5,21 +5,25 @@
 .field static f [F
 
 .method public static sum([II)I
+Label0:
 .var 0 is a [I from Label0 to Label1
 .var 1 is l I from Label0 to Label1
-Label0:
 .var 2 is temp I from Label0 to Label1
 .var 3 is i I from Label0 to Label1
 	iconst_0
 	istore_2
 	iconst_0
+	dup
 	istore_3
+	pop
 	goto Label4
 Label2:
 	iload_3
 	iconst_1
 	iadd
+	dup
 	istore_3
+	pop
 Label4:
 	iload_3
 	iload_1
@@ -42,7 +46,7 @@ Label3:
 	goto Label1
 Label1:
 	ireturn
-.limit stack 5
+.limit stack 10
 .limit locals 4
 .end method
 
@@ -53,13 +57,17 @@ Label7:
 	invokestatic io/putStringLn(Ljava/lang/String;)V
 .var 1 is i I from Label7 to Label8
 	iconst_0
+	dup
 	istore_1
+	pop
 	goto Label11
 Label9:
 	iload_1
 	iconst_1
 	iadd
+	dup
 	istore_1
+	pop
 Label11:
 	iload_1
 	bipush 10
@@ -77,13 +85,17 @@ Label13:
 	goto Label9
 Label10:
 	iconst_0
+	dup
 	istore_1
+	pop
 	goto Label16
 Label14:
 	iload_1
 	iconst_1
 	iadd
+	dup
 	istore_1
+	pop
 Label16:
 	iload_1
 	bipush 10
@@ -113,27 +125,31 @@ Label15:
 	invokestatic io/putFloatLn(F)V
 Label8:
 	return
-.limit stack 10
+.limit stack 21
 .limit locals 2
 .end method
 
 .method public static multiply([FI)F
+Label19:
 .var 0 is a [F from Label19 to Label20
 .var 1 is l I from Label19 to Label20
-Label19:
 .var 2 is temp F from Label19 to Label20
 .var 3 is i I from Label19 to Label20
 	iconst_1
 	i2f
 	fstore_2
 	iconst_0
+	dup
 	istore_3
+	pop
 	goto Label23
 Label21:
 	iload_3
 	iconst_1
 	iadd
+	dup
 	istore_3
+	pop
 Label23:
 	iload_3
 	iload_1
@@ -156,7 +172,7 @@ Label22:
 	goto Label20
 Label20:
 	freturn
-.limit stack 11
+.limit stack 26
 .limit locals 4
 .end method
 

@@ -3,8 +3,8 @@
 .super java.lang.Object
 
 .method public static getThreeFloat(I)F
-.var 0 is _ I from Label0 to Label1
 Label0:
+.var 0 is _ I from Label0 to Label1
 	iload_0
 	iconst_1
 	if_icmpgt Label2

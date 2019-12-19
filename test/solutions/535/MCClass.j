@@ -14,13 +14,17 @@ Label0:
 	newarray int
 	astore_0
 	iconst_0
+	dup
 	putstatic MCClass.j I
+	pop
 	goto Label4
 Label2:
 	getstatic MCClass.j I
 	iconst_1
 	iadd
+	dup
 	putstatic MCClass.j I
+	pop
 Label4:
 	getstatic MCClass.j I
 	getstatic MCClass.l I
@@ -43,7 +47,7 @@ Label3:
 	goto Label1
 Label1:
 	areturn
-.limit stack 6
+.limit stack 10
 .limit locals 1
 .end method
 
@@ -55,13 +59,17 @@ Label7:
 	iconst_1
 	putstatic MCClass.mul I
 	iconst_0
+	dup
 	putstatic MCClass.i I
+	pop
 	goto Label11
 Label9:
 	getstatic MCClass.i I
 	iconst_1
 	iadd
+	dup
 	putstatic MCClass.i I
+	pop
 Label11:
 	getstatic MCClass.i I
 	getstatic MCClass.l I
@@ -84,7 +92,7 @@ Label10:
 	invokestatic io/putIntLn(I)V
 Label8:
 	return
-.limit stack 7
+.limit stack 16
 .limit locals 1
 .end method
 

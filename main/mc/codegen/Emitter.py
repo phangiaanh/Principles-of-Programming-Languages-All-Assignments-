@@ -726,11 +726,11 @@ class Emitter():
 	    else:
 	    	stmt += self.emitWRITEVAR(name, typeIn, val, frame)
 	    return stmt
+    
+    def emitDUPX2(self, frame):
+		#frame: Frame
 
-    def emitCLONEARRAY(self, inType, frame):
-        frame.push()
-        return JasminCode.INDENT + "invokevirtual " + self.getJVMType(inType) + '/clone()Ljava/lang/Object;' + JasminCode.END + self.emitCHECKCAST(inType)
-
-    def emitCHECKCAST(self, inType):
-        return JasminCode.INDENT + "checkcast " + self.getJVMType(inType) + JasminCode.END
+	    frame.push()
+	    frame.push()
+	    return self.jvm.emitDUPX2()
         

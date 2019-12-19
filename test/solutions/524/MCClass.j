@@ -4,9 +4,9 @@
 .field static i I
 
 .method public static cmple(II)Z
+Label0:
 .var 0 is a I from Label0 to Label1
 .var 1 is b I from Label0 to Label1
-Label0:
 	iload_0
 	iload_1
 	if_icmpgt Label2
@@ -23,9 +23,9 @@ Label1:
 .end method
 
 .method public static cmpge(II)Z
+Label4:
 .var 0 is a I from Label4 to Label5
 .var 1 is b I from Label4 to Label5
-Label4:
 	iload_0
 	iload_1
 	if_icmplt Label6
@@ -94,7 +94,7 @@ Label11:
 	invokestatic io/putBoolLn(Z)V
 Label9:
 	return
-.limit stack 8
+.limit stack 10
 .limit locals 1
 .end method
 

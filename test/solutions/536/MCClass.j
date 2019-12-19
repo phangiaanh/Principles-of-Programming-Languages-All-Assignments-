@@ -4,8 +4,8 @@
 .field static i I
 
 .method public static enter([I)I
-.var 0 is a [I from Label0 to Label1
 Label0:
+.var 0 is a [I from Label0 to Label1
 	aload_0
 	iconst_0
 	iaload
@@ -38,7 +38,7 @@ Label2:
 	invokestatic io/putFloat(F)V
 Label3:
 	return
-.limit stack 3
+.limit stack 5
 .limit locals 2
 .end method
 

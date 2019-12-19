@@ -10,13 +10,17 @@ Label0:
 	newarray int
 	astore_1
 	iconst_0
+	dup
 	istore_0
+	pop
 	goto Label4
 Label2:
 	iload_0
 	iconst_1
 	iadd
+	dup
 	istore_0
+	pop
 Label4:
 	iload_0
 	bipush 10
@@ -39,7 +43,7 @@ Label3:
 	goto Label1
 Label1:
 	areturn
-.limit stack 6
+.limit stack 10
 .limit locals 2
 .end method
 
@@ -57,7 +61,7 @@ Label7:
 	invokestatic io/putIntLn(I)V
 Label8:
 	return
-.limit stack 4
+.limit stack 7
 .limit locals 2
 .end method
 

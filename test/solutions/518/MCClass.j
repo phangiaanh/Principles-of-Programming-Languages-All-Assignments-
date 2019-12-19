@@ -9,13 +9,17 @@
 Label0:
 .var 1 is i I from Label0 to Label1
 	iconst_0
+	dup
 	istore_1
+	pop
 	goto Label4
 Label2:
 	iload_1
 	iconst_1
 	iadd
+	dup
 	istore_1
+	pop
 Label4:
 	iload_1
 	iconst_5
@@ -33,13 +37,17 @@ Label6:
 	goto Label2
 Label3:
 	iconst_0
+	dup
 	istore_1
+	pop
 	goto Label9
 Label7:
 	iload_1
 	iconst_1
 	iadd
+	dup
 	istore_1
+	pop
 Label9:
 	iload_1
 	iconst_5
@@ -62,7 +70,7 @@ Label8:
 	invokestatic io/putStringLn(Ljava/lang/String;)V
 Label1:
 	return
-.limit stack 6
+.limit stack 12
 .limit locals 2
 .end method
 

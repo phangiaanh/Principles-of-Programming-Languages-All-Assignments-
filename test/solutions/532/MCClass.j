@@ -15,13 +15,17 @@ Label0:
 	anewarray java/lang/String
 	astore_2
 	iconst_0
+	dup
 	putstatic MCClass.i I
+	pop
 	goto Label4
 Label2:
 	getstatic MCClass.i I
 	iconst_1
 	iadd
+	dup
 	putstatic MCClass.i I
+	pop
 Label4:
 	getstatic MCClass.i I
 	bipush 10
@@ -39,13 +43,17 @@ Label6:
 	goto Label2
 Label3:
 	iconst_0
+	dup
 	putstatic MCClass.i I
+	pop
 	goto Label9
 Label7:
 	getstatic MCClass.i I
 	iconst_1
 	iadd
+	dup
 	putstatic MCClass.i I
+	pop
 Label9:
 	getstatic MCClass.i I
 	bipush 10
@@ -66,13 +74,17 @@ Label11:
 Label8:
 Label12:
 	iconst_0
+	dup
 	putstatic MCClass.i I
+	pop
 	goto Label16
 Label14:
 	getstatic MCClass.i I
 	iconst_1
 	iadd
+	dup
 	putstatic MCClass.i I
+	pop
 Label16:
 	getstatic MCClass.i I
 	bipush 10
@@ -91,13 +103,17 @@ Label18:
 Label15:
 Label13:
 	iconst_0
+	dup
 	putstatic MCClass.i I
+	pop
 	goto Label21
 Label19:
 	getstatic MCClass.i I
 	iconst_1
 	iadd
+	dup
 	putstatic MCClass.i I
+	pop
 Label21:
 	getstatic MCClass.i I
 	bipush 10
@@ -115,13 +131,17 @@ Label23:
 	goto Label19
 Label20:
 	iconst_0
+	dup
 	putstatic MCClass.i I
+	pop
 	goto Label26
 Label24:
 	getstatic MCClass.i I
 	iconst_1
 	iadd
+	dup
 	putstatic MCClass.i I
+	pop
 Label26:
 	getstatic MCClass.i I
 	bipush 10
@@ -140,7 +160,7 @@ Label28:
 Label25:
 Label1:
 	return
-.limit stack 12
+.limit stack 25
 .limit locals 3
 .end method
 

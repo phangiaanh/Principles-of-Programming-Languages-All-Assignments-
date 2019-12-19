@@ -10,13 +10,17 @@ Label0:
 	iconst_1
 	putstatic MCClass.tmp I
 	iconst_0
+	dup
 	putstatic MCClass.i I
+	pop
 	goto Label4
 Label2:
 	getstatic MCClass.i I
 	iconst_1
 	iadd
+	dup
 	putstatic MCClass.i I
+	pop
 Label4:
 	getstatic MCClass.i I
 	sipush 2019
@@ -39,7 +43,7 @@ Label3:
 	invokestatic io/putIntLn(I)V
 Label1:
 	return
-.limit stack 4
+.limit stack 9
 .limit locals 1
 .end method
 

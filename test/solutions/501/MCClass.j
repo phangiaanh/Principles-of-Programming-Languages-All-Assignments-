@@ -3,9 +3,9 @@
 .super java.lang.Object
 
 .method public static compare(FI)Z
+Label0:
 .var 0 is a F from Label0 to Label1
 .var 1 is b I from Label0 to Label1
-Label0:
 	fload_0
 	iload_1
 	i2f

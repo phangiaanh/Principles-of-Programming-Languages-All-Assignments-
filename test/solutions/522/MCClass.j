@@ -11,27 +11,27 @@ Label0:
 	putstatic MCClass.a I
 	getstatic MCClass.a I
 	iconst_1
-	if_icmplt Label2
+	if_icmplt Label10
 	iconst_1
-	goto Label3
-Label2:
+	goto Label11
+Label10:
 	iconst_0
-Label3:
+Label11:
 	getstatic MCClass.a I
 	iconst_2
-	if_icmpge Label4
+	if_icmpge Label12
 	iconst_1
-	goto Label5
-Label4:
+	goto Label13
+Label12:
 	iconst_0
-Label5:
+Label13:
 	ior
 	putstatic MCClass.b Z
 	getstatic MCClass.b Z
 	invokestatic io/putBoolLn(Z)V
 Label1:
 	return
-.limit stack 6
+.limit stack 17
 .limit locals 1
 .end method
 

@@ -13,13 +13,17 @@ Label0:
 .var 3 is j I from Label0 to Label1
 .var 4 is k I from Label0 to Label1
 	iconst_0
+	dup
 	istore_2
+	pop
 	goto Label4
 Label2:
 	iload_2
 	iconst_1
 	iadd
+	dup
 	istore_2
+	pop
 Label4:
 	iload_2
 	bipush 10
@@ -37,13 +41,17 @@ Label6:
 	goto Label2
 Label3:
 	iconst_0
+	dup
 	istore_3
+	pop
 	goto Label9
 Label7:
 	iload_3
 	iconst_1
 	iadd
+	dup
 	istore_3
+	pop
 Label9:
 	iload_3
 	bipush 10
@@ -61,13 +69,17 @@ Label11:
 	goto Label7
 Label8:
 	bipush 9
+	dup
 	istore 4
+	pop
 	goto Label14
 Label12:
 	iload 4
 	iconst_1
 	isub
+	dup
 	istore 4
+	pop
 Label14:
 	iload 4
 	iconst_0
@@ -87,7 +99,7 @@ Label16:
 Label13:
 Label1:
 	return
-.limit stack 8
+.limit stack 15
 .limit locals 5
 .end method
 

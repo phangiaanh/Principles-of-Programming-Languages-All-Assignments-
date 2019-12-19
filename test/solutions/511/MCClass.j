@@ -26,7 +26,7 @@ Label0:
 	invokestatic io/putFloatLn(F)V
 Label1:
 	return
-.limit stack 3
+.limit stack 5
 .limit locals 0
 .end method
 
@@ -54,7 +54,7 @@ Label5:
 	invokestatic MCClass/printMultipleInt()V
 Label3:
 	return
-.limit stack 3
+.limit stack 7
 .limit locals 1
 .end method
 

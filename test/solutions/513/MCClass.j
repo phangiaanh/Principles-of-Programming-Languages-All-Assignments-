@@ -12,7 +12,7 @@ Label0:
 	invokestatic io/putStringLn(Ljava/lang/String;)V
 Label1:
 	return
-.limit stack 1
+.limit stack 3
 .limit locals 1
 .end method
 
@@ -32,7 +32,7 @@ Label2:
 	goto Label3
 Label3:
 	areturn
-.limit stack 3
+.limit stack 6
 .limit locals 1
 .end method
 

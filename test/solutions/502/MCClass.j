@@ -3,8 +3,8 @@
 .super java.lang.Object
 
 .method public static getTwoInt(I)I
-.var 0 is a I from Label0 to Label1
 Label0:
+.var 0 is a I from Label0 to Label1
 	iconst_2
 	iconst_3
 	iconst_5

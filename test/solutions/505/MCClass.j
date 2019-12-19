@@ -3,17 +3,21 @@
 .super java.lang.Object
 
 .method public static checkBool(Z)Z
-.var 0 is bool Z from Label0 to Label1
 Label0:
+.var 0 is bool Z from Label0 to Label1
 .var 1 is i I from Label0 to Label1
 	iconst_0
+	dup
 	istore_1
+	pop
 	goto Label4
 Label2:
 	iload_1
 	iconst_1
 	iadd
+	dup
 	istore_1
+	pop
 Label4:
 	iload_1
 	bipush 10
@@ -28,12 +32,12 @@ Label7:
 	iload_0
 	invokestatic io/putBoolLn(Z)V
 	iload_0
-	ifgt Label9
+	ifgt Label13
 	iconst_1
-	goto Label10
-Label9:
+	goto Label14
+Label13:
 	iconst_0
-Label10:
+Label14:
 	istore_0
 Label8:
 	goto Label2
@@ -42,19 +46,19 @@ Label3:
 	goto Label1
 Label1:
 	ireturn
-.limit stack 6
+.limit stack 16
 .limit locals 2
 .end method
 
 .method public static main([Ljava/lang/String;)V
-.var 0 is args [Ljava/lang/String; from Label11 to Label12
-Label11:
+.var 0 is args [Ljava/lang/String; from Label15 to Label16
+Label15:
 	iconst_1
 	invokestatic MCClass/checkBool(Z)Z
 	invokestatic io/putBool(Z)V
-Label12:
+Label16:
 	return
-.limit stack 7
+.limit stack 16
 .limit locals 1
 .end method
 

@@ -11,13 +11,17 @@ Label0:
 	imul
 	iconst_3
 	imul
+	dup
 	istore_1
+	pop
 	goto Label4
 Label2:
 	iload_1
 	iconst_2
 	imul
+	dup
 	istore_1
+	pop
 Label4:
 	iload_1
 	bipush 100
@@ -58,7 +62,7 @@ Label8:
 Label3:
 Label1:
 	return
-.limit stack 7
+.limit stack 9
 .limit locals 2
 .end method
 

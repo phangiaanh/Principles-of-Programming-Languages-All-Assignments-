@@ -18,13 +18,17 @@ Label3:
 	iload_1
 	invokestatic io/putInt(I)V
 	iconst_0
+	dup
 	istore_2
+	pop
 	goto Label6
 Label4:
 	iload_2
 	iconst_1
 	iadd
+	dup
 	istore_2
+	pop
 Label6:
 	iload_2
 	bipush 30
@@ -41,7 +45,7 @@ Label8:
 Label5:
 Label1:
 	return
-.limit stack 3
+.limit stack 6
 .limit locals 6
 .end method
 

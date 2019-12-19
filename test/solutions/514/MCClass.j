@@ -31,7 +31,7 @@ Label2:
 	goto Label3
 Label3:
 	freturn
-.limit stack 2
+.limit stack 5
 .limit locals 1
 .end method
 

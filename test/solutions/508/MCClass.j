@@ -3,17 +3,21 @@
 .super java.lang.Object
 
 .method public static sqrt(I)I
-.var 0 is n I from Label0 to Label1
 Label0:
+.var 0 is n I from Label0 to Label1
 .var 1 is i I from Label0 to Label1
 	iconst_1
+	dup
 	istore_1
+	pop
 	goto Label4
 Label2:
 	iload_1
 	iconst_1
 	iadd
+	dup
 	istore_1
+	pop
 Label4:
 	iload_1
 	iload_0
@@ -48,13 +52,13 @@ Label3:
 	goto Label1
 Label1:
 	ireturn
-.limit stack 6
+.limit stack 8
 .limit locals 2
 .end method
 
 .method public static checkPrime(I)Z
-.var 0 is n I from Label13 to Label14
 Label13:
+.var 0 is n I from Label13 to Label14
 .var 1 is i I from Label13 to Label14
 	iload_0
 	iconst_1
@@ -71,13 +75,17 @@ Label17:
 	goto Label14
 Label18:
 	iconst_2
+	dup
 	istore_1
+	pop
 	goto Label21
 Label19:
 	iload_1
 	iconst_1
 	iadd
+	dup
 	istore_1
+	pop
 Label21:
 	iload_1
 	iload_0
@@ -111,7 +119,7 @@ Label20:
 	goto Label14
 Label14:
 	ireturn
-.limit stack 17
+.limit stack 21
 .limit locals 2
 .end method
 
@@ -135,7 +143,7 @@ Label28:
 	invokestatic io/putBoolLn(Z)V
 Label29:
 	return
-.limit stack 17
+.limit stack 21
 .limit locals 1
 .end method
 

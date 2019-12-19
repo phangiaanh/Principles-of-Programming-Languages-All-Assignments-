@@ -17,7 +17,7 @@ Label0:
 	invokestatic MCClass/testFloat()V
 Label1:
 	return
-.limit stack 2
+.limit stack 4
 .limit locals 1
 .end method
 
@@ -27,7 +27,7 @@ Label2:
 	invokestatic io/putFloatLn(F)V
 Label3:
 	return
-.limit stack 1
+.limit stack 2
 .limit locals 0
 .end method
 

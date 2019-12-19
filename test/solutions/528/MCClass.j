@@ -52,7 +52,7 @@ Label0:
 	invokestatic io/putInt(I)V
 Label1:
 	return
-.limit stack 6
+.limit stack 9
 .limit locals 1
 .end method
 
@@ -72,19 +72,19 @@ Label2:
 	getstatic MCClass.a F
 	invokestatic io/putFloatLn(F)V
 	iconst_1
-	ifgt Label4
+	ifgt Label12
 	iconst_1
-	goto Label5
-Label4:
+	goto Label13
+Label12:
 	iconst_0
-Label5:
+Label13:
 	iconst_0
-	ifgt Label6
+	ifgt Label14
 	iconst_1
-	goto Label7
-Label6:
+	goto Label15
+Label14:
 	iconst_0
-Label7:
+Label15:
 	ior
 	putstatic MCClass.b Z
 	getstatic MCClass.b Z
@@ -92,7 +92,7 @@ Label7:
 	invokestatic MCClass/check()V
 Label3:
 	return
-.limit stack 10
+.limit stack 32
 .limit locals 1
 .end method
 

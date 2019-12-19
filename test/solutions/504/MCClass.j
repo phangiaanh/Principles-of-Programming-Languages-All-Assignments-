@@ -3,8 +3,8 @@
 .super java.lang.Object
 
 .method public static helloWorld(Ljava/lang/String;)Ljava/lang/String;
-.var 0 is str Ljava/lang/String; from Label0 to Label1
 Label0:
+.var 0 is str Ljava/lang/String; from Label0 to Label1
 	ldc "Hello World \n"
 	goto Label1
 Label1:

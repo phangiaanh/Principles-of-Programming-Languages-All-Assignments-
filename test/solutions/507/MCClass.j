@@ -3,17 +3,21 @@
 .super java.lang.Object
 
 .method public static putLoop(I)V
-.var 0 is n I from Label0 to Label1
 Label0:
+.var 0 is n I from Label0 to Label1
 .var 1 is i I from Label0 to Label1
 	iconst_0
+	dup
 	istore_1
+	pop
 	goto Label4
 Label2:
 	iload_1
 	iconst_1
 	iadd
+	dup
 	istore_1
+	pop
 Label4:
 	iload_1
 	iload_0
@@ -30,7 +34,7 @@ Label6:
 Label3:
 Label1:
 	return
-.limit stack 3
+.limit stack 5
 .limit locals 2
 .end method
 
@@ -45,7 +49,7 @@ Label7:
 	invokestatic io/putFloatLn(F)V
 Label8:
 	return
-.limit stack 3
+.limit stack 5
 .limit locals 1
 .end method
 

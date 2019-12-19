@@ -27,19 +27,19 @@ Label2:
 	invokestatic io/putFloatLn(F)V
 Label3:
 	return
-.limit stack 1
+.limit stack 3
 .limit locals 1
 .end method
 
 .method public static getOne(Ljava/lang/String;)I
-.var 0 is s Ljava/lang/String; from Label4 to Label5
 Label4:
+.var 0 is s Ljava/lang/String; from Label4 to Label5
 	iconst_1
 	ineg
 	goto Label5
 Label5:
 	ireturn
-.limit stack 1
+.limit stack 2
 .limit locals 1
 .end method
 
