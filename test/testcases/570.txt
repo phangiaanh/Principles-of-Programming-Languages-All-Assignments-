@@ -1,15 +1,22 @@
 
-		void main()
-		{
-			int i;  
-		    for(i = 0; i<10; i=i+1)  
-		    {  
-		    	putInt(i);
-		    	putString(" ");
-		        if(i == 5) break;  
-		    }  
-		    putLn();
-		    putString("came outside of loop i = ");
-		    putIntLn(i);
-		}
-		
+				void print(string s){
+					putStringLn(s);
+				}
+
+				void main()
+				{
+					n = 3.14;
+					if(n > 3){
+						for(1; n < 7; 1){
+							print("Loop for n");
+							n = n + 1;
+						}
+					}
+					else{
+						print("Love PPL");
+					}
+					
+				}
+
+				float n;
+				

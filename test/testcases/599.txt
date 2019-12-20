@@ -1,6 +1,7 @@
 
-		void main()
-		{
-		
-		}
-		
+				void main(){
+					putStringLn("OK it's enough!");
+					putStringLn("To you who are reading this");
+					putStringLn("Love yourself <3 you are better than who you think you are");
+				}
+				

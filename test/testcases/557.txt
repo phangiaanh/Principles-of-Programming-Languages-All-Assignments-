@@ -1,13 +1,22 @@
 
-		void main()
-		{
-			int i;
-			i=0;
-		   	do
-		   	{
-				putStringLn("while vs do-while");
-		  	}
-		  	while(i==1);
-		   	putString("Out of loop");
-		}
-		
+				void main() {
+        		    int j, result;
+        		    result = j = 0;
+
+        		    
+        		    do
+        		        {
+							{
+								{
+									if (j <= 5)
+        		            			result = result + 2;
+        		        			else
+        		            			result = result + 1;
+								}
+							}
+						}
+        		        j = j + 1;
+        		    while (j < 10);
+        		    putInt(result + j);
+        		}
+				

@@ -1,6 +1,28 @@
 
-		void main()
-		{
+				void reverse(string s[], int size){
+					int max, i;
+					max = 2;
+					for(i = 0; i <= max; i = i + 1){
+						string temp;
+						temp = s[i];
+						s[i] = s[size - i - 1];
+						s[size - i - 1] = temp;
+					}
+					for(i = 0; i < size; i = i + 1){
+						putString(s[i]);
+					}
+				}
+
+				string s[6];
+
+				void main(){
+					s[0] = "R";
+					s[1] = "E";
+					s[2] = "D";
+					s[3] = "R";
+					s[4] = "U";
+					s[5] = "M";
+					reverse(s, 6);
+				}
 		
-		}
-		
+				

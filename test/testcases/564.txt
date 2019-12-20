@@ -1,20 +1,18 @@
 
-		void main()
-		{
-			int j;
-			j=0;
-		   	do
-		   	{
-		      	if (j==7)
-		      	{
-		         	j=j+1;
-		         	continue;
-		      	}
-		      	putInt(j);
-		      	putString(" ");
-		      	j=j+1;
-		   	}
-		   	while(j<10);
-		}
+				void main()
+				{
+					int a;
+					a = 10;
 
-		
+					do 
+					{
+						if(a == 12){
+							a = a + 1;
+							continue;
+						}
+						a = a + 1;
+						putInt(a);
+					} 
+					while(a < 14);
+				}
+				

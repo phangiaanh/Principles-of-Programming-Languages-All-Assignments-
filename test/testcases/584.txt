@@ -1,6 +1,30 @@
 
-		void main()
-		{
-		
-		}
-		
+				float maximum(float a, float b, float c){
+                    if (a > b)
+                    {
+                        if (a > c) return a;
+                        else return c;
+                    }
+                    else{
+                        if (b > c) return b;
+                        else return c;
+                        }
+                }
+
+                float minimum(float a, float b, float c)
+                {
+                    if (a < b)
+                    {
+                        if (a < c) return a;
+                        else return c;
+                    }
+                    else {
+                	    if (b < c) return b;
+                        else return c;
+                    }
+                }
+
+		        void main(){
+		        	putFloat(minimum(1, 3, 9) + maximum(99, 199, 299));
+		        }
+				

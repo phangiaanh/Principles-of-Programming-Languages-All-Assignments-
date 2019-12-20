@@ -5,9 +5,50 @@
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
 Label0:
+	invokestatic MCClass/one()I
+	invokestatic io/putInt(I)V
+	invokestatic MCClass/one()I
+	i2f
+	invokestatic io/putFloat(F)V
+	invokestatic MCClass/two()F
+	invokestatic io/putFloat(F)V
+	ldc "HAHAHA"
+	invokestatic MCClass/getString(Ljava/lang/String;)Ljava/lang/String;
+	invokestatic io/putString(Ljava/lang/String;)V
 Label1:
 	return
-.limit stack 0
+.limit stack 1
+.limit locals 1
+.end method
+
+.method public static one()I
+Label2:
+	iconst_1
+	goto Label3
+Label3:
+	ireturn
+.limit stack 1
+.limit locals 0
+.end method
+
+.method public static two()F
+Label4:
+	ldc 2.0
+	goto Label5
+Label5:
+	freturn
+.limit stack 1
+.limit locals 0
+.end method
+
+.method public static getString(Ljava/lang/String;)Ljava/lang/String;
+Label6:
+.var 0 is s Ljava/lang/String; from Label6 to Label7
+	aload_0
+	goto Label7
+Label7:
+	areturn
+.limit stack 1
 .limit locals 1
 .end method
 

@@ -1,6 +1,13 @@
 
-		void main()
-		{
-		
-		}
-		
+				void main(){
+                    putInt(GCD(36, 6 * 17));
+                }
+
+                int GCD(int a, int b){
+                    if (a == b) return a;
+                    else {
+						if(b > a) return GCD(a, b - a);
+                        else return GCD(a - b, b);
+                    }
+                }
+				

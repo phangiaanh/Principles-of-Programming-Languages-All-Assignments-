@@ -1,6 +1,25 @@
 
-		void main()
-		{
-		
-		}
-		
+				int first;
+
+                void main(){
+                    for(first = 0; first < 7; first = first + 1){
+                        array();
+                    }
+
+					for(first = 0; first < 3; first = first + 1){
+						putInt(array()[first]);
+					}
+                }
+
+                int[] array(){
+                    int input[3];
+                    input[0] = 0;
+                    input[1] = 1;
+                    input[2] = 2;
+                    return input;
+                }
+
+                int num(){
+                    return first + 1;
+                }
+				

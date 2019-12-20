@@ -1,21 +1,19 @@
 
-		void main()
-		{
-			int i,j;
-			i=1;
-			j=1;  
-			for(i=1;i<=3;i=i+1)
-			{      
-				for(j=1;j<=3;j=j+1)
-				{    
-					if(i==2 && j==2){    
-						continue;   
-					} 
-				}    
-				putInt(i);
-				putString(" ");
-				putInt(j);
-				putStringLn("");
-			}    
-		}
-		
+				void main()
+				{
+					int j;
+					j = 0;
+				   	do
+				   	{
+				      	if(j == 7)
+				      	{
+				         	j = j * 2;
+				         	continue;
+				      	}
+				      	putInt(j);
+				      	putString(" ");
+				      	j = j + 1;
+				   	}
+				   	while(j < 10);
+				}
+				

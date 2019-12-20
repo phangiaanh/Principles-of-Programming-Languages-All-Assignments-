@@ -1,1 +1,2 @@
-5109
+Enter a number: 
+This number = 2This number = 3This number = 4This number = 5This number = 6

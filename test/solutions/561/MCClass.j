@@ -7,21 +7,22 @@
 Label0:
 .var 1 is i I from Label0 to Label1
 .var 2 is j I from Label0 to Label1
-.var 3 is result I from Label0 to Label1
 	iconst_0
-	istore_3
-	iconst_0
+	dup
 	istore_1
+	pop
 	goto Label4
 Label2:
 	iload_1
 	iconst_1
 	iadd
+	dup
 	istore_1
+	pop
 Label4:
 	iload_1
 	bipush 10
-	if_icmpge Label5
+	if_icmpgt Label5
 	iconst_1
 	goto Label6
 Label5:
@@ -31,75 +32,69 @@ Label6:
 Label7:
 	iload_1
 	iconst_5
-	if_icmpne Label9
+	if_icmplt Label9
 	iconst_1
 	goto Label10
 Label9:
 	iconst_0
 Label10:
 	ifgt Label11
-	iload_3
+Label13:
+	iload_1
+	invokestatic io/putInt(I)V
+	iconst_0
+	dup
+	istore_2
+	pop
+	goto Label17
+Label15:
+	iload_2
 	iconst_1
 	iadd
-	istore_3
+	dup
+	istore_2
+	pop
+Label17:
+	iload_2
+	bipush 10
+	if_icmpgt Label18
+	iconst_1
+	goto Label19
+Label18:
+	iconst_0
+Label19:
+	ifle Label16
+Label20:
+	iload_2
+	iconst_5
+	if_icmplt Label22
+	iconst_1
+	goto Label23
+Label22:
+	iconst_0
+Label23:
+	ifgt Label24
+	iload_2
+	invokestatic io/putInt(I)V
+	goto Label25
+Label24:
+	goto Label15
+Label25:
+Label21:
+	goto Label15
+Label16:
+Label14:
 	goto Label12
 Label11:
-	goto Label3
+	goto Label2
 Label12:
 Label8:
 	goto Label2
 Label3:
-	iload_3
-	invokestatic io/putInt(I)V
-	iconst_0
-	istore_1
-	goto Label15
-Label13:
-	iload_1
-	iconst_1
-	iadd
-	istore_1
-Label15:
-	iload_1
-	bipush 10
-	if_icmpge Label16
-	iconst_1
-	goto Label17
-Label16:
-	iconst_0
-Label17:
-	ifle Label14
-Label18:
-	iload_1
-	bipush 100
-	if_icmpne Label20
-	iconst_1
-	goto Label21
-Label20:
-	iconst_0
-Label21:
-	ifgt Label22
-	goto Label23
-Label22:
-Label24:
-	iload_1
-	bipush 100
-	iadd
-	istore_1
-	goto Label13
-Label25:
-Label23:
-	iload_1
-	invokestatic io/putInt(I)V
-Label19:
-	goto Label13
-Label14:
-	iload_1
-	invokestatic io/putInt(I)V
 Label1:
 	return
-.limit stack 10
-.limit locals 4
+.limit stack 13
+.limit locals 3
 .end method
 
 .method public <init>()V

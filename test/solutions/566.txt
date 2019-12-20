@@ -1,12 +1,1 @@
-
-Please Enter any integer
-
-Odd Numbers = 1 (Skipped By Continue)
-
-Even numbers = 2
-
-Odd Numbers = 3 (Skipped By Continue)
-
-Even numbers = 4
-
-Odd Numbers = 5 (Skipped By Continue)
+Stop

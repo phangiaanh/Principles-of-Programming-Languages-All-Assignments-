@@ -1,28 +1,24 @@
 .source MCClass.java
 .class public MCClass
 .super java.lang.Object
+.field static a I
+.field static b [I
 
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
 Label0:
-.var 1 is i I from Label0 to Label1
-.var 2 is number I from Label0 to Label1
-	ldc "\nPlease Enter any integer\n"
-	invokestatic io/putString(Ljava/lang/String;)V
-	iconst_5
-	istore_2
-	iconst_1
-	istore_1
 	goto Label4
 Label2:
-	iload_1
+	getstatic MCClass.a I
 	iconst_1
 	iadd
-	istore_1
+	dup
+	putstatic MCClass.a I
+	pop
 Label4:
-	iload_1
-	iload_2
-	if_icmpgt Label5
+	getstatic MCClass.a I
+	bipush 6
+	if_icmpge Label5
 	iconst_1
 	goto Label6
 Label5:
@@ -30,40 +26,47 @@ Label5:
 Label6:
 	ifle Label3
 Label7:
-	iload_1
-	iconst_2
-	irem
-	iconst_0
-	if_icmpeq Label9
+	invokestatic MCClass/True()Z
+	getstatic MCClass.a I
+	iconst_4
+	if_icmpne Label9
 	iconst_1
 	goto Label10
 Label9:
 	iconst_0
 Label10:
+	iand
 	ifgt Label11
+Label13:
+	ldc "Stop"
+	invokestatic io/putString(Ljava/lang/String;)V
+	goto Label3
+Label14:
 	goto Label12
 Label11:
-Label13:
-	ldc "\nOdd Numbers = "
-	invokestatic io/putString(Ljava/lang/String;)V
-	iload_1
+Label15:
+	getstatic MCClass.a I
 	invokestatic io/putInt(I)V
-	ldc " (Skipped By Continue)"
-	invokestatic io/putStringLn(Ljava/lang/String;)V
 	goto Label2
-Label14:
+Label16:
 Label12:
-	ldc "\nEven numbers = "
-	invokestatic io/putString(Ljava/lang/String;)V
-	iload_1
-	invokestatic io/putIntLn(I)V
 Label8:
 	goto Label2
 Label3:
 Label1:
 	return
-.limit stack 5
-.limit locals 3
+.limit stack 8
+.limit locals 1
+.end method
+
+.method public static True()Z
+Label17:
+	iconst_1
+	goto Label18
+Label18:
+	ireturn
+.limit stack 8
+.limit locals 0
 .end method
 
 .method public <init>()V
@@ -75,4 +78,15 @@ Label1:
 	return
 .limit stack 1
 .limit locals 1
+.end method
+
+.method public static <clinit>()V
+Label0:
+	bipush 99
+	newarray int
+	putstatic MCClass.b [I
+Label1:
+	return
+.limit stack 1
+.limit locals 0
 .end method

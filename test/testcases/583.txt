@@ -1,6 +1,43 @@
 
-		void main()
-		{
-		
-		}
-		
+				int a[10];
+				boolean global;
+
+                void main(){
+                    int b;
+                    b = 1;
+                    a[b + 1] = b;
+                    int x;
+                    {
+                        string x;
+                        {
+                            {
+                                {
+                                    string x;
+                                    {
+                                        x = "OK";
+                                    }
+                                }
+                            }
+                        }
+						x = "OK";
+                        string b;
+                        b = x;
+                        
+						putStringLn(b);
+						check(a);
+                    }
+                    return;
+                }
+
+				int check(int arr[]){
+					int i;
+					for(i = 0; i < 10; i = i + 1){
+						if(arr[i] != 0){
+							putString("Found a value!");
+							return 1;
+						}
+					}
+					putString("No value found!");
+					return 0;
+				}
+				

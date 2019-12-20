@@ -1,23 +1,18 @@
 
-		void main() {
-			int i,j;
-			i = 0;
+		void main()
+		{
+			int i, j;
+			i = 1;
+			j = 3;
+			putStringLn("Enter a number: ");    
 			do
-				i = i + 1;
-				if (i == 5)
-					break;
-			while (i < 10);
-			putInt(i);
-
-			j = 0;
-			i = 0;
-			do
-				i = i + 1;
-				if (i == 5)
-					continue;
-				j = j + 1;
-			while (i < 10);
-			putInt(i);
-			putInt(j);
+			{    
+				putString("This number = ");    
+				i = j = i + 1;
+			}
+			{   
+				putInt(j);
+			}
+			while(i <= 5);    
 		}
 		

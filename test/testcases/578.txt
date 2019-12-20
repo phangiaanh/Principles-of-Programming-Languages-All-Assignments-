@@ -1,6 +1,21 @@
 
-		void main()
-		{
-		
-		}
-		
+				void main()
+				{
+					putInt(one());
+					putFloat(one());
+					putFloat(two());
+					putString(getString("HAHAHA"));
+				}
+				
+				int one(){
+					return 1;
+				}
+
+				float two(){
+					return 2.0;
+				}
+
+				string getString(string s){
+					return s;
+				}
+				

@@ -1,17 +1,20 @@
 
-		void main()
-		{
-			int i;
-			for (i = 1; i <= 10; i=i+1)
-			{  
-		        if (i == 6)  
-		            continue; 
-		        else
-		        {
-					putInt(i);
-					putString(" ");
-		        } 
-	        }
-  
-		}
-		
+				int arr[15];
+				int i;
+				void main()
+				{
+
+					putStringLn("We have an array: ");
+					for(1; i < 15; i = i + 1){
+						arr[i] = i;
+						if(i % 2 == 0) continue;
+					}
+
+					if(arr[i - 1] % 2 == 0){
+						putStringLn("It's even");
+					}
+					else{
+						putStringLn("It's odd");
+					}
+				}
+				

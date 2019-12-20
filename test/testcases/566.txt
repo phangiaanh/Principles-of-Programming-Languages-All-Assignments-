@@ -1,23 +1,20 @@
 
-		void main()
-		{
-			int i, number;
+				int a, b[99];
+				void main()
+				{
+					for(a; a < 6; a = a + 1){
+						if(True() && (a == 4)){
+							putInt(a);
+							continue;
+						}
+						else{
+							putString("Stop");
+							break;
+						}
+					}
+				}
 
-			putString("\nPlease Enter any integer\n");
-			number=5;
-
-			for(i=1;i<= number; i=i+1)
-			{
-			   	if(i%2 != 0)
-			   	{
-			     	putString("\nOdd Numbers = ");
-			     	putInt(i);
-			     	putStringLn(" (Skipped By Continue)");
-			     	continue;
-			   	}
-
-			   	putString("\nEven numbers = ");
-			   	putIntLn(i);
-			}
-		}
-		
+				boolean True(){
+					return true;
+				}
+				

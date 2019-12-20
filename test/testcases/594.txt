@@ -1,6 +1,13 @@
 
-		void main()
-		{
-		
-		}
-		
+				void binary(int n){
+					if(n == 0 || n == 1) putInt(n);
+					else{
+						binary(n / 2);
+						putInt(n % 2);
+					}
+				}
+
+				void main(){
+					binary(54);
+				}
+				

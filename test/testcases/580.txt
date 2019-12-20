@@ -1,27 +1,20 @@
 
-		 		void main() {
-           		    int b;
-           		    b = foo()[1];
-           		    foo()[1] = -5;
-           		    putFloat(b);
-           		    putFloat(foo()[1]);
+				int arr[9];
+				void main()
+				{
+					putFloat(getArr(arr)[0]);
+					changeArr(3);
+					putFloat(getArr(arr)[0]);
+				}
 
-           		    string c;
-           		    c = foo2()[1];
-           		    foo2()[1] = "Fool";
-           		    putString(c);
-           		    putString(foo2()[1]);
-           		}
+				int[] getArr(int arr[]){
+					return arr;
+				}
 
-           		int[] foo(){
-           		    int a[10];
-           		    a[1] = -5 * 5;
-           		    return a;
-           		}
-
-           		string[] foo2(){
-           		    string a[10];
-           		    a[1] = "Anh";
-           		    return a;
-           		}
+				void changeArr(int val){
+					int i;
+					for(i = 0; i < 9; i = i + 1){
+						arr[i] = val;
+					}
+				}
 				

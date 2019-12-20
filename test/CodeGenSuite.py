@@ -1200,779 +1200,1020 @@ class CheckCodeGenSuite(unittest.TestCase):
 		expect = "121231234"
 		self.assertTrue(TestCodeGen.test(input,expect,555))
 
-	# def test_do_while_55(self):
+	def test_Dowhile_1(self):
+		input = """
+				void main() 
+				{
+        		    int i;
+					i = 0;
+					do
+						i = i + 1;
+					while(false);
+					putInt(i);
+        		}	
+				"""
+		expect = "1"
+		self.assertTrue(TestCodeGen.test(input,expect,556))
 
-	# 	input = """
-	# 	void main() 
-	# 	{
-    #         testDoWhile();
-    #     }
+	def test_Dowhile_2(self):
+		input = """
+				void main() {
+        		    int j, result;
+        		    result = j = 0;
 
-    #     void testDoWhile()
-    #     {
-	# 		int a;
-    #         a = 0;
-    #         do
-    #             a = a + 1;
-    #         while(a < 10);
-    #         putInt(a);
-    #     }	
-	# 	"""
-	# 	expect = "10"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,555))
+        		    
+        		    do
+        		        {
+							{
+								{
+									if (j <= 5)
+        		            			result = result + 2;
+        		        			else
+        		            			result = result + 1;
+								}
+							}
+						}
+        		        j = j + 1;
+        		    while (j < 10);
+        		    putInt(result + j);
+        		}
+				"""
+		expect = "26"
+		self.assertTrue(TestCodeGen.test(input,expect,557))
 
-	# def test_do_while_56(self):
+	def test_Dowhile_3(self):
+		input = """
+				void main()
+				{
+					int i;
+					i = 0;
+				   	do
+				   	{
+						putStringLn("Still looping");
+				  	}
+				  	while((i = i + 1) < 5 * 2);
+				   	putString("Out of loop");
+				}
+				"""
+		expect = "Still looping\nStill looping\nStill looping\nStill looping\nStill looping\nStill looping\nStill looping\nStill looping\nStill looping\nStill looping\nOut of loop"
+		self.assertTrue(TestCodeGen.test(input,expect,558))
 
-	# 	input = """
-	# 	void main() {
-    #         int a;
-    #         a = 0;
-    #         do{
-    #             int a;
-    #             a = 7;
-    #             a = a + 1;
-    #         }
-    #         a = a + 1;
-    #         while(a < 10);
-    #         putInt(a);
+	def test_Dowhile_4(self):
+		input = """
+				void main()
+				{    
+					int i, number;
+					number = i = 0;
+					do
+					{    
+						putIntLn((number = number + 1) * (i = i + 1));
+					}
+					while(i <= 10);    
+				}    
+				"""
+		expect = "1\n4\n9\n16\n25\n36\n49\n64\n81\n100\n121\n"
+		self.assertTrue(TestCodeGen.test(input,expect,559))
 
-    #         int i, j, result;
-    #         i = 0;
-    #         j = 0;
-    #         result = 0;
-
-    #         j = 0;
-    #         result = 0;
-    #         do
-    #             if (j == 5)
-    #                 result = result + 2;
-    #             else
-    #                 result = result + 1;
-    #             j = j + 1;
-    #         while (j < 10);
-    #         putInt(result);
-    #     }
-	# 	"""
-	# 	expect = "1011"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,556))
-
-	# def test_do_while_57(self):
-
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int i;
-	# 		i=0;
-	# 	   	do
-	# 	   	{
-	# 			putStringLn("while vs do-while");
-	# 	  	}
-	# 	  	while(i==1);
-	# 	   	putString("Out of loop");
-	# 	}
-	# 	"""
-	# 	expect = "while vs do-while\nOut of loop"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,557))
-
-	# def test_do_while_58(self):
-
-	# 	input = """
-	# 	void main()
-	# 	{    
-	# 		int i,number;
-	# 		i=1;
-	# 		number=0;    
-	# 		putStringLn("Enter a number: ");    
-	# 		number=10;
-	# 		do
-	# 		{    
-	# 			putIntLn(number*i);    
-	# 			i=i+1;
-	# 		}
-	# 		while(i<=10);    
-	# 	}    
-	# 	"""
-	# 	expect = "Enter a number: \n10\n20\n30\n40\n50\n60\n70\n80\n90\n100\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,558))
-
-	# def test_do_while_59(self):
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int i,j,number;
-	# 		i=1;
-	# 		j=3;
-	# 		putStringLn("Enter a number: ");    
-	# 		number=10;
-	# 		do
-	# 		{    
-	# 			putString("number * i = ");
-	# 			putIntLn(number*i);    
-	# 			i=i+1;
-	# 		}
-	# 		{
-	# 			putString("number * j = ");
-	# 			putIntLn(number*j);    
-	# 			j=j+1;
-	# 		}
-	# 		while(i<=5);    
-	# 	}
-	# 	"""
-	# 	expect = "Enter a number: \nnumber * i = 10\nnumber * j = 30\nnumber * i = 20\nnumber * j = 40\nnumber * i = 30\nnumber * j = 50\nnumber * i = 40\nnumber * j = 60\nnumber * i = 50\nnumber * j = 70\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,559))
+	def test_Dowhile_5(self):
+		input = """
+		void main()
+		{
+			int i, j;
+			i = 1;
+			j = 3;
+			putStringLn("Enter a number: ");    
+			do
+			{    
+				putString("This number = ");    
+				i = j = i + 1;
+			}
+			{   
+				putInt(j);
+			}
+			while(i <= 5);    
+		}
+		"""
+		expect = "Enter a number: \nThis number = 2This number = 3This number = 4This number = 5This number = 6"
+		self.assertTrue(TestCodeGen.test(input,expect,560))
 
 
-	# def test_continue_60(self):
+	def test_Continue_1(self):
+		input = """
+				void main() {
+					int i, j;
+					for(i = 0; i <= 10; i = i + 1){
+						if(i >= 5) continue;
+						else{
+							putInt(i);
+							for(j = 0; j <= 10; j = j + 1){
+								if(j >= 5) continue;
+								else putInt(j);
+							}
+						}
+					}
+				}
+				"""
+		expect = "001234101234201234301234401234"
+		self.assertTrue(TestCodeGen.test(input,expect,561))
 
-	# 	input = """
-	# 	void main() {
-	# 		int i,j;
-	# 		i = 0;
-	# 		do
-	# 			i = i + 1;
-	# 			if (i == 5)
-	# 				break;
-	# 		while (i < 10);
-	# 		putInt(i);
+	def test_Continue_2(self):
+		input = """
+		void main() {
+			int i;
 
-	# 		j = 0;
-	# 		i = 0;
-	# 		do
-	# 			i = i + 1;
-	# 			if (i == 5)
-	# 				continue;
-	# 			j = j + 1;
-	# 		while (i < 10);
-	# 		putInt(i);
-	# 		putInt(j);
-	# 	}
-	# 	"""
-	# 	expect = "5109"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,560))
+			for (i = 0; i < 10; i = i + 1)
+			{
+				int a;
+				a = 6;
+				for(1; true; 1){
+					{
+						putInt(a);
+						{
+							{
+								if(a > 5 && a < 10){
+									a = a + 1;
+									continue;
+								}
+								else break;
+							}
+						}
+					}
+					putInt(a);
+				}
+			}
+			putInt(i);
 
-	# def test_continue_61(self):
+		}
+		"""
+		expect = "67891067891067891067891067891067891067891067891067891067891010"
+		self.assertTrue(TestCodeGen.test(input,expect,562))
 
-	# 	input = """
-	# 	void main() {
-	# 		int i,j,result;
-	# 		result = 0;
+	def test_Continue_3(self):
+		input = """
+				void main()
+				{
+					int j;
+					for (j = 0; j <= 10; j = j + 1)
+				   	{
+				      	if(j * j < 81) continue;
 
-	# 		for (i = 0; i < 10; i = i + 1)
-	# 		{
-	# 			if (i == 5)
-	# 				break;
-	# 			else
-	# 				result = result + 1;
-	# 		}
-	# 		putInt(result);
-			
+				       	putInt(j);
+				       	putString(" ");
+				    }
+				}
+				"""
+		expect = "9 10 "
+		self.assertTrue(TestCodeGen.test(input,expect,563))
 
-	# 		for (i = 0; i < 10; i = i + 1){
-	# 			if (i == 100){
-	# 				i = i + 100;
-	# 				continue;
-	# 			}
-	# 			putInt(i);
-	# 		}
+	def test_Continue_4(self):
+		input = """
+				void main()
+				{
+					int a;
+					a = 10;
 
-	# 		putInt(i);
+					do 
+					{
+						if(a == 12){
+							a = a + 1;
+							continue;
+						}
+						a = a + 1;
+						putInt(a);
+					} 
+					while(a < 14);
+				}
+				"""
+		expect = "111214"
+		self.assertTrue(TestCodeGen.test(input,expect,564))
 
-	# 	}
-	# 	"""
-	# 	expect = "5012345678910"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,561))
+	def test_Continue_5(self):
+		input = """
+				void main()
+				{
+					int j;
+					j = 0;
+				   	do
+				   	{
+				      	if(j == 7)
+				      	{
+				         	j = j * 2;
+				         	continue;
+				      	}
+				      	putInt(j);
+				      	putString(" ");
+				      	j = j + 1;
+				   	}
+				   	while(j < 10);
+				}
+				"""
+		expect = "0 1 2 3 4 5 6 14 "
+		self.assertTrue(TestCodeGen.test(input,expect,565))
 
-	# def test_continue_62(self):
+	def test_Continue_6(self):
+		input = """
+				int a, b[99];
+				void main()
+				{
+					for(a; a < 6; a = a + 1){
+						if(True() && (a == 4)){
+							putInt(a);
+							continue;
+						}
+						else{
+							putString("Stop");
+							break;
+						}
+					}
+				}
 
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int j;
-	# 		for (j=0; j<=8; j=j+1)
-	# 	   	{
-		   		
-	# 	      	if (j==4) continue;
-		       	
-	# 	       	putInt(j);
-	# 	       	putString(" ");
-	# 	    }
-	# 	}
-	# 	"""
-	# 	expect = "0 1 2 3 5 6 7 8 "
-	# 	self.assertTrue(TestCodeGen.test(input,expect,562))
+				boolean True(){
+					return true;
+				}
+				"""
+		expect = "Stop"
+		self.assertTrue(TestCodeGen.test(input,expect,566))
 
-	# def test_continue_63(self):
+	def test_Continue_7(self):
+		input = """
+				int arr[15];
+				int i;
+				void main()
+				{
 
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int a;
-	# 		a=10;
+					putStringLn("We have an array: ");
+					for(1; i < 15; i = i + 1){
+						arr[i] = i;
+						if(i % 2 == 0) continue;
+					}
 
-	# 		do 
-	# 		{
-	# 			if(a == 15) {
-	# 				a = a + 1;
-	# 				continue;
-	# 			}
+					if(arr[i - 1] % 2 == 0){
+						putStringLn("It's even");
+					}
+					else{
+						putStringLn("It's odd");
+					}
+				}
+				"""
+		expect = "We have an array: \nIt's even\n"
+		self.assertTrue(TestCodeGen.test(input,expect,567))
+
+	def test_Continue_8(self):
+		input = """
+				int i;
+				void main()
+				{
+					for (1; i <= 10; i = i + 1)
+					{  
+				        if (i == 6)  
+				            continue; 
+				        else
+				        {
+							putInt(i);
+							putString("//");
+				        } 
+	    		    }
+
+				}
+				"""
+		expect = "0//1//2//3//4//5//7//8//9//10//"
+		self.assertTrue(TestCodeGen.test(input,expect,568))
+
+	def test_Continue_9(self):
+		input = """
+				boolean even(int n){
+					return n % 2 == 0;
+				}
+				void main()
+				{
+					int n;
+					for(n = 0; n < 20; n = n + 1){
+						if(even(n)) continue;
+						else{
+							if(odd(n/2)) putInt(n);
+						}
+					}
+				}
+				boolean odd(int n){
+					return n % 2 == 1;
+				}
+				"""
+		expect = "37111519"
+		self.assertTrue(TestCodeGen.test(input,expect,569))
+
+	def test_Continue_10(self):
+		input = """
+				void print(string s){
+					putStringLn(s);
+				}
+
+				void main()
+				{
+					n = 3.14;
+					if(n > 3){
+						for(1; n < 7; 1){
+							print("Loop for n");
+							n = n + 1;
+						}
+					}
+					else{
+						print("Love PPL");
+					}
 					
-	# 			putString("value of a: ");
-	# 			putInt(a);
-	# 			a=a+1;
-	# 		} 
-	# 		while( a < 20 );
-	# 	}
-	# 	"""
-	# 	expect = "value of a: 10value of a: 11value of a: 12value of a: 13value of a: 14value of a: 16value of a: 17value of a: 18value of a: 19"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,563))
+				}
 
-	# def test_continue_64(self):
+				float n;
+				"""
+		expect = "Loop for n\nLoop for n\nLoop for n\nLoop for n\n"
+		self.assertTrue(TestCodeGen.test(input,expect,570))
 
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int j;
-	# 		j=0;
-	# 	   	do
-	# 	   	{
-	# 	      	if (j==7)
-	# 	      	{
-	# 	         	j=j+1;
-	# 	         	continue;
-	# 	      	}
-	# 	      	putInt(j);
-	# 	      	putString(" ");
-	# 	      	j=j+1;
-	# 	   	}
-	# 	   	while(j<10);
-	# 	}
+	def test_Break_1(self):
+		input = """
+				void main()
+				{
+					for(1; true; 1) break;
+				}
+				"""
+		expect = ""
+		self.assertTrue(TestCodeGen.test(input,expect,571))
 
-	# 	"""
-	# 	expect = "0 1 2 3 4 5 6 8 9 "
-	# 	self.assertTrue(TestCodeGen.test(input,expect,564))
+	def test_Break_2(self):
+		input = """
+				void main()
+				{
+					int i, j;
+					i = j = 0;
+					for(1; i <= 5; i = i + 1){
+						for(1; j <= 7; j = j + 2){
+							if(i * j > 20) break;
+							putInt(i * j);
+						}
+					}
+				}
+				"""
+		expect = "0000"
+		self.assertTrue(TestCodeGen.test(input,expect,572))
 
-	# def test_continue_65(self):
+	def test_Break_3(self):
+		input = """
+				void main(){
+					int arr[10], n;
+					int i;
+					for(i = 0; i < 10; i = i + 1){
+						arr[i] = i * i;
+					}
+					findValue(arr, 10, 64);
+				}
 
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int i,j;
-	# 		i=1;
-	# 		j=1;  
-	# 		for(i=1;i<=3;i=i+1)
-	# 		{      
-	# 			for(j=1;j<=3;j=j+1)
-	# 			{    
-	# 				if(i==2 && j==2){    
-	# 					continue;   
-	# 				} 
-	# 			}    
-	# 			putInt(i);
-	# 			putString(" ");
-	# 			putInt(j);
-	# 			putStringLn("");
-	# 		}    
-	# 	}
-	# 	"""
-	# 	expect = "1 4\n2 4\n3 4\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,565))
+				void findValue(int arr[], int size, int value){
+					int i;
+					for(i = 0; i < size; i = i + 1){
+						if(arr[i] == value){
+							putString("Found value(");
+							putInt(value);
+							putString(") at position: ");
+							putIntLn(i);
+							break;
+						}
+					}
+				}
+				"""
+		expect = "Found value(64) at position: 8\n"
+		self.assertTrue(TestCodeGen.test(input,expect,573))
 
-	# def test_continue_66(self):
+	def test_Break_4(self):
+		input = """
+				void main()
+				{
+					string str[3];
+					str[0] = "Oh no";
+					str[1] = "Yessss";
+					str[2] = "Damn.....";
 
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int i, number;
+					int i;
+					for(i = 0; i < 3; i = i + 1){
+						if(i == 2) break;
+						putStringLn(clinit(str[i]));
+					}
+				}
 
-	# 		putString("\\nPlease Enter any integer\\n");
-	# 		number=5;
+				string clinit(string s){
+					putString("Init");
+					return s;
+				}
+				"""
+		expect = "InitOh no\nInitYessss\n"
+		self.assertTrue(TestCodeGen.test(input,expect,574))
 
-	# 		for(i=1;i<= number; i=i+1)
-	# 		{
-	# 		   	if(i%2 != 0)
-	# 		   	{
-	# 		     	putString("\\nOdd Numbers = ");
-	# 		     	putInt(i);
-	# 		     	putStringLn(" (Skipped By Continue)");
-	# 		     	continue;
-	# 		   	}
+	def test_Break_5(self):
+		input = """
+				void main()
+				{
+					int i;
+				    float number, sum;
+				    sum = 0.0;
+				    for(i = 5; i >= -5; i = i-1)
+				    {
+					
+				        putString("Enter a n:");
+				        number = i - 2;
+				        if(number < 0.0)
+				        {
+				            break;
+				        }
+				        sum = sum + number; 		    
+				    }
+				    putString("sum = ");
+				    putFloatLn(sum);
+				}
+				"""
+		expect = "Enter a n:Enter a n:Enter a n:Enter a n:Enter a n:sum = 6.0\n"
+		self.assertTrue(TestCodeGen.test(input,expect,575))
 
-	# 		   	putString("\\nEven numbers = ");
-	# 		   	putIntLn(i);
-	# 		}
-	# 	}
-	# 	"""
-	# 	expect = "\nPlease Enter any integer\n\nOdd Numbers = 1 (Skipped By Continue)\n\nEven numbers = 2\n\nOdd Numbers = 3 (Skipped By Continue)\n\nEven numbers = 4\n\nOdd Numbers = 5 (Skipped By Continue)\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,566))
+	def test_Return_1(self):
+		input = """
+				void main()
+				{
+					one();
+					two();
+				}
 
-	# def test_continue_67(self):
+				int one(){
+					return 1;
+				}
 
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int i;
-	# 		for (i = 1; i <= 10; i=i+1)
-	# 		{  
-	# 	        if (i == 6)  
-	# 	            continue; 
-	# 	        else
-	# 	        {
-	# 				putInt(i);
-	# 				putString(" ");
-	# 	        } 
-	#         }
-  
-	# 	}
-	# 	"""
-	# 	expect = "1 2 3 4 5 7 8 9 10 "
-	# 	self.assertTrue(TestCodeGen.test(input,expect,567))
+				float two(){
+					return 2.0;
+				}
+				"""
+		expect = ""
+		self.assertTrue(TestCodeGen.test(input,expect,576))
 
-	# def test_continue_68(self):
+	def test_Return_2(self):
+		input = """
+				void main()
+				{
+					putInt(one());
+					putFloat(one());
+					putFloat(two());
+				}
+				
+				int one(){
+					return 1;
+				}
 
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int i,j,k;
-	# 		for (i = 0; i < 10; i=i+1) 
-	# 		{
-	# 	        if (i != 5) continue;
-	# 	        putInt(i);
-	# 	        putString(" ");
-	# 	    }
-	# 	 	putLn();
-		 
-	# 	    for (j = 0; j < 2; j=j+1) {
-	# 	        for (k = 0; k < 5; k=k+1) {   
-	# 	            if (k == 3) continue;
-	# 	            putInt(j);
-	# 	            putInt(k);
-	# 	            putString(" ");
-	# 	        }
-	# 	    }
-	# 	}
-	# 	"""
-	# 	expect = "5 \n00 01 02 04 10 11 12 14 "
-	# 	self.assertTrue(TestCodeGen.test(input,expect,568))
+				float two(){
+					return 2.0;
+				}
+				"""
+		expect = "11.02.0"
+		self.assertTrue(TestCodeGen.test(input,expect,577))
 
-	# def test_continue_69(self):
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		for (num=0; num<=6; num=num+2) {
-    
-	# 		    if (num==3) {
-	# 		        continue;
-	# 		    }
-	# 		    putInt(num);
-	# 		    putString(" ");
-   	# 		}
-	# 	}
+	def test_Return_3(self):
+		input = """
+				void main()
+				{
+					putInt(one());
+					putFloat(one());
+					putFloat(two());
+					putString(getString("HAHAHA"));
+				}
+				
+				int one(){
+					return 1;
+				}
 
-	# 	int num;
-	# 	"""
-	# 	expect = "0 2 4 6 "
-	# 	self.assertTrue(TestCodeGen.test(input,expect,569))
+				float two(){
+					return 2.0;
+				}
 
-	# def test_break_70(self):
+				string getString(string s){
+					return s;
+				}
+				"""
+		expect = "11.02.0HAHAHA"
+		self.assertTrue(TestCodeGen.test(input,expect,578))
 
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int i;  
-	# 	    for(i = 0; i<10; i=i+1)  
-	# 	    {  
-	# 	    	putInt(i);
-	# 	    	putString(" ");
-	# 	        if(i == 5) break;  
-	# 	    }  
-	# 	    putLn();
-	# 	    putString("came outside of loop i = ");
-	# 	    putIntLn(i);
-	# 	}
-	# 	"""
-	# 	expect = "0 1 2 3 4 5 \ncame outside of loop i = 5\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,570))
+	def test_Return_4(self):
+		input = """
+				void main()
+				{
+					putInt(one());
+					putFloat(one());
+					putFloat(two());
+					putInt(arr()[0]);
+				}
+				
+				int one(){
+					return 1;
+				}
 
-	# def test_break_71(self):
+				float two(){
+					return 2.0;
+				}
 
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int i,j;
-	# 		i=1;
-	# 		j=1;   
-	# 		for(i=1;i<=3;i=i+1)
-	# 		{      
-	# 			for(j=1;j<=3;j=j+1)
-	# 			{    
-	# 				putInt(i);
-	# 				putString(" ");
-	# 				putInt(j);
-	# 				putLn();    
-	# 				if(i==2 && j==2)
-	# 				{    
-	# 					break;   
-	# 				}		    
-	# 			}
-	# 		}
-	# 	}
-	# 	"""
-	# 	expect = "1 1\n1 2\n1 3\n2 1\n2 2\n3 1\n3 2\n3 3\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,571))
+				int[] arr(){
+					int arr[1];
+					arr[0] = 4;
+					return arr;
+				}
+				"""
+		expect = "11.02.04"
+		self.assertTrue(TestCodeGen.test(input,expect,579))
 
-	# def test_break_72(self):
+	def test_Return_5(self):
+		input = """
+				int arr[9];
+				void main()
+				{
+					putFloat(getArr(arr)[0]);
+					changeArr(3);
+					putFloat(getArr(arr)[0]);
+				}
 
-	# 	input = """
-	# 	void findElement(int arr[], int size, int key) 
-	# 	{ 
-	# 		int i;
-	# 	    for (i = 0; i < size; i=i+1) { 
-	# 	        if (arr[i] == key) { 
-		  			
-	# 	  			putString("Element found at position: ");
-	# 	  			putIntLn(i+1);
-	# 	            break; 
-	# 	        } 
-	# 	    } 
-	# 	} 
-		  
-	# 	void main() 
-	# 	{ 
-	# 		int arr[6],i,n,key;
-	# 		n=6;
-	# 		key=3;
-	# 		for(i=1;i<=6;i=i+1) arr[i-1]=i;
-	# 	    findElement(arr, n, key); 
-	# 	} 
-	# 	"""
-	# 	expect = "Element found at position: 3\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,572))
+				int[] getArr(int arr[]){
+					return arr;
+				}
 
-	# def test_break_73(self):
+				void changeArr(int val){
+					int i;
+					for(i = 0; i < 9; i = i + 1){
+						arr[i] = val;
+					}
+				}
+				"""
+		expect = "0.03.0"
+		self.assertTrue(TestCodeGen.test(input,expect,580))
 
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int n,i,choice;
-	# 		n=20;  
-			
-	# 		do  
-	# 		{  
-	# 		    choice=n%17;
-	# 		    if(choice == 0)  
-	# 		    {  
-	# 		        break;  
-	# 		    }  
-	# 		    n=n+1;  
-	# 		}
-	# 		while(true);  
+	def test_All_1(self):
+		input = """
+				int i;
+				void main(){
+                    for(1; i < 0; i = i + 1){
+                        return;
+                    }
 
-	# 		putIntLn(n);
-	# 	}
-	# 	"""
-	# 	expect = "34\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,573))
+                    putInt(1);
+					putFloat(1);
+					putBool(true);
+					putString("Yeah");
+                }
+				"""
+		expect = "11.0trueYeah"
+		self.assertTrue(TestCodeGen.test(input,expect,581))
 
-	# def test_break_74(self):
+	def test_All_2(self):
+		input = """
+				int a[10];
 
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int i;
-	# 	    float number, sum;
-	# 	    sum=0.0;
-	# 	    for(i=5; i >= -5; i=i-1)
-	# 	    {
+				void main(){
+                    int b;
+                    b = 1;
+                    a[b + 1] = b;
 
-	# 	        putString("Enter a n:");
-	# 	        number=i-2;
-	# 	        if(number < 0.0)
-	# 	        {
-	# 	            break;
-	# 	        }
-	# 	        sum = sum + number; 		    
-	# 	    }
-	# 	    putString("sum = ");
-	# 	    putFloatLn(sum);
-	# 	}
-	# 	"""
-	# 	expect = "Enter a n:Enter a n:Enter a n:Enter a n:Enter a n:sum = 6.0\n"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,574))
+					check(a);
+                }
 
-	# def test_return_75(self):
+				int check(int arr[]){
+					int i;
+					for(i = 0; i < 10; i = i + 1){
+						if(arr[i] != 0){
+							putString("Found a value!");
+							return 1;
+						}
+					}
+					putString("No value found!");
+					return 0;
+				}
+				"""
+		expect = "Found a value!"
+		self.assertTrue(TestCodeGen.test(input,expect,582))
 
-	# 	input = """
-	# 	void main()
-	# 	{
+	def test_All_3(self):
+		input = """
+				int a[10];
+				boolean global;
+
+                void main(){
+                    int b;
+                    b = 1;
+                    a[b + 1] = b;
+                    int x;
+                    {
+                        string x;
+                        {
+                            {
+                                {
+                                    string x;
+                                    {
+                                        x = "OK";
+                                    }
+                                }
+                            }
+                        }
+						x = "OK";
+                        string b;
+                        b = x;
+                        
+						putStringLn(b);
+						check(a);
+                    }
+                    return;
+                }
+
+				int check(int arr[]){
+					int i;
+					for(i = 0; i < 10; i = i + 1){
+						if(arr[i] != 0){
+							putString("Found a value!");
+							return 1;
+						}
+					}
+					putString("No value found!");
+					return 0;
+				}
+				"""
+		expect = "OK\nFound a value!"
+		self.assertTrue(TestCodeGen.test(input,expect,583))
+
+	def test_All_4(self):
+		input = """
+				float maximum(float a, float b, float c){
+                    if (a > b)
+                    {
+                        if (a > c) return a;
+                        else return c;
+                    }
+                    else{
+                        if (b > c) return b;
+                        else return c;
+                        }
+                }
+
+                float minimum(float a, float b, float c)
+                {
+                    if (a < b)
+                    {
+                        if (a < c) return a;
+                        else return c;
+                    }
+                    else {
+                	    if (b < c) return b;
+                        else return c;
+                    }
+                }
+
+		        void main(){
+		        	putFloat(minimum(1, 3, 9) + maximum(99, 199, 299));
+		        }
+				"""
+		expect = "300.0"
+		self.assertTrue(TestCodeGen.test(input,expect,584))
+
+	def test_All_5(self):
+		input = """
+				int first;
+                boolean array[1000];
+                
+				void main(){
+                    do{
+                        array[first / 3] = (array[Return(Return(Return(Return(1))))] == true);
+                    }
+					while(array[first]);
+                    putBool(array[first/3]);
+                }
+
+                int Return(int a){
+                    return a;
+                }
+				"""
+		expect = "false"
+		self.assertTrue(TestCodeGen.test(input,expect,585))
+
+	def test_All_6(self):
+		input = """
+				int first;
+
+                void main(){
+                    for(first = 0; first < 7; first = first + 1){
+                        array();
+                    }
+
+					for(first = 0; first < 3; first = first + 1){
+						putInt(array()[first]);
+					}
+                }
+
+                int[] array(){
+                    int input[3];
+                    input[0] = 0;
+                    input[1] = 1;
+                    input[2] = 2;
+                    return input;
+                }
+
+                int num(){
+                    return first + 1;
+                }
+				"""
+		expect = "012"
+		self.assertTrue(TestCodeGen.test(input,expect,586))
+
+	def test_All_7(self):
+		input = """
+				string str;
+                boolean bool[99];
+                void main(){
+                    for(3; wrong(); 3){
+                        do
+                            str = "ABC";
+                            putString(str);
+                        while(bool[0]);
+                    }
+                }
+
+                boolean wrong(){
+                    return false;
+                }
+				"""
+		expect = ""
+		self.assertTrue(TestCodeGen.test(input,expect,587))
+
+	def test_All_8(self):
+
+		input = """
+				float many;
+				int man;
+                void main(){
+                    for(0; man <= many; man = man + 1){
+                        for(1; true; 1){
+                            print("Upin Ipin >.<");
+							break;
+                        }
+                    }
+                }
+
+                void print(string str){
+                    putStringLn(str);
+                }
+				"""
+		expect = "Upin Ipin >.<\n"
+		self.assertTrue(TestCodeGen.test(input,expect,588))
+
+	def test_All_9(self):
+		input = """
+				int factorial(int n){
+					int result, i;
+					result = 1;
+					for(i = 2; i <= n; i = i + 1){
+						result = result * i;
+					}
+					return result;
+				}
+
+				void main(){
+					putStringLn("Factorial of 10 is: ");
+					putIntLn(factorial(10));
+				}
+				"""
+		expect = "Factorial of 10 is: \n3628800\n"
+		self.assertTrue(TestCodeGen.test(input,expect,589))
+
+	def test_All_10(self):
+		input = """
+				void reverse(string s[], int size){
+					int max, i;
+					max = 2;
+					for(i = 0; i <= max; i = i + 1){
+						string temp;
+						temp = s[i];
+						s[i] = s[size - i - 1];
+						s[size - i - 1] = temp;
+					}
+					for(i = 0; i < size; i = i + 1){
+						putString(s[i]);
+					}
+				}
+
+				string s[6];
+
+				void main(){
+					s[0] = "R";
+					s[1] = "E";
+					s[2] = "D";
+					s[3] = "R";
+					s[4] = "U";
+					s[5] = "M";
+					reverse(s, 6);
+				}
 		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,575))
+				"""
+		expect = "MURDER"
+		self.assertTrue(TestCodeGen.test(input,expect,590))
 
-	# def test_return_76(self):
+	def test_All_11(self):
+		input = """
+                boolean b[999];
 
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,576))
+				void main(){
+                    float a[3];
+					a[2] = 3;
+                    if(b[998] && true){
+                        if(b[0] == true){
+                            return;
+                        }
+                    }
+					else{
+                        a[--------------------------------2] = a[----------2] / 3;
+                    }
+                    putFloat(a[2]);
+                }
+				"""
+		expect = "1.0"
+		self.assertTrue(TestCodeGen.test(input,expect,591))
 
-	# def test_return_77(self):
+	def test_All_12(self):
+		input = """
+				void main(){
+                    putInt(GCD(36, 6 * 17));
+                }
 
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,577))
+                int GCD(int a, int b){
+                    if (a == b) return a;
+                    else {
+						if(b > a) return GCD(a, b - a);
+                        else return GCD(a - b, b);
+                    }
+                }
+				"""
+		expect = "6"
+		self.assertTrue(TestCodeGen.test(input,expect,592))
 
-	# def test_return_78(self):
+	def test_All_13(self):
 
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,578))
+		input = """
+				void main(){
+                    int a[5];
+					a[0] = 3;
+					a[1] = 6;
+					a[2] = 7;
+					a[3] = 14;
+					a[4] = 2;
+					mulGCD(a, 5);
+                }
 
-	# def test_return_79(self):
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,579))
+				void mulGCD(int a[], int size){
+					int mul;
+					mul = 1;
+					int i;
+					for(i = 0; i < size - 1; i = i + 1){
+						mul = mul * GCD(a[i], a[i + 1]);
+					}
+					putInt(mul);
+				}
 
-	# def test_program_80(self):
+                int GCD(int a, int b){
+                    if (a == b) return a;
+                    else {
+						if(b > a) return GCD(a, b - a);
+                        else return GCD(a - b, b);
+                    }
+                }
+				"""
+		expect = "42"
+		self.assertTrue(TestCodeGen.test(input,expect,593))
 
-	# 	input = """
-	# 	void main()
-	# 	{
-	# 		int a;
-	# 		a = 2;
-	# 		int b;
-	# 		b = a;
-	# 		a;
-	# 		1+1;
-	# 		putInt(b);
-	# 	}
-	# 	"""
-	# 	expect = "2"
-	# 	self.assertTrue(TestCodeGen.test(input,expect,580))
+	def test_All_14(self):
+		input = """
+				void binary(int n){
+					if(n == 0 || n == 1) putInt(n);
+					else{
+						binary(n / 2);
+						putInt(n % 2);
+					}
+				}
 
-	# def test_program_81(self):
+				void main(){
+					binary(54);
+				}
+				"""
+		expect = "110110"
+		self.assertTrue(TestCodeGen.test(input,expect,594))
 
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,581))
+	def test_All_15(self):
+		input = """
+				void trinary(int n){
+					if(n == 0 || n == 1 || n == 2) putInt(n);
+					else{
+						trinary(n / 3);
+						putInt(n % 3);
+					}
+				}
 
-	# def test_program_82(self):
+				void main(){
+					trinary(54);
+				}
+				"""
+		expect = "2000"
+		self.assertTrue(TestCodeGen.test(input,expect,543))
 
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,582))
+	def test_All_16(self):
+		input = """
+				void message(string s){
+					putString("Message: ");
+					putStringLn(s);
+				}
 
-	# def test_program_83(self):
+				void thank(string s){
+					putString("Thanks to: ");
+					putStringLn(s);
+				}
 
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,583))
+				void wish(string s){
+					putString("Wish: ");
+					putStringLn(s);
+				}
 
-	# def test_program_84(self):
+				void main(){
+					thank("Mr.Phung");
+					message("PPL is really cool");
+					wish("All my best wishes!!!");
+				}
+				"""
+		expect = "Thanks to: Mr.Phung\nMessage: PPL is really cool\nWish: All my best wishes!!!\n"
+		self.assertTrue(TestCodeGen.test(input,expect,596))
 
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,584))
+	def test_All_17(self):
+		input = """
+				void message(string s){
+					putString("Message: ");
+					putStringLn(s);
+				}
 
-	# def test_program_85(self):
+				void thank(string s){
+					putString("Thanks to: ");
+					putStringLn(s);
+				}
 
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,585))
+				void wish(string s){
+					putString("Wish: ");
+					putStringLn(s);
+				}
 
-	# def test_program_86(self):
+				void main(){
+					thank("U");
+					message("Running out of ideas and time to write testcases");
+					message("Sorryyyyyyyyyyyyyyyyyyyyyy");
+					wish("We all shall pass PPL <3");
+				}
+				"""
+		expect = "Thanks to: U\nMessage: Running out of ideas and time to write testcases\nMessage: Sorryyyyyyyyyyyyyyyyyyyyyy\nWish: We all shall pass PPL <3\n"
+		self.assertTrue(TestCodeGen.test(input,expect,597))
 
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,586))
+	def test_All_18(self):
+		input = """
+				void message(string s){
+					putString("Message: ");
+					putStringLn(s);
+				}
 
-	# def test_program_87(self):
+				void thank(string s){
+					putString("Thanks to: ");
+					putStringLn(s);
+				}
 
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,587))
+				void wish(string s){
+					putString("Wish: ");
+					putStringLn(s);
+				}
 
-	# def test_program_88(self):
+				void main(){
+					thank("");
+					message("4 assignments in a course is insane!!!!");
+					message("But hashtag #WorthIt");
+					wish("We all shall pass PPL <3");
+				}
+				"""
+		expect = "Thanks to: \nMessage: 4 assignments in a course is insane!!!!\nMessage: But hashtag #WorthIt\nWish: We all shall pass PPL <3\n"
+		self.assertTrue(TestCodeGen.test(input,expect,598))
 
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,588))
+	def test_All_19(self):
+		input = """
+				void main(){
+					putStringLn("OK it's enough!");
+					putStringLn("To you who are reading this");
+					putStringLn("Love yourself <3 you are better than who you think you are");
+				}
+				"""
+		expect = "OK it's enough!\nTo you who are reading this\nLove yourself <3 you are better than who you think you are\n"
+		self.assertTrue(TestCodeGen.test(input,expect,599))
 
-	# def test_program_89(self):
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,589))
-
-	# def test_program_90(self):
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,590))
-
-	# def test_program_91(self):
-
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,591))
-
-	# def test_program_92(self):
-
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,592))
-
-	# def test_program_93(self):
-
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,593))
-
-	# def test_program_94(self):
-
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,594))
-
-	# def test_program_95(self):
-
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,595))
-
-	# def test_program_96(self):
-
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,596))
-
-	# def test_program_97(self):
-
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,597))
-
-	# def test_program_98(self):
-
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,598))
-
-	# def test_program_99(self):
-	# 	input = """
-	# 	void main()
-	# 	{
-		
-	# 	}
-	# 	"""
-	# 	expect = ""
-	# 	self.assertTrue(TestCodeGen.test(input,expect,599))
+	def test_All_20(self):
+		input = """
+				void main(){
+					putStringLn("Good bye :))))))))))))))))");
+				}
+				"""
+		expect = "Good bye :))))))))))))))))\n"
+		self.assertTrue(TestCodeGen.test(input,expect,600))
 

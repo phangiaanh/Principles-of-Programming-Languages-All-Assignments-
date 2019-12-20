@@ -5,53 +5,55 @@
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
 Label0:
-.var 1 is a I from Label0 to Label1
-	bipush 10
+.var 1 is j I from Label0 to Label1
+	iconst_0
+	dup
 	istore_1
+	pop
+	goto Label4
 Label2:
+	iload_1
+	iconst_1
+	iadd
+	dup
+	istore_1
+	pop
 Label4:
 	iload_1
-	bipush 15
-	if_icmpne Label6
+	bipush 10
+	if_icmpgt Label5
 	iconst_1
-	goto Label7
-Label6:
+	goto Label6
+Label5:
 	iconst_0
+Label6:
+	ifle Label3
 Label7:
-	ifgt Label8
-	goto Label9
-Label8:
-Label10:
 	iload_1
+	iload_1
+	imul
+	bipush 81
+	if_icmpge Label9
 	iconst_1
-	iadd
-	istore_1
-	goto Label2
-Label11:
+	goto Label10
 Label9:
-	ldc "value of a: "
-	invokestatic io/putString(Ljava/lang/String;)V
+	iconst_0
+Label10:
+	ifgt Label11
+	goto Label12
+Label11:
+	goto Label2
+Label12:
 	iload_1
 	invokestatic io/putInt(I)V
-	iload_1
-	iconst_1
-	iadd
-	istore_1
-Label5:
-	iload_1
-	bipush 20
-	if_icmpge Label12
-	iconst_1
-	goto Label13
-Label12:
-	iconst_0
-Label13:
-	ifle Label3
+	ldc " "
+	invokestatic io/putString(Ljava/lang/String;)V
+Label8:
 	goto Label2
 Label3:
 Label1:
 	return
-.limit stack 5
+.limit stack 7
 .limit locals 2
 .end method
 

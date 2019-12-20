@@ -1,6 +1,16 @@
 
-		void main()
-		{
-		
-		}
-		
+				float many;
+				int man;
+                void main(){
+                    for(0; man <= many; man = man + 1){
+                        for(1; true; 1){
+                            print("Upin Ipin >.<");
+							break;
+                        }
+                    }
+                }
+
+                void print(string str){
+                    putStringLn(str);
+                }
+				

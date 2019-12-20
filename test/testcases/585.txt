@@ -1,6 +1,16 @@
 
-		void main()
-		{
-		
-		}
-		
+				int first;
+                boolean array[1000];
+                
+				void main(){
+                    do{
+                        array[first / 3] = (array[Return(Return(Return(Return(1))))] == true);
+                    }
+					while(array[first]);
+                    putBool(array[first/3]);
+                }
+
+                int Return(int a){
+                    return a;
+                }
+				

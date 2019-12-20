@@ -5,9 +5,15 @@
 .method public static main([Ljava/lang/String;)V
 .var 0 is args [Ljava/lang/String; from Label0 to Label1
 Label0:
+	ldc "OK it's enough!"
+	invokestatic io/putStringLn(Ljava/lang/String;)V
+	ldc "To you who are reading this"
+	invokestatic io/putStringLn(Ljava/lang/String;)V
+	ldc "Love yourself <3 you are better than who you think you are"
+	invokestatic io/putStringLn(Ljava/lang/String;)V
 Label1:
 	return
-.limit stack 0
+.limit stack 1
 .limit locals 1
 .end method
 

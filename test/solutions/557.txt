@@ -1,2 +1,1 @@
-while vs do-while
-Out of loop
+26

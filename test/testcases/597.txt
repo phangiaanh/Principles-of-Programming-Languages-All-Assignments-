@@ -1,6 +1,23 @@
 
-		void main()
-		{
-		
-		}
-		
+				void message(string s){
+					putString("Message: ");
+					putStringLn(s);
+				}
+
+				void thank(string s){
+					putString("Thanks to: ");
+					putStringLn(s);
+				}
+
+				void wish(string s){
+					putString("Wish: ");
+					putStringLn(s);
+				}
+
+				void main(){
+					thank("U");
+					message("Running out of ideas and time to write testcases");
+					message("Sorryyyyyyyyyyyyyyyyyyyyyy");
+					wish("We all shall pass PPL <3");
+				}
+				

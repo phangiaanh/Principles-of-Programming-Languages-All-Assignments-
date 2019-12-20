@@ -1,15 +1,18 @@
 
-		void main()
-		{
-			for (num=0; num<=6; num=num+2) {
-    
-			    if (num==3) {
-			        continue;
-			    }
-			    putInt(num);
-			    putString(" ");
-   			}
-		}
-
-		int num;
-		
+				boolean even(int n){
+					return n % 2 == 0;
+				}
+				void main()
+				{
+					int n;
+					for(n = 0; n < 20; n = n + 1){
+						if(even(n)) continue;
+						else{
+							if(odd(n/2)) putInt(n);
+						}
+					}
+				}
+				boolean odd(int n){
+					return n % 2 == 1;
+				}
+				

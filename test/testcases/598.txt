@@ -1,6 +1,23 @@
 
-		void main()
-		{
-		
-		}
-		
+				void message(string s){
+					putString("Message: ");
+					putStringLn(s);
+				}
+
+				void thank(string s){
+					putString("Thanks to: ");
+					putStringLn(s);
+				}
+
+				void wish(string s){
+					putString("Wish: ");
+					putStringLn(s);
+				}
+
+				void main(){
+					thank("");
+					message("4 assignments in a course is insane!!!!");
+					message("But hashtag #WorthIt");
+					wish("We all shall pass PPL <3");
+				}
+				

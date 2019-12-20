@@ -1,55 +1,99 @@
 .source MCClass.java
 .class public MCClass
 .super java.lang.Object
-.field static num I
+
+.method public static even(I)Z
+Label0:
+.var 0 is n I from Label0 to Label1
+	iload_0
+	iconst_2
+	irem
+	iconst_0
+	if_icmpne Label2
+	iconst_1
+	goto Label3
+Label2:
+	iconst_0
+Label3:
+	goto Label1
+Label1:
+	ireturn
+.limit stack 3
+.limit locals 1
+.end method
 
 .method public static main([Ljava/lang/String;)V
-.var 0 is args [Ljava/lang/String; from Label0 to Label1
-Label0:
-	iconst_0
-	putstatic MCClass.num I
-	goto Label4
-Label2:
-	getstatic MCClass.num I
-	iconst_2
-	iadd
-	putstatic MCClass.num I
+.var 0 is args [Ljava/lang/String; from Label4 to Label5
 Label4:
-	getstatic MCClass.num I
-	bipush 6
-	if_icmpgt Label5
-	iconst_1
-	goto Label6
-Label5:
+.var 1 is n I from Label4 to Label5
 	iconst_0
+	dup
+	istore_1
+	pop
+	goto Label8
 Label6:
-	ifle Label3
-Label7:
-	getstatic MCClass.num I
-	iconst_3
-	if_icmpne Label9
+	iload_1
+	iconst_1
+	iadd
+	dup
+	istore_1
+	pop
+Label8:
+	iload_1
+	bipush 20
+	if_icmpge Label9
 	iconst_1
 	goto Label10
 Label9:
 	iconst_0
 Label10:
-	ifgt Label11
-	goto Label12
+	ifle Label7
 Label11:
+	iload_1
+	invokestatic MCClass/even(I)Z
+	ifgt Label13
+Label15:
+	iload_1
+	iconst_2
+	idiv
+	invokestatic MCClass/odd(I)Z
+	ifgt Label17
+	goto Label18
+Label17:
+	iload_1
+	invokestatic io/putInt(I)V
+Label18:
+Label16:
+	goto Label14
 Label13:
-	goto Label2
+	goto Label6
 Label14:
 Label12:
-	getstatic MCClass.num I
-	invokestatic io/putInt(I)V
-	ldc " "
-	invokestatic io/putString(Ljava/lang/String;)V
-Label8:
-	goto Label2
-Label3:
-Label1:
+	goto Label6
+Label7:
+Label5:
 	return
-.limit stack 5
+.limit stack 8
+.limit locals 2
+.end method
+
+.method public static odd(I)Z
+Label19:
+.var 0 is n I from Label19 to Label20
+	iload_0
+	iconst_2
+	irem
+	iconst_1
+	if_icmpne Label21
+	iconst_1
+	goto Label22
+Label21:
+	iconst_0
+Label22:
+	goto Label20
+Label20:
+	ireturn
+.limit stack 9
 .limit locals 1
 .end method
 

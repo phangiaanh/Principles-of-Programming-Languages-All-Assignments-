@@ -1,6 +1,21 @@
 
-		void main()
-		{
-		
-		}
-		
+				void main()
+				{
+					int i;
+				    float number, sum;
+				    sum = 0.0;
+				    for(i = 5; i >= -5; i = i-1)
+				    {
+					
+				        putString("Enter a n:");
+				        number = i - 2;
+				        if(number < 0.0)
+				        {
+				            break;
+				        }
+				        sum = sum + number; 		    
+				    }
+				    putString("sum = ");
+				    putFloatLn(sum);
+				}
+				

@@ -1,6 +1,23 @@
 
-		void main()
-		{
-		
-		}
-		
+				void main()
+				{
+					putInt(one());
+					putFloat(one());
+					putFloat(two());
+					putInt(arr()[0]);
+				}
+				
+				int one(){
+					return 1;
+				}
+
+				float two(){
+					return 2.0;
+				}
+
+				int[] arr(){
+					int arr[1];
+					arr[0] = 4;
+					return arr;
+				}
+				

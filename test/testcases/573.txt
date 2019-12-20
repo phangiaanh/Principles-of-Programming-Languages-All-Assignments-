@@ -1,20 +1,23 @@
 
-		void main()
-		{
-			int n,i,choice;
-			n=20;  
-			
-			do  
-			{  
-			    choice=n%17;
-			    if(choice == 0)  
-			    {  
-			        break;  
-			    }  
-			    n=n+1;  
-			}
-			while(true);  
+				void main(){
+					int arr[10], n;
+					int i;
+					for(i = 0; i < 10; i = i + 1){
+						arr[i] = i * i;
+					}
+					findValue(arr, 10, 64);
+				}
 
-			putIntLn(n);
-		}
-		
+				void findValue(int arr[], int size, int value){
+					int i;
+					for(i = 0; i < size; i = i + 1){
+						if(arr[i] == value){
+							putString("Found value(");
+							putInt(value);
+							putString(") at position: ");
+							putIntLn(i);
+							break;
+						}
+					}
+				}
+				

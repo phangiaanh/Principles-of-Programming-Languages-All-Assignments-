@@ -1,20 +1,13 @@
 
-		void main()
-		{
-			int a;
-			a=10;
+				void main()
+				{
+					int j;
+					for (j = 0; j <= 10; j = j + 1)
+				   	{
+				      	if(j * j < 81) continue;
 
-			do 
-			{
-				if(a == 15) {
-					a = a + 1;
-					continue;
+				       	putInt(j);
+				       	putString(" ");
+				    }
 				}
-					
-				putString("value of a: ");
-				putInt(a);
-				a=a+1;
-			} 
-			while( a < 20 );
-		}
-		
+				

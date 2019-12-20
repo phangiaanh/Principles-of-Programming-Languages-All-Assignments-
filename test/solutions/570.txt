@@ -1,2 +1,4 @@
-0 1 2 3 4 5 
-came outside of loop i = 5
+Loop for n
+Loop for n
+Loop for n
+Loop for n

@@ -1,14 +1,28 @@
 
-		void main()
-		{
-			int j;
-			for (j=0; j<=8; j=j+1)
-		   	{
-		   		
-		      	if (j==4) continue;
-		       	
-		       	putInt(j);
-		       	putString(" ");
-		    }
+		void main() {
+			int i;
+
+			for (i = 0; i < 10; i = i + 1)
+			{
+				int a;
+				a = 6;
+				for(1; true; 1){
+					{
+						putInt(a);
+						{
+							{
+								if(a > 5 && a < 10){
+									a = a + 1;
+									continue;
+								}
+								else break;
+							}
+						}
+					}
+					putInt(a);
+				}
+			}
+			putInt(i);
+
 		}
 		

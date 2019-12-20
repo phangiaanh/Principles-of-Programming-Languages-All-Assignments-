@@ -1,11 +1,11 @@
-Enter a number: 
-number * i = 10
-number * j = 30
-number * i = 20
-number * j = 40
-number * i = 30
-number * j = 50
-number * i = 40
-number * j = 60
-number * i = 50
-number * j = 70
+1
+4
+9
+16
+25
+36
+49
+64
+81
+100
+121
